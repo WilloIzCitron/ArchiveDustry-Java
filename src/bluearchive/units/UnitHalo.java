@@ -233,12 +233,12 @@ public class UnitHalo {
                     new HaloPart(){{
                         color = Pal.heal;
                         layer = Layer.effect;
-                        radius = 2f;
+                        radius = 1f;
                         tri = true;
                         triLength = 2;
                         haloRotation = 180f;
                         haloRadius = 4f;
-                        shapeRotation = 90f;
+                        shapeRotation = 180f;
                         y = -3f;
                     }}
 
