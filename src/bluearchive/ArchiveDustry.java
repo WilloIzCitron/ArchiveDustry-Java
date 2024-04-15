@@ -10,7 +10,7 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
-import mindustry.gen.*;
+import bluearchive.units.*;
 
 import static mindustry.Vars.*;
 
@@ -77,6 +77,11 @@ public class ArchiveDustry extends Mod {
         Events.on(SectorCaptureEvent.class, e -> {
             tree.loadMusic("win").play();
         });
+    }
+
+    @Override
+    public void init(){
+        UnitHalo.init();
     }
 
     protected static Music soundControlPlaying() {
