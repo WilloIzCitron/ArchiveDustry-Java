@@ -54,7 +54,7 @@ public class UnitHalo {
                         color = Pal.heal;
                         layer = Layer.effect;
                         stroke = 3;
-                        y = -3f;
+                        y = -5f;
                     }},
                     new HaloPart() {{
                         shapes = 3;
@@ -63,7 +63,7 @@ public class UnitHalo {
                         color = Pal.heal;
                         layer = Layer.effect;
                         radius = 5f;
-                        y = -3f;
+                        y = -5f;
                     }}
             );
             UnitTypes.toxopid.parts.addAll(
@@ -72,6 +72,7 @@ public class UnitHalo {
                         layer = Layer.effect;
                         haloRotateSpeed = 3f;
                         shapes = 8;
+                        y = -5f;
                     }},
                     new ShapePart() {{
                         color = Pal.sapBullet;
@@ -80,6 +81,7 @@ public class UnitHalo {
                         stroke = 3;
                         hollow = true;
                         radius = 15f;
+                        y = -5f;
                     }},
                     new HaloPart() {{
                         color = Pal.sapBullet;
@@ -90,6 +92,7 @@ public class UnitHalo {
                         haloRotation = 90;
                         triLength = 15f;
                         tri = true;
+                        y = -5f;
                     }},
                     new HaloPart() {{
                         color = Pal.sapBullet;
@@ -101,6 +104,7 @@ public class UnitHalo {
                         triLength = 1f;
                         shapeRotation = 180;
                         tri = true;
+                        y = -5f;
                     }},
                     new ShapePart() {{
                         color = Pal.sapBullet;
@@ -109,6 +113,7 @@ public class UnitHalo {
                         hollow = true;
                         stroke = 2;
                         radius = 9;
+                        y = -5f;
                     }}
             );
             UnitTypes.reign.parts.addAll(
@@ -184,6 +189,7 @@ public class UnitHalo {
                         stroke = 1f;
                         y = -2f;
                     }});
+            UnitTypes.
         });
     }
 
