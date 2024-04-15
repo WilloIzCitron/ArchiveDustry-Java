@@ -191,12 +191,12 @@ public class UnitHalo {
                     }});
             UnitTypes.mace.parts.addAll(
                     new ShapePart() {{
-                        radius = 3;
+                        radius = 3.5f;
                         color = Pal.engine;
                         layer = Layer.effect;
                         hollow = true;
                         sides = 5;
-                        stroke = 1f;
+                        stroke = 1.3f;
                         rotation = 90f;
                         y = -3f;
                     }},
@@ -207,7 +207,7 @@ public class UnitHalo {
                         tri = true;
                         triLength = 2f;
                         shapes = 4;
-                        haloRadius = 3;
+                        haloRadius = 3.8f;
                         y = -3f;
                     }});
             UnitTypes.pulsar.parts.addAll(
@@ -217,27 +217,27 @@ public class UnitHalo {
                         rotation = 90;
                         color = Pal.heal;
                         layer = Layer.effect;
-                        stroke = 1f;
+                        stroke = 1.3f;
                         y = -3f;
                     }},
                     new HaloPart(){{
                         color = Pal.heal;
                         layer = Layer.effect;
-                        radius = 1f;
+                        radius = 1.5f;
                         tri = true;
                         triLength = 3;
                         haloRotation = 180f;
-                        haloRadius = 4f;
+                        haloRadius = 4.3f;
                         y = -3;
                     }},
                     new HaloPart(){{
                         color = Pal.heal;
                         layer = Layer.effect;
-                        radius = 1f;
+                        radius = 1.5f;
                         tri = true;
                         triLength = 2;
                         haloRotation = 180f;
-                        haloRadius = 4f;
+                        haloRadius = 4.3f;
                         shapeRotation = 180f;
                         y = -3f;
                     }}
