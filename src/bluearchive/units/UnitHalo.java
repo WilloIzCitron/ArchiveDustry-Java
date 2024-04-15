@@ -165,7 +165,7 @@ public class UnitHalo {
                     layer = Layer.effect;
                     hollow = true;
                     sides = 5;
-                    stroke = 1.5f;
+                    stroke = 1f;
                     rotation = 90f;
                     y = -2f;
             }});
@@ -175,7 +175,7 @@ public class UnitHalo {
                         layer = Layer.effect;
                         sides = 8;
                         hollow = true;
-                        stroke = 1.5f;
+                        stroke = 1f;
                         radius = 3;
                         y = -1f;
                     }});
@@ -189,7 +189,62 @@ public class UnitHalo {
                         stroke = 1f;
                         y = -2f;
                     }});
-            UnitTypes.
+            UnitTypes.mace.parts.addAll(
+                    new ShapePart() {{
+                        radius = 3;
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        hollow = true;
+                        sides = 5;
+                        stroke = 1f;
+                        rotation = 90f;
+                        y = -3f;
+                    }},
+                    new HaloPart() {{
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        radius = 1f;
+                        tri = true;
+                        triLength = 2f;
+                        shapes = 4;
+                        haloRadius = 3;
+                        y = -3f;
+                    }});
+            UnitTypes.pulsar.parts.addAll(
+                    new ShapePart() {{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        radius = 3.5f;
+                        hollow = true;
+                        rotation = 90;
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        stroke = 1f;
+                        y = -3f;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        radius = 1f;
+                        tri = true;
+                        triLength = 3;
+                        haloRotation = 180f;
+                        haloRadius = 4f;
+                        y = -3;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        radius = 2f;
+                        tri = true;
+                        triLength = 2;
+                        haloRotation = 180f;
+                        haloRadius = 4f;
+                        shapeRotation = 90f;
+                        y = -3f;
+                    }}
+
+            );
         });
     }
 
