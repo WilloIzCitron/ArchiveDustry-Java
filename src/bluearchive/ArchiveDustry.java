@@ -31,9 +31,6 @@ public class ArchiveDustry extends Mod {
                     Reflect.set(control.sound, "fade", 0f);
                     Reflect.invoke(control.sound, "silence");
                     if (soundControlPlaying() != null) {Reflect.invoke(control.sound, "silence");} //Counteract fade in
-                } else {
-                    Reflect.set(control.sound, "fade", 0f);
-                    Reflect.invoke(control.sound, "silence");
                 }
             });
             ui.research.hidden(() -> {
@@ -47,9 +44,6 @@ public class ArchiveDustry extends Mod {
                     Reflect.set(control.sound, "fade", 0f);
                     Reflect.invoke(control.sound, "silence");
                     if (soundControlPlaying() != null) {Reflect.invoke(control.sound, "silence");} //Counteract fade in
-                } else {
-                    Reflect.set(control.sound, "fade", 0f);
-                    Reflect.invoke(control.sound, "silence");
                 }
             });
             ui.database.hidden(() -> {
