@@ -212,8 +212,6 @@ public class UnitHalo {
                     }});
             UnitTypes.pulsar.parts.addAll(
                     new ShapePart() {{
-                        color = Pal.heal;
-                        layer = Layer.effect;
                         radius = 3.5f;
                         hollow = true;
                         rotation = 90;
