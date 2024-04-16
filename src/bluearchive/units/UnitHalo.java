@@ -11,7 +11,7 @@ import mindustry.graphics.*;
 public class UnitHalo {
     public static void init(){
         Events.on(ClientLoadEvent.class, event -> {
-            Log.info("Unit has been loaded!");
+            Log.info("[AchivD] Unit has been loaded!");
             UnitTypes.conquer.parts.addAll(
                     new ShapePart() {{
                         circle = true;
