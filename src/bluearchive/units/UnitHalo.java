@@ -314,6 +314,8 @@ public class UnitHalo {
                 );
                 UnitTypes.quasar.parts.addAll(
                         new ShapePart(){{
+                            color = Pal.heal;
+                            layer = Layer.effect;
                             radius = 3;
                             hollow = true;
                             rotation = 90;
@@ -321,6 +323,8 @@ public class UnitHalo {
                             y = -3;
                         }},
                         new HaloPart(){{
+                            color = Pal.heal;
+                            layer = Layer.effect;
                             radius = 1.3f;
                             hollow = false;
                             haloRadius = 5;
@@ -332,6 +336,8 @@ public class UnitHalo {
                             tri = true;
                         }},
                         new ShapePart(){{
+                            color = Pal.heal;
+                            layer = Layer.effect;
                             radius = 5.5f;
                             hollow = true;
                             rotation = 180;
