@@ -432,7 +432,30 @@ public class UnitHalo {
 
                         }}
                 );
-                UnitTypes.aegires.abilities
+                UnitTypes.risso.parts.addAll(
+                        new ShapePart(){{
+                            sides = 5;
+                            rotation = 90;
+                            radius = 4;
+                            hollow = true;
+                        }},
+                        new HaloPart(){{
+                            sides = 3;
+                            tri = true;
+                            triLength = 5;
+                            radius = 1.2f;
+                            haloRadius = 1.5f;
+
+                        }},
+                        new HaloPart(){{
+                            sides = 3;
+                            tri = true;
+                            triLength = 1;
+                            radius = 1.2f;
+                            haloRadius = 1.5f;
+                            shapeRotation = 180;
+                        }}
+                );
         });
     }
 
