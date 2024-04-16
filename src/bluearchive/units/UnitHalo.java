@@ -346,6 +346,93 @@ public class UnitHalo {
                             y = -3;
                         }}
                 );
+                UnitTypes.vela.parts.addAll(
+                        new ShapePart(){{
+                            color = Pal.heal;
+                            layer = Layer.effect;
+                            radius = 9.5f;
+                            y = -4;
+                            rotation = 90;
+                            hollow = true;
+                            stroke = 1.7f;
+                        }},
+                        new ShapePart(){{
+                            color = Pal.heal;
+                            layer = Layer.effect;
+                            radius = 4f;
+                            y = -4;
+                            rotation = 90;
+                            hollow = true;
+                        }},
+                        new HaloPart(){{
+                            color = Pal.heal;
+                            layer = Layer.effect;
+                            radius = 3.5f;
+                            y = -4;
+                            haloRotation = 180;
+                            haloRadius = 6;
+                        }},
+                        new HaloPart(){{
+                            color = Pal.heal;
+                            layer = Layer.effect;
+                            y = -4;
+                            radius = 3.5f;
+                            haloRadius = 9.4f;
+                        }}
+                );
+                UnitTypes.arkyid.parts.addAll(
+                        new HaloPart(){{
+                            color = Pal.sapBullet;
+                            layer = Layer.effect;
+                            sides = 3;
+                            shapes = 8;
+                            haloRadius = 7.7f;
+                            radius = 2.5f;
+                            y = -3.5f;
+                        }},
+                        new ShapePart(){{
+                            color = Pal.sapBullet;
+                            layer = Layer.effect;
+                            sides = 8;
+                            hollow = true;
+                            stroke = 2;
+                            radius = 7.5f;
+                            y = -3.5f;
+                        }}
+                );
+                UnitTypes.scepter.parts.addAll(
+                        new ShapePart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            sides = 5;
+                            hollow = true;
+                            radius = 4.5f;
+                            stroke = 1.5f;
+                            y = -2.5f;
+                            rotation = 90;
+                        }},
+                        new HaloPart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            tri = true;
+                            triLength = 5;
+                            radius = 1.3f;
+                            haloRadius = 6.7f;
+                            y = -2.5f;
+                        }},
+                        new ShapePart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            circle = true;
+                            hollow = true;
+                            radius = 6.5f;
+                            stroke = 1.5f;
+                            y = -2.5f;
+                            rotation = 90;
+
+                        }}
+                );
+                UnitTypes.aegires.abilities
         });
     }
 
