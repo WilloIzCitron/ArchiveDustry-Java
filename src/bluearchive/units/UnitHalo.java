@@ -241,8 +241,105 @@ public class UnitHalo {
                         shapeRotation = 180f;
                         y = -3f;
                     }}
-
             );
+                UnitTypes.atrax.parts.addAll(
+                        new ShapePart() {{
+                            color = Pal.sapBullet;
+                            layer = Layer.effect;
+                            sides = 8;
+                            hollow = true;
+                            stroke = 1.3f;
+                            radius = 3.5f;
+                            y = -3f;
+                        }},
+                        new HaloPart() {{
+                            color = Pal.sapBullet;
+                            layer = Layer.effect;
+                            shapes = 2;
+                            radius = 1.5f;
+                            y = -5f;
+                            haloRotation = 90;
+                            haloRadius = 3.8f;
+                        }}
+
+                );
+                UnitTypes.spiroct.parts.addAll(
+                        new ShapePart(){{
+                            color = Pal.sapBullet;
+                            layer = Layer.effect;
+                            sides = 8;
+                            hollow = true;
+                            stroke = 1.5f;
+                            radius = 4.5f;
+                            y = -4.5f;
+                        }},
+                        new HaloPart(){{
+                            y = -4.5f;
+                            haloRadius = 4.7f;
+                            color = Pal.sapBullet;
+                            layer = Layer.effect;
+                        }}
+                );
+                UnitTypes.fortress.parts.addAll(
+                        new ShapePart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            sides = 5;
+                            hollow = true;
+                            radius = 4.5f;
+                            stroke = 1.5f;
+                            y = -2.5f;
+                            rotation = 90;
+                        }},
+                        new HaloPart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            y = -2.5f;
+                            radius = 1.5f;
+                            triLength = 3.5f;
+                            tri = true;
+                            shapes = 5;
+                            haloRadius = 4.4f;
+                        }},
+                        new HaloPart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            y = -2.5f;
+                            haloRotation = 180;
+                            sides = 4;
+                            shapes = 5;
+                            radius = 1.5f;
+                            haloRadius = 4.4f;
+                        }}
+                );
+                UnitTypes.quasar.parts.addAll(
+                        new ShapePart(){{
+                            radius = 3;
+                            hollow = true;
+                            rotation = 90;
+                            stroke = 1.3f;
+                            y = -3;
+                        }},
+                        new HaloPart(){{
+                            radius = 1.3f;
+                            hollow = false;
+                            haloRadius = 5;
+                            shapeRotation = 180;
+                            haloRotation = 90;
+                            shapes = 6;
+                            y = -3;
+                            triLength = 2;
+                            tri = true;
+                        }},
+                        new ShapePart(){{
+                            radius = 5.5f;
+                            hollow = true;
+                            rotation = 180;
+                            stroke = 1.3f;
+                            sides = 6;
+                            y = -3;
+                        }}
+                );
         });
     }
 
