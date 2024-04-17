@@ -434,12 +434,16 @@ public class UnitHalo {
                 );
                 UnitTypes.risso.parts.addAll(
                         new ShapePart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
                             sides = 5;
                             rotation = 90;
                             radius = 4;
                             hollow = true;
                         }},
                         new HaloPart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
                             sides = 3;
                             tri = true;
                             triLength = 5;
@@ -448,12 +452,43 @@ public class UnitHalo {
 
                         }},
                         new HaloPart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
                             sides = 3;
                             tri = true;
                             triLength = 1;
                             radius = 1.2f;
                             haloRadius = 1.5f;
                             shapeRotation = 180;
+                        }}
+                );
+                UnitTypes.retusa.parts.addAll(
+                        new ShapePart(){{
+                            color = Pal.heal;
+                            layer = Layer.effect;
+                        hollow = true;
+                        rotation = 90;
+                        radius = 4;
+                        }},
+                        new HaloPart(){{
+                            color = Pal.heal;
+                            layer = Layer.effect;
+                        shapeRotation = 180;
+                        radius = 1;
+                        shapes = 9;
+                        triLength = 1;
+                        tri = true;
+                        haloRadius = 4;
+                        }},
+                        new HaloPart(){{
+                            color = Pal.heal;
+                            layer = Layer.effect;
+                        shapeRotation = 0;
+                        radius = 1;
+                        shapes = 9;
+                        triLength = 3;
+                        tri = true;
+                        haloRadius = 4;
                         }}
                 );
         });
