@@ -3,9 +3,12 @@
   author: WilloIzCitron. Copyrights remains with Nexon, NAT GAMES and YoStar
   description:
     "
-    This is a fanmade mod of Blue Archive Soundtrack in Mindustry./n
-     This mod replace vanilla soundtrack into [blue]Blue [white]Archive []Soundtrack, also add additional soundtrack for essentials./n
-     This mod is a fan-made project inspired by Blue Archive and not directly affiliated with it. Copyright remains with the developer and publisher of Blue Archive:/n Nexon, NAT GAMES and Yostar.
+    This is a fanmade mod of Blue Archive Soundtrack in Mindustry.
+
+    This mod replace vanilla soundtrack into [blue]Blue [white]Archive []Soundtrack, also add additional soundtrack for essentials.
+
+    This mod is a fan-made project inspired by Blue Archive and not directly affiliated with it. Copyright remains with the developer and publisher of Blue Archive:
+    Nexon, NAT GAMES and Yostar.
     "
   version: "1.0"
   main: bluearchive.ArchiveDustry

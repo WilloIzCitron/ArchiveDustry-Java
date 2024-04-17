@@ -1,7 +1,9 @@
-# ArchiveDustry Java
+
+![Archivedustry logo](/assets/sprites-override/ui/logo.png)
+
 > ℹ️ This Mod was being migrated from JS<sup>JavaScript</sup> was being archived, this mod are almost perfect.
   
-A mod that overide the vanilla soundtrack into Blue Archive Soundtrack, and also adds the cosmetics for units. This mod is unaffiliated with developer of  Blue Archive game: Nexon, NAT GAMES dan Yostar.
+A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and also adds the cosmetics for units such as halo. This mod is unaffiliated with developer of  Blue Archive game: Nexon, NAT GAMES dan Yostar.
 
 ## Music List
   - menu.ogg = Constant Moderato

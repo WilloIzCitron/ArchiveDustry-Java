@@ -491,6 +491,48 @@ public class UnitHalo {
                         haloRadius = 4;
                         }}
                 );
+                UnitTypes.minke.parts.addAll(
+                        new ShapePart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            sides = 5;
+                            rotation = 90;
+                            radius = 4;
+                            hollow = true;
+                        }},
+                        new HaloPart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            sides = 3;
+                            tri = true;
+                            triLength = 1;
+                            shapes = 5;
+                            radius = 2;
+                            radius = 3f;
+                            haloRadius = 1.5f;
+                            shapeRotation = 180;
+                        }},
+                        new ShapePart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            sides = 16;
+                            rotation = 90;
+                            radius = 6;
+                            hollow = true;
+                        }},
+                        new HaloPart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            sides = 3;
+                            shapes = 5;
+                            tri = true;
+                            radius = 2;
+                            triLength = 5;
+                            radius = 3f;
+                            haloRadius = 1.5f;
+                        }}
+
+                );
         });
     }
 
