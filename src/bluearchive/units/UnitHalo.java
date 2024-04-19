@@ -526,12 +526,60 @@ public class UnitHalo {
                             sides = 3;
                             shapes = 5;
                             tri = true;
-                            radius = 2;
                             triLength = 5;
                             radius = 3f;
                             haloRadius = 1.5f;
                         }}
 
+                );
+                UnitTypes.bryde.parts.addAll(
+                        new ShapePart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            sides = 5;
+                            radius = 6;
+                            hollow = true;
+                            rotation = 90;
+                            stroke = 1.5f;
+                        }},
+                        new ShapePart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            sides = 5;
+                            rotation = -90;
+                        }},
+                        new HaloPart(){{
+                            color = Pal.engine;
+                            layer = Layer.effect;
+                            tri = true;
+                            radius = 1;
+                            haloRotateSpeed= -1;
+                            triLength = 0;
+                            triLengthTo = 3;
+                            shapeRotation = 180;
+                            shapes = 5;
+                        }},
+                    new HaloPart(){{
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        tri = true;
+                        radius = 1;
+                        haloRotateSpeed= 1;
+                        triLength = 0;
+                        triLengthTo = 4;
+                        shapeRotation = 0;
+                        shapes = 5;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        circle = true;
+                        radius = 10;
+                        hollow = true;
+                        rotation = 90;
+                        stroke = 0;
+                        strokeTo = 1;
+                    }}
                 );
         });
     }

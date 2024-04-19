@@ -26,7 +26,7 @@ public class ArchiveDustry extends Mod {
             Log.info("[AchivD] ArchiveDustry fully loaded!.");
             if(firstTime) {
                 BaseDialog dialog = new BaseDialog("Thanks for using ArchiveDustry!");
-                dialog.cont.image(Core.atlas.find("bluearchive-mikalove")).pad(30).row();
+                dialog.cont.image(Core.atlas.find("bluearchive-mikalove")).pad(60).row();
                 dialog.cont.add("Hi Sensei! you just installed this mod.\nAnyway it still in development by the creator of ArchiveDustry, [accent]WilloIzCitron[]. \n The creator need to take a long time for making the new content in the future. Thank you!").row();
                 dialog.cont.button("Ok Misono Mika.", dialog::hide).size(200f, 50f).row();
                 dialog.show();
