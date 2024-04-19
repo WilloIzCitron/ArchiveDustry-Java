@@ -31,6 +31,7 @@ public class ArchiveDustry extends Mod {
                 dialog.cont.button("Ok Misono Mika.", dialog::hide).size(200f, 50f).row();
                 dialog.show();
             }
+            firstTime = false;
             tree.loadMusic("research").setLooping(true);
             tree.loadMusic("database").setLooping(true);
             ui.research.shown(() -> {
