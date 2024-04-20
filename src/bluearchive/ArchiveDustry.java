@@ -5,6 +5,7 @@ import arc.audio.*;
 import arc.graphics.*;
 import arc.scene.style.TextureRegionDrawable;
 import arc.scene.ui.*;
+import arc.scene.ui.Image;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import mindustry.Vars;
@@ -18,6 +19,8 @@ import mindustry.ui.dialogs.*;
 import mindustry.ui.dialogs.SettingsMenuDialog.*;
 import mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable.*;
 
+import java.awt.*;
+
 import static mindustry.Vars.*;
 
 public class ArchiveDustry extends Mod {
@@ -26,7 +29,6 @@ public class ArchiveDustry extends Mod {
 
         //listen for game load event
         Events.on(ClientLoadEvent.class, event -> {
-            Core.settings.setAppName("ArchiveDustry - Mindustry v"+Core.app.getVersion()+" [Modded]");
             Log.info("[AchivD] ArchiveDustry fully loaded!.");
             if(Core.settings.getBool("ba-firstTime")) {
                 BaseDialog dialog = new BaseDialog("Thanks for using ArchiveDustry!");
@@ -89,7 +91,7 @@ public class ArchiveDustry extends Mod {
 
     @Override
     public void init(){
-        if(Core.settings.getBool("ba-addHalo", true)) {
+        if(Core.settings.getBool("ba-addHalo")) {
             UnitHalo.init();
         }
         loadSettings();
