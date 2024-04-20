@@ -155,3 +155,5 @@ gradle-app.setting
 .DS_Store
 Thumbs.db
 android/libs/
+## Debuging Jar
+Mindustry.jar

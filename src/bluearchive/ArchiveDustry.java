@@ -6,6 +6,7 @@ import arc.graphics.*;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
+import mindustry.Vars;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.game.EventType.*;
@@ -23,10 +24,11 @@ public class ArchiveDustry extends Mod {
 
         //listen for game load event
         Events.on(ClientLoadEvent.class, event -> {
+            Core.settings.setAppName("ArchiveDustry - Mindustry v"+Core.app.getVersion()+" [Modded]");
             Log.info("[AchivD] ArchiveDustry fully loaded!.");
             if(firstTime) {
                 BaseDialog dialog = new BaseDialog("Thanks for using ArchiveDustry!");
-                dialog.cont.image(Core.atlas.find("bluearchive-mikalove")).pad(60).row();
+                dialog.cont.image(Core.atlas.find("bluearchive-mikalove")).pad(20).size(200f, 200f).row();
                 dialog.cont.add("Hi Sensei! you just installed this mod.\nAnyway it still in development by the creator of ArchiveDustry, [accent]WilloIzCitron[]. \n The creator need to take a long time for making the new content in the future. Thank you!").row();
                 dialog.cont.button("Ok Misono Mika.", dialog::hide).size(200f, 50f).row();
                 dialog.show();
