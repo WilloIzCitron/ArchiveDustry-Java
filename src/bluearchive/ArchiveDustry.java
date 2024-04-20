@@ -3,6 +3,7 @@ package bluearchive;
 import arc.*;
 import arc.audio.*;
 import arc.graphics.*;
+import arc.scene.style.TextureRegionDrawable;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
@@ -13,12 +14,13 @@ import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
 import mindustry.net.Net;
-import mindustry.ui.dialogs.BaseDialog;
+import mindustry.ui.dialogs.*;
+import mindustry.ui.dialogs.SettingsMenuDialog.*;
+import mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable.*;
 
 import static mindustry.Vars.*;
 
 public class ArchiveDustry extends Mod {
-    protected Boolean firstTime = true;
 
     public ArchiveDustry() {
 
@@ -26,14 +28,13 @@ public class ArchiveDustry extends Mod {
         Events.on(ClientLoadEvent.class, event -> {
             Core.settings.setAppName("ArchiveDustry - Mindustry v"+Core.app.getVersion()+" [Modded]");
             Log.info("[AchivD] ArchiveDustry fully loaded!.");
-            if(firstTime) {
+            if(Core.settings.getBool("ba-firstTime")) {
                 BaseDialog dialog = new BaseDialog("Thanks for using ArchiveDustry!");
                 dialog.cont.image(Core.atlas.find("bluearchive-mikalove")).pad(20).size(200f, 200f).row();
                 dialog.cont.add("Hi Sensei! you just installed this mod.\nAnyway it still in development by the creator of ArchiveDustry, [accent]WilloIzCitron[]. \n The creator need to take a long time for making the new content in the future. Thank you!").row();
                 dialog.cont.button("Ok Misono Mika.", dialog::hide).size(200f, 50f).row();
                 dialog.show();
             }
-            firstTime = false;
             tree.loadMusic("research").setLooping(true);
             tree.loadMusic("database").setLooping(true);
             ui.research.shown(() -> {
@@ -88,7 +89,42 @@ public class ArchiveDustry extends Mod {
 
     @Override
     public void init(){
-        UnitHalo.init();
+        if(Core.settings.getBool("ba-addHalo", true)) {
+            UnitHalo.init();
+        }
+        loadSettings();
+    }
+
+    void loadSettings(){
+        ui.settings.addCategory("ArchiveDustry", t -> {
+            t.pref(new Banner("bluearchive-logo", -1));
+            t.checkPref("ba-firstTime", true);
+            t.checkPref("ba-addHalo", true);
+        });
+    }
+
+    /** Not a setting, but rather adds an image to the settings menu. */
+    static class Banner extends Setting{
+        float width;
+
+        public Banner(String name, float width){
+            super(name);
+            this.width = width;
+        }
+
+        @Override
+        public void add(SettingsTable table){
+            Image i = new Image(new TextureRegionDrawable(Core.atlas.find(name)), Scaling.fit);
+            Cell<Image> ci = table.add(i).padTop(3f);
+
+            if(width > 0){
+                ci.width(width);
+            }else{
+                ci.grow();
+            }
+
+            table.row();
+        }
     }
 
     protected static Music soundControlPlaying() {
