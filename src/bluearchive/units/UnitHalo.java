@@ -652,6 +652,90 @@ public class UnitHalo {
                         haloRadius = 15;
                     }}
             );
+            UnitTypes.omura.parts.addAll(
+                    new ShapePart(){{
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        sides = 8;
+                        radius = 14f;
+                        hollow = true;
+                        rotation = 90;
+                        stroke = 1.5f;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        sides = 5;
+                        rotation = -90;
+                        rotateSpeed = 2;
+                        radius = 2f;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        sides = 5;
+                        radius = 5f;
+                        hollow = true;
+                        rotation = 90;
+                        stroke = 1.5f;
+                        rotateSpeed = -2;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        tri = true;
+                        radius = 2;
+                        haloRotateSpeed= -1;
+                        triLength = 0;
+                        triLengthTo = 3;
+                        haloRadius = 9f;
+                        shapeRotation = 180;
+                        shapes = 8;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        tri = true;
+                        radius = 1;
+                        haloRotateSpeed= 1;
+                        triLength = 0;
+                        triLengthTo = 4;
+                        shapeRotation = 0;
+                        haloRadius = 9f;
+                        shapes = 8;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        circle = true;
+                        radius = 9f;
+                        hollow = true;
+                        rotation = 90;
+                        stroke = 1;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        tri = true;
+                        radius = 2f;
+                        triLength = 5;
+                        triLengthTo = 7;
+                        shapeRotation = 0;
+                        shapes = 5;
+                        haloRadius = 19;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.engine;
+                        layer = Layer.effect;
+                        tri = true;
+                        radius = 2f;
+                        triLength = 2;
+                        triLengthTo = 4;
+                        shapeRotation = 180;
+                        shapes = 5;
+                        haloRadius = 19;
+                    }}
+            );
         });
     }
 

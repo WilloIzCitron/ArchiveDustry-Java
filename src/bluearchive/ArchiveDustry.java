@@ -3,6 +3,7 @@ package bluearchive;
 import arc.*;
 import arc.audio.*;
 import arc.graphics.*;
+import arc.graphics.Color;
 import arc.scene.style.TextureRegionDrawable;
 import arc.scene.ui.*;
 import arc.scene.ui.Image;
@@ -15,6 +16,7 @@ import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
 import mindustry.net.Net;
+import mindustry.ui.Links;
 import mindustry.ui.dialogs.*;
 import mindustry.ui.dialogs.SettingsMenuDialog.*;
 import mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable.*;
@@ -31,14 +33,15 @@ public class ArchiveDustry extends Mod {
         Events.on(ClientLoadEvent.class, event -> {
             Log.info("[AchivD] ArchiveDustry fully loaded!.");
             if(Core.settings.getBool("ba-firstTime")) {
-                BaseDialog dialog = new BaseDialog("Thanks for using ArchiveDustry!");
+                BaseDialog dialog = new BaseDialog(Core.bundle.get("ba-firstTimeDialog.title"));
                 dialog.cont.image(Core.atlas.find("bluearchive-mikalove")).pad(20).size(200f, 200f).row();
-                dialog.cont.add("Hi Sensei! you just installed this mod.\nAnyway it still in development by the creator of ArchiveDustry, [accent]WilloIzCitron[]. \n The creator need to take a long time for making the new content in the future. Thank you!").row();
-                dialog.cont.button("Ok Misono Mika.", dialog::hide).size(200f, 50f).row();
+                dialog.cont.add(Core.bundle.get("ba-firstTimeDialog.description")).row();
+                dialog.cont.button(Core.bundle.get("ba-firstTimeDialog.button"), dialog::hide).size(200f, 50f).row();
                 dialog.show();
             }
             tree.loadMusic("research").setLooping(true);
             tree.loadMusic("database").setLooping(true);
+            tree.loadMusic("loadout").setLooping(true);
             ui.research.shown(() -> {
                 tree.loadMusic("research").play();
             });
@@ -64,6 +67,19 @@ public class ArchiveDustry extends Mod {
             });
             ui.database.hidden(() -> {
                 tree.loadMusic("database").stop();
+            });
+            ui.schematics.shown(() -> {
+                tree.loadMusic("loadout").play();
+            });
+            ui.schematics.update(() -> {
+                if (state.isMenu() || ui.planet.isShown() || ui.editor.isShown() || state.rules.editor) {
+                    Reflect.set(control.sound, "fade", 0f);
+                    Reflect.invoke(control.sound, "silence");
+                    if (soundControlPlaying() != null) {Reflect.invoke(control.sound, "silence");} //Counteract fade in
+                }
+            });
+            ui.schematics.hidden(() -> {
+                tree.loadMusic("loadout").stop();
             });
         });
 
@@ -102,6 +118,7 @@ public class ArchiveDustry extends Mod {
             t.pref(new Banner("bluearchive-logo", -1));
             t.checkPref("ba-firstTime", true);
             t.checkPref("ba-addHalo", true);
+            new Links.LinkEntry("ba-youtube", "https://www.youtube.com/channel/UCsrnDYrkovQhCCE8kwKcvKQ", Icon.play, Color.red);
         });
     }
 
