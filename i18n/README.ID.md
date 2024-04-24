@@ -1,13 +1,13 @@
 
 ![Archivedustry logo](/assets/sprites-override/ui/logo.png)
 
-> ℹ️ This Mod was being migrated from JS<sup>JavaScript</sup> was being archived, this mod are almost perfect.
+> ℹ️ Mod ini sudah dipindahkan dari JS<sup>JavaScript</sup> yang telah diarsipkan, mod ini hampir sempurna.
 
-> Language: English (you can choose your language readme at i18n directory)
+> Bahasa: Bahasa Indonesia
 
-A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and also adds the cosmetics for units such as halo. This mod is unaffiliated with developer of  Blue Archive game: Nexon, NAT GAMES and Yostar.
+Sebuah mod yang mengubah soundtrack vanilla menjadi soundtrack Blue Archive, dan juga menambahkan kosmetik untuk unit seperti halo. Mod ini tidak teraffiliasi dengan developer game Blue Archive:  Nexon, NAT GAMES dan Yostar.
 
-## Music List
+## Daftar Musik
   - menu.ogg = Constant Moderato
   - launch.ogg = ~~Connected Sky~~ Shooting Stars
   - game1.ogg = Rolling Beat
@@ -30,5 +30,5 @@ A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and als
   - database.ogg (additional) = Future Bossa
   - loadout.ogg (additional) = MX Adventure
 
-## Credits
-- Music: Nor, Mitsukiyo and KARUT
+## Kredit
+- Musik: Nor, Mitsukiyo and KARUT
