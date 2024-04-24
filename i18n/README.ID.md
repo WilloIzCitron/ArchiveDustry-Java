@@ -31,4 +31,4 @@ Sebuah mod yang mengubah soundtrack vanilla menjadi soundtrack Blue Archive, dan
   - loadout.ogg (additional) = MX Adventure
 
 ## Kredit
-- Musik: Nor, Mitsukiyo and KARUT
+- Musik: Nor, Mitsukiyo dan KARUT
