@@ -24,11 +24,11 @@ Sebuah mod yang mengubah soundtrack vanilla menjadi soundtrack Blue Archive, dan
   - boss1.ogg = ~~Tech N Tech~~ Endless Carnival
   - boss2.ogg = Out of Control
   - fine.ogg = Alkaline Tears
-  - lose.ogg (additional) = Fade Out
-  - win.ogg (additional) = Party Time
-  - research.ogg (additional) = Future Lab
-  - database.ogg (additional) = Future Bossa
-  - loadout.ogg (additional) = MX Adventure
+  - lose.ogg (tambahan) = Fade Out
+  - win.ogg (tambahan) = Party Time
+  - research.ogg (tambahan) = Future Lab
+  - database.ogg (tambahan) = Future Bossa
+  - loadout.ogg (tambahan) = MX Adventure
 
 ## Kredit
 - Musik: Nor, Mitsukiyo dan KARUT
