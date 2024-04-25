@@ -5,7 +5,7 @@
 [![GitHub release](https://img.shields.io/github/release/WilloIzCitron/ArchiveDustry-Java?include_prereleases=&sort=semver&color=blue)](https://github.com/WilloIzCitron/ArchiveDustry-Java/releases/)
 [![License](https://img.shields.io/badge/License-MIT-blue)]()
 [![issues - ArchiveDustry-Java](https://img.shields.io/github/issues/WilloIzCitron/ArchiveDustry-Java)](https://github.com/WilloIzCitron/ArchiveDustry-Java/issues)
-[![Stars - ArchiveDustry-Java](https://img.shields.io/github/stars/WilloIzCitron/ArchiveDustry-Java)](https://github.com/WilloIzCitron/ArchiveDustry-Java/issues)
+[![Stars - ArchiveDustry-Java](https://img.shields.io/github/stars/WilloIzCitron/ArchiveDustry-Java)](https://github.com/WilloIzCitron/ArchiveDustry-Java/stargazers)
 [![GitHub followers of WilloIzCitron](https://img.shields.io/github/followers/WilloIzCitron)](https://github.com/WilloIzCitron)
 
 
