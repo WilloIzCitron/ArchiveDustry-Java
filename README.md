@@ -38,5 +38,17 @@ A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and als
   - database.ogg (additional) = Future Bossa
   - loadout.ogg (additional) = MX Adventure
 
+## Star History
+
+<a href="https://star-history.com/#WilloIzCitron/ArchiveDustry-Java&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=WilloIzCitron/ArchiveDustry-Java&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=WilloIzCitron/ArchiveDustry-Java&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=WilloIzCitron/ArchiveDustry-Java&type=Date" />
+ </picture>
+</a>
+
+- The target of star on this mod are 10 stargazers
+
 ## Credits
 - Music: Nor, Mitsukiyo and KARUT
