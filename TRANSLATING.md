@@ -12,7 +12,7 @@ for Readme translation, you can do it at i18n directory at the root of repositor
 The language source is English because the mod was firstly made in English.
 
 Note: 
-for adding the new entry of the language, you must add this info for identification
+for adding the new entry of the language, you must add this info for identification:
 ```markdown
 > ("language" in your language): (language)
 ```
@@ -20,3 +20,4 @@ Example case:
 ```markdown
 > Language: English
 ```
+Ignore the Star History because for Main README statistic and milestone
