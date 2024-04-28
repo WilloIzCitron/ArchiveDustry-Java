@@ -138,6 +138,18 @@ public class ArchiveDustry extends Mod {
             t.pref(new ButtonSetting("ba-github", Icon.github, () -> {
                 Core.app.openURI("https://www.github.com/willoizcitron/archivedustry-java");
             }, 32));
+            t.pref(new TextSeparator(Core.bundle.get("setting.category.mixer")));
+            t.pref(new Separator(4));
+            t.sliderPref("gameOver", 100,0, 100,1,i -> i + "%");
+            t.sliderPref("research", 100,0, 100,1,i -> i + "%");
+            t.sliderPref("coreDatabase", 100,0, 100,1,i -> i + "%");
+            t.sliderPref("loadout", 100,0, 100,1,i -> i + "%");
+            t.pref(new ButtonSetting("ba-mixer-apply", Icon.ok, () -> {
+                tree.loadMusic("win").setVolume(Core.settings.getInt("gameOver") / 100f);
+                tree.loadMusic("lose").setVolume(Core.settings.getInt("gameOver") / 100f);
+                tree.loadMusic("database").setVolume(Core.settings.getInt("gameOver") / 100f);
+                tree.loadMusic("loadout").setVolume(Core.settings.getInt("gameOver") / 100f);
+            }, 32));
             t.pref(new Separator(2));
             if (OS.username.startsWith("willoizcitron")){
                 t.pref(new Separator(2));
