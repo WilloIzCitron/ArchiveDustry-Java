@@ -40,9 +40,15 @@ A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and als
 
 ## Building
 
+To generate the mod jar, you can do this below with platform specified jar:
 - Android: `gradlew jarAndroid`
 - PC: `gradlew jar`
-- Build Deployment: `gradlew deploy`
+
+for Build Deployment(desktop and android) you can do `gradlew deploy`
+
+## Bleeding Edges(Snapshot)
+every BE(Snapshot) builds are generated via Actions, you can check on Actions section and select the specific workflow,
+then download the artifact on the workflow runs
 
 ## Star History
 
