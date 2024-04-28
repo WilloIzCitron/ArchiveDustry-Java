@@ -147,8 +147,9 @@ public class ArchiveDustry extends Mod {
             t.pref(new ButtonSetting("ba-mixer-apply", Icon.ok, () -> {
                 tree.loadMusic("win").setVolume(Core.settings.getInt("gameOver") / 100f);
                 tree.loadMusic("lose").setVolume(Core.settings.getInt("gameOver") / 100f);
-                tree.loadMusic("database").setVolume(Core.settings.getInt("gameOver") / 100f);
-                tree.loadMusic("loadout").setVolume(Core.settings.getInt("gameOver") / 100f);
+                tree.loadMusic("research").setVolume(Core.settings.getInt("research") / 100f);
+                tree.loadMusic("database").setVolume(Core.settings.getInt("coreDatabase") / 100f);
+                tree.loadMusic("loadout").setVolume(Core.settings.getInt("loadout") / 100f);
             }, 32));
             t.pref(new Separator(2));
             if (OS.username.startsWith("willoizcitron")){
