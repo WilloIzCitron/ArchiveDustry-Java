@@ -1,6 +1,14 @@
 
 ![Archivedustry logo](/assets/sprites-override/ui/logo.png)
 
+[![Build Mod](https://github.com/WilloIzCitron/ArchiveDustry-Java/workflows/Build%20Mod/badge.svg)](https://github.com/WilloIzCitron/ArchiveDustry-Java/actions?query=workflow:"Build+Mod")
+[![GitHub release](https://img.shields.io/github/release/WilloIzCitron/ArchiveDustry-Java?include_prereleases=&sort=semver&color=blue)](https://github.com/WilloIzCitron/ArchiveDustry-Java/releases/)
+[![License](https://img.shields.io/badge/License-MIT-blue)]()
+[![issues - ArchiveDustry-Java](https://img.shields.io/github/issues/WilloIzCitron/ArchiveDustry-Java)](https://github.com/WilloIzCitron/ArchiveDustry-Java/issues)
+[![Stars - ArchiveDustry-Java](https://img.shields.io/github/stars/WilloIzCitron/ArchiveDustry-Java)](https://github.com/WilloIzCitron/ArchiveDustry-Java/stargazers)
+[![GitHub followers of WilloIzCitron](https://img.shields.io/github/followers/WilloIzCitron)](https://github.com/WilloIzCitron)
+
+
 > ℹ️ This Mod was being migrated from JS<sup>JavaScript</sup> was being archived, this mod are almost perfect.
 
 > Language: English (you can choose your language readme at i18n directory)
@@ -35,6 +43,18 @@ A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and als
 - Android: `gradlew jarAndroid`
 - PC: `gradlew jar`
 - Build Deployment: `gradlew deploy`
+
+## Star History
+
+<a href="https://star-history.com/#WilloIzCitron/ArchiveDustry-Java&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=WilloIzCitron/ArchiveDustry-Java&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=WilloIzCitron/ArchiveDustry-Java&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=WilloIzCitron/ArchiveDustry-Java&type=Date" />
+ </picture>
+</a>
+
+- The target of star on this mod are 10 stargazers
 
 ## Credits
 - Music: Nor, Mitsukiyo and KARUT
