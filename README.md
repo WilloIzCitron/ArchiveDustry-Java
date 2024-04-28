@@ -47,7 +47,7 @@ To generate the mod jar, you can do this below with platform specified jar:
 for Build Deployment(desktop and android) you can do `gradlew deploy`
 
 ## Bleeding Edges(Snapshot)
-every BE(Snapshot) builds are generated via Actions, you can check on Actions section and select the specific workflow,
+Every BE(Snapshot) builds was generated via Actions, you can check on Actions section and select the specific workflow,
 then download the artifact on the workflow runs
 
 ## Star History
