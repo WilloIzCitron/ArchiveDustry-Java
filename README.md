@@ -8,7 +8,7 @@
 A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and also adds the cosmetics for units such as halo. This mod is unaffiliated with developer of  Blue Archive game: Nexon, NAT GAMES and Yostar.
 
 ## Music List
-  - menu.ogg = Constant Moderato
+  - menu.ogg = Constant Moderato & RE Aoharu (You can set it at setting)
   - launch.ogg = ~~Connected Sky~~ Shooting Stars
   - game1.ogg = Rolling Beat
   - game2.ogg = Acceleration
@@ -29,6 +29,12 @@ A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and als
   - research.ogg (additional) = Future Lab
   - database.ogg (additional) = Future Bossa
   - loadout.ogg (additional) = MX Adventure
+
+## Building
+
+- Android: `gradlew jarAndroid`
+- PC: `gradlew jar`
+- Build Deployment: `gradlew deploy`
 
 ## Credits
 - Music: Nor, Mitsukiyo and KARUT

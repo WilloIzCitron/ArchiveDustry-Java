@@ -12,7 +12,7 @@
     This mod is a fan-made project inspired by Blue Archive and not directly affiliated with it. Copyright remains with the developer and publisher of Blue Archive:
     Nexon, NAT GAMES and Yostar.
     ",
-  version: "1.0",
+  version: "1.0b1-24w2",
   main: bluearchive.ArchiveDustry,
   minGameVersion: "146",
   dependencies: [],

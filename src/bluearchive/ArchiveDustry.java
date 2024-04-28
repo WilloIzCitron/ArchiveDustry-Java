@@ -109,10 +109,10 @@ public class ArchiveDustry extends Mod {
         loadSettings();
         new Links.LinkEntry("ba-youtube", "https://www.youtube.com/channel/UCsrnDYrkovQhCCE8kwKcvKQ", Icon.play, Color.red);
         Log.info("[ArchivD] Link Generated!");
-        if(Core.settings.getBool("Heart of Iron 4 Main Menu Soundtrack")){
-            Musics.menu = tree.loadMusic("menuhoi4");
+        if(Core.settings.getBool("ba-setSong")){
+            Musics.menu = tree.loadMusic("menure-aoh");
         } else {
-            Musics.menu = tree.loadMusic("menuba");
+            Musics.menu = tree.loadMusic("menucm");
         }
     }
 
@@ -123,6 +123,13 @@ public class ArchiveDustry extends Mod {
             t.pref(new Separator(4));
             t.checkPref("ba-firstTime", true);
             t.checkPref("ba-addHalo", true);
+            t.checkPref("ba-setSong", false, b -> {
+                if (b) {
+                    Musics.menu = tree.loadMusic("menure-aoh");
+                } else {
+                    Musics.menu = tree.loadMusic("menucm");
+                }
+            });
             t.pref(new TextSeparator(Core.bundle.get("setting.category.links")));
             t.pref(new Separator(4));
             t.pref(new ButtonSetting("ba-youtube", Icon.play, () -> {
@@ -135,14 +142,7 @@ public class ArchiveDustry extends Mod {
             if (OS.username.startsWith("willoizcitron")){
                 t.pref(new Separator(2));
                 t.pref(new TextSeparator("< Developer Settings >"));
-                t.checkPref("Heart of Iron 4 Main Menu Soundtrack", false, b -> {
-                if(b) {
-                    Musics.menu = tree.loadMusic("menuhoi4");
-                } else {
-                    Musics.menu = tree.loadMusic("menuba");
-                }
-                });
-            }
+                };
         });
     }
 

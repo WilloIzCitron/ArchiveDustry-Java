@@ -8,7 +8,7 @@
 Sebuah mod yang mengubah soundtrack vanilla menjadi soundtrack Blue Archive, dan juga menambahkan kosmetik untuk unit seperti halo. Mod ini tidak teraffiliasi dengan developer game Blue Archive:  Nexon, NAT GAMES dan Yostar.
 
 ## Daftar Musik
-  - menu.ogg = Constant Moderato
+  - menu.ogg = Constant Moderato & RE Aoharu (Kamu dapat mengubah itu di pengaturan)
   - launch.ogg = ~~Connected Sky~~ Shooting Stars
   - game1.ogg = Rolling Beat
   - game2.ogg = Acceleration
