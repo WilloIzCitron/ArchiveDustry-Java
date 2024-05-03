@@ -736,6 +736,175 @@ public class UnitHalo {
                         haloRadius = 19;
                     }}
             );
+            UnitTypes.oxynoe.parts.addAll(
+                    new ShapePart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        hollow = true;
+                        rotation = 90;
+                        radius = 4;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        hollow = true;
+                        rotation = 90;
+                        circle = true;
+                        radius = 6;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        shapeRotation = 180;
+                        radius = 1;
+                        shapes = 12;
+                        triLength = 1;
+                        tri = true;
+                        haloRadius = 6;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        shapeRotation = 0;
+                        radius = 1;
+                        shapes = 12;
+                        triLength = 3;
+                        tri = true;
+                        haloRadius = 6;
+                    }}
+            );
+            UnitTypes.cyerce.parts.addAll(
+                    new ShapePart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        hollow = false;
+                        rotation = 90;
+                        radius = 2;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        hollow = true;
+                        rotation = 90;
+                        rotateSpeed = 2f;
+                        radius = 4;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        hollow = true;
+                        rotation = 0;
+                        rotateSpeed = -2f;
+                        radius = 6;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        hollow = true;
+                        rotation = 90;
+                        circle = true;
+                        radius = 9;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        shapeRotation = 180;
+                        radius = 4;
+                        shapes = 3;
+                        triLength = 3;
+                        tri = true;
+                        haloRadius = 11;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        shapeRotation = 0;
+                        radius = 4;
+                        shapes = 3;
+                        triLength = 5f;
+                        tri = true;
+                        haloRadius = 11;
+                    }}
+            );
+            UnitTypes.aegires.parts.addAll(
+                    new ShapePart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        hollow = true;
+                        rotation = 90;
+                        circle = true;
+                        radius = 9;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        shapeRotation = 180;
+                        radius = 3;
+                        shapes = 4;
+                        triLength = 4;
+                        tri = true;
+                        haloRadius = 9;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        shapeRotation = 0;
+                        radius = 3;
+                        shapes = 4;
+                        triLength = 7f;
+                        tri = true;
+                        haloRadius = 9;
+                    }}
+            );
+
+            UnitTypes.navanax.parts.addAll(
+                    new ShapePart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        hollow = true;
+                        rotation = 90;
+                        rotateSpeed = -2f;
+                        radius = 8;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        hollow = false;
+                        rotation = 90;
+                        radius = 6;
+                        rotateSpeed = 2f;
+                        stroke = 4;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        hollow = true;
+                        rotation = 90;
+                        circle = true;
+                        radius = 14;
+                        stroke = 2;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        shapeRotation = 180;
+                        radius = 3;
+                        shapes = 10;
+                        triLength = 4;
+                        tri = true;
+                        haloRadius = 15;
+                    }},
+                    new HaloPart(){{
+                        color = Pal.heal;
+                        layer = Layer.effect;
+                        shapeRotation = 0;
+                        radius = 1.5f;
+                        shapes = 10;
+                        triLength = 7;
+                        tri = true;
+                        haloRadius = 15;
+                    }}
+            );
         });
     }
 
