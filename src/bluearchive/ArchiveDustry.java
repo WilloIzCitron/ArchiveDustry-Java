@@ -213,7 +213,7 @@ public class ArchiveDustry extends Mod {
             image(Tex.clear).height(1f).padTop(3f).row();
             add("Mindustry is developed by Anuke, and was licensed to GNU GPLv3.0").row();
             image(Tex.clear).height(1f).padTop(3f).row();
-            add("This mod is MIT Licensed");
+            add("This mod is MIT Licensed").row();
             image(Tex.clear).height(25f).padTop(25f).row();
             add("Blue Archive is copyrighted to Nexon, Nexon Games and Yostar. All Rights Reserved").row();
             image(Tex.clear).height(1f).padTop(25f).row();
