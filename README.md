@@ -20,7 +20,7 @@ A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and als
   - launch.ogg = ~~Connected Sky~~ Shooting Stars
   - game1.ogg = Rolling Beat
   - game2.ogg = Acceleration
-  - game3ogg = KIRISAME
+  - game3.ogg = KIRISAME
   - game4.ogg = Midnight Trip
   - game5.ogg = Sakura Punch
   - game6.ogg = Formless Dream

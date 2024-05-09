@@ -1,6 +1,6 @@
   name: bluearchive,
   displayName: "[blue[]]Archive[white[]]Dustry Java",
-  author: WilloIzCitron. Copyrights remains with Nexon, NAT GAMES and YoStar,
+  author: WilloIzCitron. Copyrights remains with Nexon, Nexon Games and Yostar,
   description:
     "
     This is a fanmade mod of Blue Archive Soundtrack in Mindustry.
@@ -10,9 +10,9 @@
 
     [red[]]⚠ NOTICE ⚠:[[]]
     This mod is a fan-made project inspired by Blue Archive and not directly affiliated with it. Copyright remains with the developer and publisher of Blue Archive:
-    Nexon, NAT GAMES and Yostar.
+    Nexon, Nexon Games and Yostar.
     ",
-  version: "1.0b1-24w3",
+  version: "1.0b1-24w4",
   main: bluearchive.ArchiveDustry,
   minGameVersion: "146",
   dependencies: [],
