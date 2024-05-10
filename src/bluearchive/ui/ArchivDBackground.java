@@ -16,9 +16,9 @@ import static mindustry.Vars.state;
 public class ArchivDBackground {
     static boolean Animran = false;
     public static TextureRegion img;
-    static Image bg = new Image();
+    static Image animBG = new Image(new TextureRegion());
+
     public static void init(){
-        Events.on(EventType.ClientLoadEvent.class, e -> {
         Element tmp = Vars.ui.menuGroup.getChildren().first();
         if (!(tmp instanceof Group group)) return;
         Element render = group.getChildren().first();
@@ -27,11 +27,11 @@ public class ArchivDBackground {
                 && render.getClass().getSuperclass() == Element.class)) return;
         render.visible = false;
 
-
-        bg.setFillParent(true);
+        Events.on(EventType.ClientLoadEvent.class, e -> {
+            animBG.setFillParent(true);
             TextureRegion[] tex = new TextureRegion[68];
             Time.runTask(12f, () -> {
-                group.addChildAt(0, bg);
+                group.addChildAt(0, animBG);
                 for (int i = 0; i<=67; i++){
                     tex[i] = Core.atlas.find("bluearchive-noa" + (1+i));
                 }
@@ -39,9 +39,12 @@ public class ArchivDBackground {
                 Events.run(EventType.Trigger.update, () -> {
                     int animBGFrame = (int)((Time.globalTime / 3.5f) % tex.length);
                     img.set(tex[animBGFrame]);
-                    bg.getRegion().set(img);
+                    setRegion(animBG, img);
                 });
         });
     });
+    }
+    private static void setRegion(Image img, TextureRegion reg) {
+        img.getRegion().set(reg);
     }
 }
