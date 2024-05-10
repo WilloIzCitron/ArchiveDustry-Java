@@ -37,7 +37,7 @@ public class ArchivDBackground {
                         }
                     }
                 };
-                timer.scheduleTask(task, 0f, 0.001f);
+                timer.scheduleTask(task, 0f, 0.0005f);
                 timer.start();
                 if(state.isMenu()) return ;
 
@@ -47,208 +47,208 @@ public class ArchivDBackground {
 
     public static void wallpaperLoad() {
         Animran = false;
-            Time.run(5f, () -> {
+            Time.run(3.5f, () -> {
                 setRegion(img, "bluearchive-noa2");
                 Time.clear();
-                Time.run(5f, () -> {
+                Time.run(3.5f, () -> {
                     setRegion(img, "bluearchive-noa3");
                     Time.clear();
-                    Time.run(5f, () -> {
+                    Time.run(3.5f, () -> {
                         setRegion(img, "bluearchive-noa4");
                         Time.clear();
-                        Time.run(5f, () -> {
+                        Time.run(3.5f, () -> {
                             setRegion(img, "bluearchive-noa5");
                             Time.clear();
-                            Time.run(5f, () -> {
+                            Time.run(3.5f, () -> {
                                 setRegion(img, "bluearchive-noa6");
                                 Time.clear();
-                                Time.run(5f, () -> {
+                                Time.run(3.5f, () -> {
                                     setRegion(img, "bluearchive-noa7");
                                     Time.clear();
-                                    Time.run(5f, () -> {
+                                    Time.run(3.5f, () -> {
                                         setRegion(img, "bluearchive-noa8");
                                         Time.clear();
-                                        Time.run(5f, () -> {
+                                        Time.run(3.5f, () -> {
                                             setRegion(img, "bluearchive-noa9");
                                             Time.clear();
-                                            Time.run(5f, () -> {
+                                            Time.run(3.5f, () -> {
                                                 setRegion(img, "bluearchive-noa10");
                                                 Time.clear();
-                                                Time.run(5f, () -> {
+                                                Time.run(3.5f, () -> {
                                                     setRegion(img, "bluearchive-noa11");
                                                     Time.clear();
-                                                    Time.run(5f, () -> {
+                                                    Time.run(3.5f, () -> {
                                                         setRegion(img, "bluearchive-noa12");
                                                         Time.clear();
-                                                        Time.run(5f, () -> {
+                                                        Time.run(3.5f, () -> {
                                                             setRegion(img, "bluearchive-noa13");
                                                             Time.clear();
-                                                            Time.run(5f, () -> {
+                                                            Time.run(3.5f, () -> {
                                                                 setRegion(img, "bluearchive-noa14");
                                                                 Time.clear();
-                                                                Time.run(5f, () -> {
+                                                                Time.run(3.5f, () -> {
                                                                     setRegion(img, "bluearchive-noa15");
                                                                     Time.clear();
-                                                                    Time.run(5f, () -> {
+                                                                    Time.run(3.5f, () -> {
                                                                         setRegion(img, "bluearchive-noa16");
                                                                         Time.clear();
-                                                                        Time.run(5f, () -> {
+                                                                        Time.run(3.5f, () -> {
                                                                             setRegion(img, "bluearchive-noa17");
                                                                             Time.clear();
-                                                                            Time.run(5f, () -> {
+                                                                            Time.run(3.5f, () -> {
                                                                                 setRegion(img, "bluearchive-noa18");
                                                                                 Time.clear();
-                                                                                Time.run(5f, () -> {
+                                                                                Time.run(3.5f, () -> {
                                                                                     setRegion(img, "bluearchive-noa19");
                                                                                     Time.clear();
-                                                                                    Time.run(5f, () -> {
+                                                                                    Time.run(3.5f, () -> {
                                                                                         setRegion(img, "bluearchive-noa20");
                                                                                         Time.clear();
-                                                                                        Time.run(5f, () -> {
+                                                                                        Time.run(3.5f, () -> {
                                                                                             setRegion(img, "bluearchive-noa21");
                                                                                             Time.clear();
-                                                                                            Time.run(5f, () -> {
+                                                                                            Time.run(3.5f, () -> {
                                                                                                 setRegion(img, "bluearchive-noa22");
                                                                                                 Time.clear();
-                                                                                                Time.run(5f, () -> {
+                                                                                                Time.run(3.5f, () -> {
                                                                                                     setRegion(img, "bluearchive-noa23");
                                                                                                     Time.clear();
-                                                                                                    Time.run(5f, () -> {
+                                                                                                    Time.run(3.5f, () -> {
                                                                                                         setRegion(img, "bluearchive-noa24");
                                                                                                         Time.clear();
-                                                                                                        Time.run(5f, () -> {
+                                                                                                        Time.run(3.5f, () -> {
                                                                                                             setRegion(img, "bluearchive-noa25");
                                                                                                             Time.clear();
-                                                                                                            Time.run(5f, () -> {
+                                                                                                            Time.run(3.5f, () -> {
                                                                                                                 setRegion(img, "bluearchive-noa26");
                                                                                                                 Time.clear();
-                                                                                                                Time.run(5f, () -> {
+                                                                                                                Time.run(3.5f, () -> {
                                                                                                                     setRegion(img, "bluearchive-noa27");
                                                                                                                     Time.clear();
-                                                                                                                    Time.run(5f, () -> {
+                                                                                                                    Time.run(3.5f, () -> {
                                                                                                                         setRegion(img, "bluearchive-noa28");
                                                                                                                         Time.clear();
-                                                                                                                        Time.run(5f, () -> {
+                                                                                                                        Time.run(3.5f, () -> {
                                                                                                                             setRegion(img, "bluearchive-noa29");
                                                                                                                             Time.clear();
-                                                                                                                            Time.run(5f, () -> {
+                                                                                                                            Time.run(3.5f, () -> {
                                                                                                                                 setRegion(img, "bluearchive-noa30");
                                                                                                                                 Time.clear();
-                                                                                                                                Time.run(5f, () -> {
+                                                                                                                                Time.run(3.5f, () -> {
                                                                                                                                     setRegion(img, "bluearchive-noa31");
                                                                                                                                     Time.clear();
-                                                                                                                                    Time.run(5f, () -> {
+                                                                                                                                    Time.run(3.5f, () -> {
                                                                                                                                         setRegion(img, "bluearchive-noa32");
                                                                                                                                         Time.clear();
-                                                                                                                                        Time.run(5f, () -> {
+                                                                                                                                        Time.run(3.5f, () -> {
                                                                                                                                             setRegion(img, "bluearchive-noa33");
                                                                                                                                             Time.clear();
-                                                                                                                                            Time.run(5f, () -> {
+                                                                                                                                            Time.run(3.5f, () -> {
                                                                                                                                                 setRegion(img, "bluearchive-noa34");
                                                                                                                                                 Time.clear();
-                                                                                                                                                Time.run(5f, () -> {
+                                                                                                                                                Time.run(3.5f, () -> {
                                                                                                                                                     setRegion(img, "bluearchive-noa35");
                                                                                                                                                     Time.clear();
-                                                                                                                                                    Time.run(5f, () -> {
+                                                                                                                                                    Time.run(3.5f, () -> {
                                                                                                                                                         setRegion(img, "bluearchive-noa36");
                                                                                                                                                         Time.clear();
-                                                                                                                                                        Time.run(5f, () -> {
+                                                                                                                                                        Time.run(3.5f, () -> {
                                                                                                                                                             setRegion(img, "bluearchive-noa37");
                                                                                                                                                             Time.clear();
-                                                                                                                                                            Time.run(5f, () -> {
+                                                                                                                                                            Time.run(3.5f, () -> {
                                                                                                                                                                 setRegion(img, "bluearchive-noa38");
                                                                                                                                                                 Time.clear();
-                                                                                                                                                                Time.run(5f, () -> {
+                                                                                                                                                                Time.run(3.5f, () -> {
                                                                                                                                                                     setRegion(img, "bluearchive-noa39");
                                                                                                                                                                     Time.clear();
-                                                                                                                                                                    Time.run(5f, () -> {
+                                                                                                                                                                    Time.run(3.5f, () -> {
                                                                                                                                                                         setRegion(img, "bluearchive-noa40");
                                                                                                                                                                         Time.clear();
-                                                                                                                                                                        Time.run(5f, () -> {
+                                                                                                                                                                        Time.run(3.5f, () -> {
                                                                                                                                                                             setRegion(img, "bluearchive-noa41");
                                                                                                                                                                             Time.clear();
-                                                                                                                                                                            Time.run(5f, () -> {
+                                                                                                                                                                            Time.run(3.5f, () -> {
                                                                                                                                                                                 setRegion(img, "bluearchive-noa42");
                                                                                                                                                                                 Time.clear();
-                                                                                                                                                                                Time.run(5f, () -> {
+                                                                                                                                                                                Time.run(3.5f, () -> {
                                                                                                                                                                                     setRegion(img, "bluearchive-noa43");
                                                                                                                                                                                     Time.clear();
-                                                                                                                                                                                    Time.run(5f, () -> {
+                                                                                                                                                                                    Time.run(3.5f, () -> {
                                                                                                                                                                                         setRegion(img, "bluearchive-noa44");
                                                                                                                                                                                         Time.clear();
-                                                                                                                                                                                        Time.run(5f, () -> {
+                                                                                                                                                                                        Time.run(3.5f, () -> {
                                                                                                                                                                                             setRegion(img, "bluearchive-noa45");
                                                                                                                                                                                             Time.clear();
-                                                                                                                                                                                            Time.run(5f, () -> {
+                                                                                                                                                                                            Time.run(3.5f, () -> {
                                                                                                                                                                                                 setRegion(img, "bluearchive-noa46");
                                                                                                                                                                                                 Time.clear();
-                                                                                                                                                                                                Time.run(5f, () -> {
+                                                                                                                                                                                                Time.run(3.5f, () -> {
                                                                                                                                                                                                     setRegion(img, "bluearchive-noa47");
                                                                                                                                                                                                     Time.clear();
-                                                                                                                                                                                                    Time.run(5f, () -> {
+                                                                                                                                                                                                    Time.run(3.5f, () -> {
                                                                                                                                                                                                         setRegion(img, "bluearchive-noa48");
                                                                                                                                                                                                         Time.clear();
-                                                                                                                                                                                                        Time.run(5f, () -> {
+                                                                                                                                                                                                        Time.run(3.5f, () -> {
                                                                                                                                                                                                             setRegion(img, "bluearchive-noa49");
                                                                                                                                                                                                             Time.clear();
-                                                                                                                                                                                                            Time.run(5f, () -> {
+                                                                                                                                                                                                            Time.run(3.5f, () -> {
                                                                                                                                                                                                                 setRegion(img, "bluearchive-noa50");
                                                                                                                                                                                                                 Time.clear();
-                                                                                                                                                                                                                Time.run(5f, () -> {
+                                                                                                                                                                                                                Time.run(3.5f, () -> {
                                                                                                                                                                                                                     setRegion(img, "bluearchive-noa51");
                                                                                                                                                                                                                     Time.clear();
-                                                                                                                                                                                                                    Time.run(5f, () -> {
+                                                                                                                                                                                                                    Time.run(3.5f, () -> {
                                                                                                                                                                                                                         setRegion(img, "bluearchive-noa52");
                                                                                                                                                                                                                         Time.clear();
-                                                                                                                                                                                                                        Time.run(5f, () -> {
+                                                                                                                                                                                                                        Time.run(3.5f, () -> {
                                                                                                                                                                                                                             setRegion(img, "bluearchive-noa53");
                                                                                                                                                                                                                             Time.clear();
-                                                                                                                                                                                                                            Time.run(5f, () -> {
+                                                                                                                                                                                                                            Time.run(3.5f, () -> {
                                                                                                                                                                                                                                 setRegion(img, "bluearchive-noa54");
                                                                                                                                                                                                                                 Time.clear();
-                                                                                                                                                                                                                                Time.run(5f, () -> {
+                                                                                                                                                                                                                                Time.run(3.5f, () -> {
                                                                                                                                                                                                                                     setRegion(img, "bluearchive-noa55");
                                                                                                                                                                                                                                     Time.clear();
-                                                                                                                                                                                                                                    Time.run(5f, () -> {
+                                                                                                                                                                                                                                    Time.run(3.5f, () -> {
                                                                                                                                                                                                                                         setRegion(img, "bluearchive-noa56");
                                                                                                                                                                                                                                         Time.clear();
-                                                                                                                                                                                                                                        Time.run(5f, () -> {
+                                                                                                                                                                                                                                        Time.run(3.5f, () -> {
                                                                                                                                                                                                                                             setRegion(img, "bluearchive-noa57");
                                                                                                                                                                                                                                             Time.clear();
-                                                                                                                                                                                                                                            Time.run(5f, () -> {
+                                                                                                                                                                                                                                            Time.run(3.5f, () -> {
                                                                                                                                                                                                                                                 setRegion(img, "bluearchive-noa58");
                                                                                                                                                                                                                                                 Time.clear();
-                                                                                                                                                                                                                                                Time.run(5f, () -> {
+                                                                                                                                                                                                                                                Time.run(3.5f, () -> {
                                                                                                                                                                                                                                                     setRegion(img, "bluearchive-noa59");
                                                                                                                                                                                                                                                     Time.clear();
-                                                                                                                                                                                                                                                    Time.run(5f, () -> {
+                                                                                                                                                                                                                                                    Time.run(3.5f, () -> {
                                                                                                                                                                                                                                                         setRegion(img, "bluearchive-noa60");
                                                                                                                                                                                                                                                         Time.clear();
-                                                                                                                                                                                                                                                        Time.run(5f, () -> {
+                                                                                                                                                                                                                                                        Time.run(3.5f, () -> {
                                                                                                                                                                                                                                                             setRegion(img, "bluearchive-noa61");
                                                                                                                                                                                                                                                             Time.clear();
-                                                                                                                                                                                                                                                            Time.run(5f, () -> {
+                                                                                                                                                                                                                                                            Time.run(3.5f, () -> {
                                                                                                                                                                                                                                                                 setRegion(img, "bluearchive-noa62");
                                                                                                                                                                                                                                                                 Time.clear();
-                                                                                                                                                                                                                                                                Time.run(5f, () -> {
+                                                                                                                                                                                                                                                                Time.run(3.5f, () -> {
                                                                                                                                                                                                                                                                     setRegion(img, "bluearchive-noa63");
                                                                                                                                                                                                                                                                     Time.clear();
-                                                                                                                                                                                                                                                                    Time.run(5f, () -> {
+                                                                                                                                                                                                                                                                    Time.run(3.5f, () -> {
                                                                                                                                                                                                                                                                         setRegion(img, "bluearchive-noa64");
                                                                                                                                                                                                                                                                         Time.clear();
-                                                                                                                                                                                                                                                                        Time.run(5f, () -> {
+                                                                                                                                                                                                                                                                        Time.run(3.5f, () -> {
                                                                                                                                                                                                                                                                             setRegion(img, "bluearchive-noa65");
                                                                                                                                                                                                                                                                             Time.clear();
-                                                                                                                                                                                                                                                                            Time.run(5f, () -> {
+                                                                                                                                                                                                                                                                            Time.run(3.5f, () -> {
                                                                                                                                                                                                                                                                                 setRegion(img, "bluearchive-noa66");
                                                                                                                                                                                                                                                                                 Time.clear();
-                                                                                                                                                                                                                                                                                Time.run(5f, () -> {
+                                                                                                                                                                                                                                                                                Time.run(3.5f, () -> {
                                                                                                                                                                                                                                                                                     setRegion(img, "bluearchive-noa67");
                                                                                                                                                                                                                                                                                     Time.clear();
-                                                                                                                                                                                                                                                                                    Time.run(5f, () -> {
+                                                                                                                                                                                                                                                                                    Time.run(3.5f, () -> {
                                                                                                                                                                                                                                                                                         setRegion(img, "bluearchive-noa68");
                                                                                                                                                                                                                                                                                         Time.clear();
-//                                                                                                                                                                                                                                                                                        Time.run(5f, () -> {
+//                                                                                                                                                                                                                                                                                        Time.run(3.5f, () -> {
 //                                                                                                                                                                                                                                                                                            setRegion(img, "bluearchive-noa1");
 //                                                                                                                                                                                                                                                                                            Time.clear();
 //                                                                                                                                                                                                                                                                                            Animran = true;
