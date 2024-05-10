@@ -114,14 +114,14 @@ public class ArchiveDustry extends Mod {
         loadSettings();
         new Links.LinkEntry("ba-youtube", "https://www.youtube.com/channel/UCsrnDYrkovQhCCE8kwKcvKQ", Icon.play, Color.red);
         Log.info("[ArchivD] Link Generated!");
-        if(Core.settings.getBool("ba-setSong")){
+        if(Core.settings.getBool("ba-setSongRecollection")) {
+            Musics.menu = tree.loadMusic("menurcl");
+        } else if(Core.settings.getBool("ba-setSong")) {
             Musics.menu = tree.loadMusic("menure-aoh");
         } else {
             Musics.menu = tree.loadMusic("menucm");
         }
-        if(Core.settings.getBool("ba-setSongRecollection")){
-            Musics.menu = tree.loadMusic("menrcl");
-        }
+
     }
 
     void loadSettings(){
