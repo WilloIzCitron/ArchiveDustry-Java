@@ -119,6 +119,9 @@ public class ArchiveDustry extends Mod {
         } else {
             Musics.menu = tree.loadMusic("menucm");
         }
+        if(Core.settings.getBool("ba-setSongRecollection")){
+            Musics.menu = tree.loadMusic("menrcl");
+        }
     }
 
     void loadSettings(){
@@ -128,6 +131,13 @@ public class ArchiveDustry extends Mod {
             t.pref(new Separator(4));
             t.checkPref("ba-firstTime", true);
             t.checkPref("ba-addHalo", true);
+            t.checkPref("ba-setSongRecollection", false, b -> {
+                        if (b) {
+                            Musics.menu = tree.loadMusic("menurcl");
+                        } else {
+                            Musics.menu = tree.loadMusic("menucm");
+                        }
+                    });
             t.checkPref("ba-setSong", false, b -> {
                 if (b) {
                     Musics.menu = tree.loadMusic("menure-aoh");
