@@ -9,6 +9,7 @@ import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.scene.utils.Elem;
 import arc.util.*;
+import bluearchive.ui.*;
 import mindustry.gen.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
@@ -106,6 +107,9 @@ public class ArchiveDustry extends Mod {
     public void init(){
         if(Core.settings.getBool("ba-addHalo")) {
             UnitHalo.init();
+        }
+        if (!Core.graphics.isPortrait()) {
+            ArchivDBackground.init();
         }
         loadSettings();
         new Links.LinkEntry("ba-youtube", "https://www.youtube.com/channel/UCsrnDYrkovQhCCE8kwKcvKQ", Icon.play, Color.red);
