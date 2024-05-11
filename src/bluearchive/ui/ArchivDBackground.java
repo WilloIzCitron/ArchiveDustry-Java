@@ -28,7 +28,7 @@ public class ArchivDBackground {
             Time.runTask(12f, () -> {
                 group.addChildAt(0, animBG);
                 for (int i = 0; i<=67; i++){
-                    tex[i] = Core.atlas.find("bluearchive-" +name+ "" + (1+i));
+                    tex[i] = Core.atlas.find("bluearchive-" +name+ (1+i));
                 }
                 img = tex[0];
                 Events.run(EventType.Trigger.update, () -> {
