@@ -109,7 +109,7 @@ public class ArchiveDustry extends Mod {
             UnitHalo.init();
         }
         if (!Core.graphics.isPortrait()) {
-            ArchivDBackground.buildL2D("noa");
+            ArchivDBackground.buildL2D("noa", 68);
             recollectionMusic = tree.loadMusic("menurcl");
         }
         loadSettings();

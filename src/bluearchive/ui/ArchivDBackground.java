@@ -13,7 +13,7 @@ public class ArchivDBackground {
     public static TextureRegion img;
     static Image animBG = new Image(new TextureRegion());
 
-    public static void buildL2D(String name){
+    public static void buildL2D(String name, int frames){
         Element tmp = Vars.ui.menuGroup.getChildren().first();
         if (!(tmp instanceof Group group)) return;
         Element render = group.getChildren().first();
@@ -24,10 +24,10 @@ public class ArchivDBackground {
 
         Events.on(EventType.ClientLoadEvent.class, e -> {
             animBG.setFillParent(true);
-            TextureRegion[] tex = new TextureRegion[68];
+            TextureRegion[] tex = new TextureRegion[frames];
             Time.runTask(12f, () -> {
                 group.addChildAt(0, animBG);
-                for (int i = 0; i<=67; i++){
+                for (int i = 0; i<=frames-1; i++){
                     tex[i] = Core.atlas.find("bluearchive-" +name+ (1+i));
                 }
                 img = tex[0];
