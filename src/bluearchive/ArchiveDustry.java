@@ -22,7 +22,7 @@ import mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable.*;
 import static mindustry.Vars.*;
 
 public class ArchiveDustry extends Mod {
-
+    public static Music recollectionMusic;
     public ArchiveDustry() {
         //listen for game load event
         Events.on(ClientLoadEvent.class, event -> {
@@ -109,17 +109,22 @@ public class ArchiveDustry extends Mod {
             UnitHalo.init();
         }
         if (!Core.graphics.isPortrait()) {
-            ArchivDBackground.init();
+            ArchivDBackground.buildL2D("noa");
+            recollectionMusic = tree.loadMusic("menurcl");
         }
         loadSettings();
         new Links.LinkEntry("ba-youtube", "https://www.youtube.com/channel/UCsrnDYrkovQhCCE8kwKcvKQ", Icon.play, Color.red);
         Log.info("[ArchivD] Link Generated!");
-        if(Core.settings.getBool("ba-setSongRecollection")) {
-            Musics.menu = tree.loadMusic("menurcl");
-        } else if(Core.settings.getBool("ba-setSong")) {
-            Musics.menu = tree.loadMusic("menure-aoh");
-        } else {
-            Musics.menu = tree.loadMusic("menucm");
+        switch (Core.settings.getInt("setSong")) {
+            case 1:
+                Musics.menu = tree.loadMusic("menucm");
+                break;
+            case 2:
+                Musics.menu = tree.loadMusic("menure-aoh");
+                break;
+            case 3:
+                Musics.menu = tree.loadMusic("menurcl");
+                break;
         }
 
     }
@@ -129,22 +134,22 @@ public class ArchiveDustry extends Mod {
             t.pref(new Banner("bluearchive-logo", -1));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.general-setting")));
             t.pref(new Separator(4));
+            t.sliderPref("setSong",1, 1, 3,1, i -> {
+                switch (i) {
+                    case 1:
+                        Musics.menu = tree.loadMusic("menucm");
+                        break;
+                    case 2:
+                        Musics.menu = tree.loadMusic("menure-aoh");
+                        break;
+                    case 3:
+                        Musics.menu = tree.loadMusic("menurcl");
+                        break;
+                }
+                return Core.bundle.get("ba-music"+(int)i+".name");
+            });
             t.checkPref("ba-firstTime", true);
             t.checkPref("ba-addHalo", true);
-            t.checkPref("ba-setSongRecollection", false, b -> {
-                        if (b) {
-                            Musics.menu = tree.loadMusic("menurcl");
-                        } else {
-                            Musics.menu = tree.loadMusic("menucm");
-                        }
-                    });
-            t.checkPref("ba-setSong", false, b -> {
-                if (b) {
-                    Musics.menu = tree.loadMusic("menure-aoh");
-                } else {
-                    Musics.menu = tree.loadMusic("menucm");
-                }
-            });
             t.pref(new TextSeparator(Core.bundle.get("setting.category.links")));
             t.pref(new Separator(4));
             t.pref(new ButtonSetting("ba-youtube", Icon.play, () -> {
