@@ -60,7 +60,5 @@ then download the artifact on the workflow runs
  </picture>
 </a>
 
-- The target of star on this mod are 10 stargazers
-
 ## Credits
 - Music: Nor, Mitsukiyo and KARUT
