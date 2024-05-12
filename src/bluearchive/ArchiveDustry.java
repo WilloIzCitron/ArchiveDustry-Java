@@ -140,24 +140,38 @@ public class ArchiveDustry extends Mod {
             t.pref(new Banner("bluearchive-logo", -1));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.general-setting")));
             t.pref(new Separator(4));
-            t.sliderPref("setL2D",2, 1, 2,1, i -> Core.bundle.get("ba-l2d"+(int)i+".name"));
-            t.sliderPref("setSong",1, 1, 3,1, i -> {
-                switch (i) {
-                    case 1:
-                        Musics.menu = tree.loadMusic("menucm");
-                        break;
-                    case 2:
-                        Musics.menu = tree.loadMusic("menure-aoh");
-                        break;
-                    case 3:
-                        if(Core.settings.getBool("enableL2D")) {
-                            Musics.menu = recollectionMusic;
-                        }
-                        
-                        break;
-                }
-                return Core.bundle.get("ba-music"+(int)i+".name");
-            });
+            if (Core.settings.getBool("enableL2D")) {
+                t.sliderPref("setL2D", 2, 1, 2, 1, i -> Core.bundle.get("ba-l2d" + (int) i + ".name"));
+                t.sliderPref("setSong", 1, 1, 3, 1, i -> {
+                    switch (i) {
+                        case 1:
+                            Musics.menu = tree.loadMusic("menucm");
+                            break;
+                        case 2:
+                            Musics.menu = tree.loadMusic("menure-aoh");
+                            break;
+                        case 3:
+                            if (Core.settings.getBool("enableL2D")) {
+                                Musics.menu = recollectionMusic;
+                            }
+
+                            break;
+                    }
+                    return Core.bundle.get("ba-music" + (int) i + ".name");
+                });
+            } else {
+                t.sliderPref("setSong", 1, 1, 2, 1, i -> {
+                    switch (i) {
+                        case 1:
+                            Musics.menu = tree.loadMusic("menucm");
+                            break;
+                        case 2:
+                            Musics.menu = tree.loadMusic("menure-aoh");
+                            break;
+                    }
+                    return Core.bundle.get("ba-music" + (int) i + ".name");
+                });
+            }
             t.checkPref("enableL2D", true);
             t.checkPref("ba-firstTime", true);
             t.checkPref("ba-addHalo", true);
