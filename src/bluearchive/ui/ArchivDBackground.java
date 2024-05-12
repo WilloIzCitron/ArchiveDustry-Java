@@ -5,6 +5,7 @@ import arc.Events;
 import arc.graphics.g2d.TextureRegion;
 import arc.scene.*;
 import arc.scene.ui.Image;
+import arc.util.Log;
 import arc.util.Time;
 import mindustry.Vars;
 import mindustry.game.EventType;
@@ -13,7 +14,7 @@ public class ArchivDBackground {
     public static TextureRegion img;
     static Image animBG = new Image(new TextureRegion());
 
-    public static void buildL2D(String name, int frames){
+    public static void buildL2D(String name, int frames, float speed){
         Element tmp = Vars.ui.menuGroup.getChildren().first();
         if (!(tmp instanceof Group group)) return;
         Element render = group.getChildren().first();
@@ -32,10 +33,11 @@ public class ArchivDBackground {
                 }
                 img = tex[0];
                 Events.run(EventType.Trigger.update, () -> {
-                    int animBGFrame = (int)((Time.globalTime / 3.5f) % tex.length);
+                    int animBGFrame = (int)((Time.globalTime / speed) % tex.length);
                     img.set(tex[animBGFrame]);
                     setRegion(animBG, img);
                 });
+                Log.infoTag("ArchiveDustry", "Background Loaded!");
         });
     });
     }

@@ -26,7 +26,7 @@ public class ArchiveDustry extends Mod {
     public ArchiveDustry() {
         //listen for game load event
         Events.on(ClientLoadEvent.class, event -> {
-            Log.info("[ArchivD] ArchiveDustry fully loaded!.");
+            Log.infoTag("ArchiveDustry", "Fully Loaded!");
             if(Core.settings.getBool("ba-firstTime")) {
                 BaseDialog dialog = new BaseDialog(Core.bundle.get("ba-firstTimeDialog.title"));
                 dialog.cont.image(Core.atlas.find("bluearchive-mikalove")).pad(20).size(200f, 200f).row();
@@ -105,16 +105,22 @@ public class ArchiveDustry extends Mod {
     }
     @Override
     public void init(){
-        if(Core.settings.getBool("ba-addHalo")) {
+        if(Core.settings.getBool("ba-addHalo", true)) {
             UnitHalo.init();
         }
-        if (!Core.graphics.isPortrait()) {
-            ArchivDBackground.buildL2D("noa", 68);
-            recollectionMusic = tree.loadMusic("menurcl");
-        }
+        if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D")) {
+                    switch (Core.settings.getInt("setL2D")) {
+                        case 1:
+                            ArchivDBackground.buildL2D("kotama", 68, 5f);
+                            recollectionMusic = tree.loadMusic("menuaira");
+                            break;
+                        case 2:
+                            ArchivDBackground.buildL2D("noa", 68, 5f);
+                            recollectionMusic = tree.loadMusic("menurcl");
+                            break;
+                    }
+            }
         loadSettings();
-        new Links.LinkEntry("ba-youtube", "https://www.youtube.com/channel/UCsrnDYrkovQhCCE8kwKcvKQ", Icon.play, Color.red);
-        Log.info("[ArchivD] Link Generated!");
         switch (Core.settings.getInt("setSong")) {
             case 1:
                 Musics.menu = tree.loadMusic("menucm");
@@ -123,7 +129,7 @@ public class ArchiveDustry extends Mod {
                 Musics.menu = tree.loadMusic("menure-aoh");
                 break;
             case 3:
-                Musics.menu = tree.loadMusic("menurcl");
+                Musics.menu = recollectionMusic;
                 break;
         }
 
@@ -134,6 +140,7 @@ public class ArchiveDustry extends Mod {
             t.pref(new Banner("bluearchive-logo", -1));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.general-setting")));
             t.pref(new Separator(4));
+            t.sliderPref("setL2D",2, 1, 2,1, i -> Core.bundle.get("ba-l2d"+(int)i+".name"));
             t.sliderPref("setSong",1, 1, 3,1, i -> {
                 switch (i) {
                     case 1:
@@ -143,11 +150,15 @@ public class ArchiveDustry extends Mod {
                         Musics.menu = tree.loadMusic("menure-aoh");
                         break;
                     case 3:
-                        Musics.menu = tree.loadMusic("menurcl");
+                        if(Core.settings.getBool("enableL2D")) {
+                            Musics.menu = recollectionMusic;
+                        }
+                        
                         break;
                 }
                 return Core.bundle.get("ba-music"+(int)i+".name");
             });
+            t.checkPref("enableL2D", true);
             t.checkPref("ba-firstTime", true);
             t.checkPref("ba-addHalo", true);
             t.pref(new TextSeparator(Core.bundle.get("setting.category.links")));
@@ -161,17 +172,23 @@ public class ArchiveDustry extends Mod {
             t.pref(new ButtonSetting("Credits", Icon.info, this::showCredits, 32));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.mixer")));
             t.pref(new Separator(4));
-            t.sliderPref("gameOver", 100,0, 100,1,i -> i + "%");
-            t.sliderPref("research", 100,0, 100,1,i -> i + "%");
-            t.sliderPref("coreDatabase", 100,0, 100,1,i -> i + "%");
-            t.sliderPref("loadout", 100,0, 100,1,i -> i + "%");
-            t.pref(new ButtonSetting("ba-mixer-apply", Icon.ok, () -> {
-                tree.loadMusic("win").setVolume(Core.settings.getInt("gameOver") / 100f);
-                tree.loadMusic("lose").setVolume(Core.settings.getInt("gameOver") / 100f);
-                tree.loadMusic("research").setVolume(Core.settings.getInt("research") / 100f);
-                tree.loadMusic("database").setVolume(Core.settings.getInt("coreDatabase") / 100f);
-                tree.loadMusic("loadout").setVolume(Core.settings.getInt("loadout") / 100f);
-            }, 32));
+            t.sliderPref("gameOver", 100,0, 100,1,i -> {
+                tree.loadMusic("win").setVolume(i / 100f);
+                tree.loadMusic("lose").setVolume(i / 100f);
+                return i + "%";
+            });
+            t.sliderPref("research", 100,0, 100,1,i -> {
+                tree.loadMusic("research").setVolume(i / 100f);
+                return i + "%";
+            });
+            t.sliderPref("coreDatabase", 100,0, 100,1,i -> {
+                tree.loadMusic("database").setVolume(i / 100f);
+                return i + "%";
+            });
+            t.sliderPref("loadout", 100,0, 100,1,i -> {
+                tree.loadMusic("loadout").setVolume(i / 100f);
+                return i + "%";
+            });
             t.pref(new Separator(2));
             if (OS.username.startsWith("willoizcitron")){
                 t.pref(new Separator(2));
