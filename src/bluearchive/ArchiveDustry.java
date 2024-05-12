@@ -81,7 +81,9 @@ public class ArchiveDustry extends Mod {
 
         Events.on(WinEvent.class, winner -> {
             Music currentPlay = Reflect.get(control.sound, "current");
-            currentPlay.stop();
+            if(currentPlay != null) {
+                currentPlay.stop();
+            }
             tree.loadMusic("win").play();
             ui.restart.hidden(() -> {
                 tree.loadMusic("win").stop();
@@ -90,7 +92,9 @@ public class ArchiveDustry extends Mod {
         });
         Events.on(LoseEvent.class, winner -> {
             Music currentPlay = Reflect.get(control.sound, "current");
-            currentPlay.stop();
+            if(currentPlay != null) {
+                currentPlay.stop();
+            }
             tree.loadMusic("lose").play();
             ui.restart.hidden(() -> {
                 tree.loadMusic("lose").stop();
@@ -101,7 +105,9 @@ public class ArchiveDustry extends Mod {
         // sector captured = win
         Events.on(SectorCaptureEvent.class, e -> {
             Music currentPlay = Reflect.get(control.sound, "current");
-            currentPlay.stop();
+            if(currentPlay != null) {
+                currentPlay.stop();
+            }
             Time.run(306f, () -> {
                 tree.loadMusic("win").stop();
                 Time.clear();
