@@ -108,7 +108,7 @@ public class ArchiveDustry extends Mod {
         if(Core.settings.getBool("ba-addHalo", true)) {
             UnitHalo.init();
         }
-        if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D")) {
+        if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D", true)) {
                     switch (Core.settings.getInt("setL2D")) {
                         case 1:
                             ArchivDBackground.buildL2D("kotama", 68, 5f);
