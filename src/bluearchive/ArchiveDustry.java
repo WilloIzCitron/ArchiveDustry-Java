@@ -2,7 +2,6 @@ package bluearchive;
 
 import arc.*;
 import arc.audio.*;
-import arc.graphics.Color;
 import arc.scene.style.Drawable;
 import arc.scene.style.TextureRegionDrawable;
 import arc.scene.ui.*;
@@ -14,7 +13,6 @@ import mindustry.gen.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
-import mindustry.ui.Links;
 import mindustry.ui.dialogs.*;
 import mindustry.ui.dialogs.SettingsMenuDialog.*;
 import mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable.*;
@@ -109,17 +107,17 @@ public class ArchiveDustry extends Mod {
             UnitHalo.init();
         }
         if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D", true)) {
-                    switch (Core.settings.getInt("setL2D")) {
-                        case 1:
-                            ArchivDBackground.buildL2D("kotama", 68, 5f);
-                            recollectionMusic = tree.loadMusic("menuaira");
-                            break;
-                        case 2:
-                            ArchivDBackground.buildL2D("noa", 68, 5f);
-                            recollectionMusic = tree.loadMusic("menurcl");
-                            break;
-                    }
+            switch (Core.settings.getInt("setL2D")) {
+                case 1:
+                    ArchivDBackground.buildL2D("kotama", 68, 5f);
+                    recollectionMusic = tree.loadMusic("menuaira");
+                    break;
+                case 2:
+                    ArchivDBackground.buildL2D("noa", 68, 5f);
+                    recollectionMusic = tree.loadMusic("menurcl");
+                    break;
             }
+        }
         loadSettings();
         switch (Core.settings.getInt("setSong")) {
             case 1:
@@ -186,20 +184,21 @@ public class ArchiveDustry extends Mod {
             t.pref(new ButtonSetting("Credits", Icon.info, this::showCredits, 32));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.mixer")));
             t.pref(new Separator(4));
-            t.sliderPref("gameOver", 100,0, 100,1,i -> {
+            int defaultVolume = Core.settings.has("musicvol") ? Core.settings.getInt("musicvol") : (int) Core.settings.getDefault("musicvol");
+            t.sliderPref("gameOver", defaultVolume,0, 100,1,i -> {
                 tree.loadMusic("win").setVolume(i / 100f);
                 tree.loadMusic("lose").setVolume(i / 100f);
                 return i + "%";
             });
-            t.sliderPref("research", 100,0, 100,1,i -> {
+            t.sliderPref("research", defaultVolume,0, 100,1,i -> {
                 tree.loadMusic("research").setVolume(i / 100f);
                 return i + "%";
             });
-            t.sliderPref("coreDatabase", 100,0, 100,1,i -> {
+            t.sliderPref("coreDatabase", defaultVolume,0, 100,1,i -> {
                 tree.loadMusic("database").setVolume(i / 100f);
                 return i + "%";
             });
-            t.sliderPref("loadout", 100,0, 100,1,i -> {
+            t.sliderPref("loadout", defaultVolume,0, 100,1,i -> {
                 tree.loadMusic("loadout").setVolume(i / 100f);
                 return i + "%";
             });
@@ -207,7 +206,7 @@ public class ArchiveDustry extends Mod {
             if (OS.username.startsWith("willoizcitron")){
                 t.pref(new Separator(2));
                 t.pref(new TextSeparator("< Developer Settings >"));
-                };
+            };
         });
     }
 
@@ -257,11 +256,11 @@ public class ArchiveDustry extends Mod {
             image(Tex.clear).height(25f).padTop(3f).row();
             add("Legal Notice").row();
             image(Tex.clear).height(5f).padTop(3f).row();
-            add("This mod is fanmade! and also obey the Fankit Guidelines.").row();
-            add("THIS MOD NOT INTENDED FOR COMMERCIAL USE!").row();
+            add("This is a fanmade mod! it obeys the Fankit Guidelines.").row();
+            add("THIS MOD IS NOT INTENDED FOR COMMERCIAL USE!").row();
             image(Tex.clear).height(2f).padTop(3f).row();
             image(Tex.clear).height(1f).padTop(3f).row();
-            add("Mindustry is developed by Anuke, and was licensed to GNU GPLv3.0").row();
+            add("Mindustry is developed by Anuke, and is licensed under GNU GPLv3.0").row();
             image(Tex.clear).height(1f).padTop(3f).row();
             add("This mod is MIT Licensed").row();
             image(Tex.clear).height(25f).padTop(25f).row();
@@ -298,7 +297,7 @@ public class ArchiveDustry extends Mod {
         }
     }
 
-static class TextSeparator extends Setting {
+    static class TextSeparator extends Setting {
         String text;
         public TextSeparator(String text){
             super("");
@@ -313,7 +312,7 @@ static class TextSeparator extends Setting {
             table.add(b).growX();
             table.row();
         }
-}
+    }
     static class Separator extends Setting{
         float height;
         public Separator(float height){
