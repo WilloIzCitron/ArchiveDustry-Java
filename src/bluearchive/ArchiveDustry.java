@@ -1,6 +1,7 @@
 package bluearchive;
 
 import arc.*;
+import arc.assets.loaders.MusicLoader;
 import arc.audio.*;
 import arc.scene.style.Drawable;
 import arc.scene.style.TextureRegionDrawable;
@@ -9,6 +10,7 @@ import arc.scene.ui.layout.*;
 import arc.scene.utils.Elem;
 import arc.util.*;
 import bluearchive.ui.*;
+import mindustry.audio.SoundControl;
 import mindustry.gen.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
@@ -78,6 +80,8 @@ public class ArchiveDustry extends Mod {
 
 
         Events.on(WinEvent.class, winner -> {
+            Music currentPlay = Reflect.get(control.sound, "current");
+            currentPlay.stop();
             tree.loadMusic("win").play();
             ui.restart.hidden(() -> {
                 tree.loadMusic("win").stop();
@@ -85,6 +89,8 @@ public class ArchiveDustry extends Mod {
             });
         });
         Events.on(LoseEvent.class, winner -> {
+            Music currentPlay = Reflect.get(control.sound, "current");
+            currentPlay.stop();
             tree.loadMusic("lose").play();
             ui.restart.hidden(() -> {
                 tree.loadMusic("lose").stop();
@@ -94,7 +100,8 @@ public class ArchiveDustry extends Mod {
 
         // sector captured = win
         Events.on(SectorCaptureEvent.class, e -> {
-            tree.loadMusic("win").play();
+            Music currentPlay = Reflect.get(control.sound, "current");
+            currentPlay.stop();
             Time.run(306f, () -> {
                 tree.loadMusic("win").stop();
                 Time.clear();

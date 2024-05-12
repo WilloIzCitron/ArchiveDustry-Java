@@ -891,7 +891,25 @@ public class UnitHalo {
                     }}
             );
 
-            // UnitTypes.locus
+            UnitTypes.locus.parts.addAll(
+                    new ShapePart(){{
+                        color = Color.valueOf("feb380");
+                        layer = Layer.effect;
+                        radius = 5f;
+                        hollow = true;
+                        circle = true;
+                        stroke = 1.2f;
+                    }},
+                    new HaloPart() {{
+                        shapes = 2;
+                        haloRotation = 0f;
+                        haloRadius = 4.9f;
+                        color = Color.valueOf("feb380");
+                        layer = Layer.effect;
+                        sides = 4;
+                        radius = 3f;
+                    }}
+            );
             
             // UnitTypes.precept
             
@@ -902,7 +920,7 @@ public class UnitHalo {
                     circle = true;
                     radius = 20;
                     hollow = true;
-                    color = Pal.accentBack;
+                    color = Color.valueOf("feb380");
                     layer = Layer.effect;
                     stroke = 3;
                 }},
@@ -910,7 +928,7 @@ public class UnitHalo {
                     shapes = 4;
                     haloRotation = 45f;
                     haloRadius = 11f;
-                    color = Pal.accentBack;
+                    color = Color.valueOf("feb380");
                     layer = Layer.effect;
                     radius = 3f;
                 }},
@@ -918,7 +936,7 @@ public class UnitHalo {
                     shapes = 4;
                     sides = 4;
                     haloRadius = 10f;
-                    color = Pal.accentBack;
+                    color = Color.valueOf("feb380");
                     layer = Layer.effect;
                     radius = 3f;
                 }},
@@ -926,7 +944,7 @@ public class UnitHalo {
                     circle = true;
                     radius = 10;
                     hollow = true;
-                    color = Pal.accentBack;
+                    color = Color.valueOf("feb380");
                     layer = Layer.effect;
                     stroke = 2;
                 }}
@@ -939,11 +957,34 @@ public class UnitHalo {
                         radius = 3f;
                         hollow = true;
                         stroke = 1.2f;
+                        rotation = 45f;
                         sides = 4;
+                        y = -1f;
                     }}
             );
-            
-            // UnitTypes.cleroi
+
+            UnitTypes.cleroi.parts.addAll(
+                    new ShapePart(){{
+                        color = Pal.techBlue;
+                        layer = Layer.effect;
+                        radius = 3f;
+                        hollow = true;
+                        stroke = 1.2f;
+                        rotation = 45f;
+                        sides = 4;
+                        y = -2f;
+                    }},
+            new ShapePart(){{
+                color = Pal.techBlue;
+                rotation = 45f;
+                layer = Layer.effect;
+                radius = 6f;
+                hollow = true;
+                stroke = 1.2f;
+                sides = 4;
+                y = -2f;
+            }}
+            );
             
             // UnitTypes.anthicus
             
