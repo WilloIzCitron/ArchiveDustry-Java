@@ -1,7 +1,9 @@
 package bluearchive.units;
 
+import arc.Core;
 import arc.Events;
 import arc.graphics.Color;
+import arc.graphics.g2d.TextureRegion;
 import arc.util.Log;
 import mindustry.content.*;
 import mindustry.entities.part.*;
@@ -910,11 +912,55 @@ public class UnitHalo {
                         radius = 3f;
                     }}
             );
-            
-            // UnitTypes.precept
-            
-            // UnitTypes.vanquish
-            
+
+            UnitTypes.precept.parts.addAll(
+                    new ShapePart(){{
+                        color = Color.valueOf("feb380");
+                        layer = Layer.effect;
+                        radius = 6f;
+                        hollow = true;
+                        circle = true;
+                        stroke = 1.5f;
+                    }},
+                    new HaloPart() {{
+                        shapes = 3;
+                        haloRotation = 0f;
+                        haloRadius = 5.9f;
+                        color = Color.valueOf("feb380");
+                        layer = Layer.effect;
+                        sides = 4;
+                        radius = 3f;
+                    }}
+            );
+
+            UnitTypes.vanquish.parts.addAll(
+                    new ShapePart(){{
+                        color = Color.valueOf("feb380");
+                        layer = Layer.effect;
+                        radius = 8f;
+                        hollow = true;
+                        circle = true;
+                        stroke = 1.5f;
+                    }},
+                    new HaloPart() {{
+                        shapes = 4;
+                        haloRotation = 0f;
+                        haloRadius = 6.9f;
+                        color = Color.valueOf("feb380");
+                        layer = Layer.effect;
+                        sides = 4;
+                        radius = 3f;
+                    }},
+                    new ShapePart(){{
+                        color = Color.valueOf("feb380");
+                        layer = Layer.effect;
+                        radius = 12f;
+                        hollow = true;
+                        circle = true;
+                        stroke = 1.2f;
+                    }}
+            );
+
             UnitTypes.conquer.parts.addAll(
                 new ShapePart() {{
                     circle = true;
@@ -970,7 +1016,7 @@ public class UnitHalo {
                         radius = 3f;
                         hollow = true;
                         stroke = 1.2f;
-                        rotation = 45f;
+                        rotation = 0f;
                         sides = 4;
                         y = -2f;
                     }},
@@ -985,15 +1031,84 @@ public class UnitHalo {
                 y = -2f;
             }}
             );
-            
-            // UnitTypes.anthicus
-            
-            // UnitTypes.tecta
-            
-            // UnitTypes.collaris
-            
+
+            UnitTypes.anthicus.parts.addAll(
+                    new ShapePart(){{
+                        color = Pal.techBlue;
+                        layer = Layer.effect;
+                        radius = 2f;
+                        rotateSpeed = 3f;
+                        sides = 6;
+                        y = -3f;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.techBlue;
+                        layer = Layer.effect;
+                        radius = 4f;
+                        hollow = true;
+                        stroke = 1.2f;
+                        rotation = 0f;
+                        sides = 4;
+                        y = -3f;
+                    }},
+                    new ShapePart(){{
+                        color = Pal.techBlue;
+                        rotation = 45f;
+                        layer = Layer.effect;
+                        radius = 8f;
+                        hollow = true;
+                        stroke = 1.5f;
+                        sides = 4;
+                        y = -3f;
+                    }},
+            new ShapePart(){{
+                color = Pal.techBlue;
+                rotation = 0f;
+                layer = Layer.effect;
+                radius = 8f;
+                hollow = true;
+                stroke = 1.5f;
+                sides = 4;
+                y = -3f;
+            }}
+            );
+
+            //arisu
+            UnitTypes.tecta.parts.addAll(
+                    new RegionPart(){{
+                        name = "bluearchive-tecta";
+                        suffix = "-halo";
+                        regions = new TextureRegion[]{Core.atlas.find("bluearchive-tecta-halo"), Core.atlas.find("bluearchive-tecta-halo")};
+                        heat = Core.atlas.find("bluearchive-tecta-halo-heat");
+                        y = -6f;
+                        xScl = 1.5f;
+                        yScl = 1.5f;
+                        color = Pal.techBlue;
+                        layer = Layer.effect;
+                        outline = false;
+                        drawRegion = true;
+                    }}
+            );
+
+            //kether
+            UnitTypes.collaris.parts.addAll(
+                    new RegionPart(){{
+                        name = "bluearchive-collaris";
+                        suffix = "-halo";
+                        regions = new TextureRegion[]{Core.atlas.find("bluearchive-collaris-halo"), Core.atlas.find("bluearchive-collaris-halo")};
+                        heat = Core.atlas.find("bluearchive-collaris-halo-heat");
+                        y = -7f;
+                        xScl = 2.5f;
+                        yScl = 2.5f;
+                        color = Pal.techBlue;
+                        layer = Layer.effect;
+                        outline = false;
+                        drawRegion = true;
+                    }}
+            );
+
             // skip air units
-            
+
             Log.infoTag("ArchiveDustry", "Unit halos have been loaded!");
         });
     }
