@@ -1,7 +1,6 @@
 package bluearchive;
 
 import arc.*;
-import arc.assets.loaders.MusicLoader;
 import arc.audio.*;
 import arc.scene.style.Drawable;
 import arc.scene.style.TextureRegionDrawable;
@@ -10,7 +9,6 @@ import arc.scene.ui.layout.*;
 import arc.scene.utils.Elem;
 import arc.util.*;
 import bluearchive.ui.*;
-import mindustry.audio.SoundControl;
 import mindustry.gen.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
@@ -109,7 +107,7 @@ public class ArchiveDustry extends Mod {
                 currentPlay.stop();
             }
             Time.run(306f, () -> {
-                tree.loadMusic("win").stop();
+                Reflect.invoke(tree.loadMusic("win"), "silence");
                 Time.clear();
             });
         });
@@ -119,6 +117,7 @@ public class ArchiveDustry extends Mod {
         if(Core.settings.getBool("ba-addHalo", true)) {
             UnitHalo.init();
         }
+        UnitSound.init();
         if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D", true)) {
             switch (Core.settings.getInt("setL2D")) {
                 case 1:
