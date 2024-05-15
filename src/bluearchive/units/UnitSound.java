@@ -18,23 +18,23 @@ public class UnitSound {
     public static Seq<Sound> hitSound = Seq.with();
     static Interval hitInterval = new Interval(5);
     public static void init() {
-        // tecta atlas start
+        // collaris atlas start
         Events.on(PayloadDropEvent.class, e -> {
-            if (e.unit.type == Vars.content.unit("tecta")) {
-                arrivalSound = Seq.with(new Sound(Vars.tree.get("sounds/units/tecta-arrival1.ogg")), new Sound(Vars.tree.get("sounds/units/tecta-arrival2.ogg")));
+            if (e.unit.type == Vars.content.unit("collaris")) {
+                arrivalSound = Seq.with(new Sound(Vars.tree.get("sounds/units/collaris-arrival1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-arrival2.ogg")));
                 arrivalSound.random().play();
             }
         });
         Events.on(PickupEvent.class, e -> {
-            if (e.unit.type == Vars.content.unit("tecta")) {
-                Sound pickedSound = new Sound(Vars.tree.get("sounds/units/tecta-pickup.ogg"));
+            if (e.unit.type == Vars.content.unit("collaris")) {
+                Sound pickedSound = new Sound(Vars.tree.get("sounds/units/collaris-pickup.ogg"));
                 pickedSound.play();
             }
         });
         Events.on(UnitDamageEvent.class, e -> {
             /* Check if the unit is same as intended, hit sound was being interval */
-            if (e.unit.type == Vars.content.unit("tecta") && hitInterval.get(300)) {
-                hitSound = Seq.with(new Sound(Vars.tree.get("sounds/units/tecta-hit1.ogg")), new Sound(Vars.tree.get("sounds/units/tecta-hit2.ogg")), new Sound(Vars.tree.get("sounds/units/tecta-hit3.ogg")));
+            if (e.unit.type == Vars.content.unit("collaris") && hitInterval.get(300)) {
+                hitSound = Seq.with(new Sound(Vars.tree.get("sounds/units/collaris-hit1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-hit2.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-hit3.ogg")));
                 if (!e.unit.dead) {
                     Time.run(0f, () -> {
                         hitSound.random().play();
@@ -42,8 +42,8 @@ public class UnitSound {
                 }
             }
         });
-        UnitTypes.tecta.deathSound = new Sound(Vars.tree.get("sounds/units/tecta-death.ogg"));
-        // tecta atlas end
+        UnitTypes.collaris.deathSound = new Sound(Vars.tree.get("sounds/units/collaris-death.ogg"));
+        // collaris atlas end
 
         Log.infoTag("ArchiveDustry", "Unit Sounds Loaded!");
     }
