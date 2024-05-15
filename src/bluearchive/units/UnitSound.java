@@ -16,12 +16,10 @@ import mindustry.gen.Unit;
 public class UnitSound {
     public static Seq<Sound> arrivalSound = Seq.with();
     public static Seq<Sound> hitSound = Seq.with();
-    protected static Sound lastSound;
-    protected static Sound currentSound;
     static Interval hitInterval = new Interval(5);
     public static void init() {
         // tecta atlas start
-        Events.on(UnitUnloadEvent.class, e -> {
+        Events.on(PayloadDropEvent.class, e -> {
             if (e.unit.type == Vars.content.unit("tecta")) {
                 arrivalSound = Seq.with(new Sound(Vars.tree.get("sounds/units/tecta-arrival1.ogg")), new Sound(Vars.tree.get("sounds/units/tecta-arrival2.ogg")));
                 arrivalSound.random().play();
