@@ -1073,7 +1073,7 @@ public class UnitHalo {
             }}
             );
 
-            //arisu
+            //kether
             UnitTypes.tecta.parts.addAll(
                     new RegionPart(){{
                         name = "bluearchive-tecta";
@@ -1090,7 +1090,7 @@ public class UnitHalo {
                     }}
             );
 
-            //kether
+            //arisu
             UnitTypes.collaris.parts.addAll(
                     new RegionPart(){{
                         name = "bluearchive-collaris";
