@@ -38,6 +38,10 @@ A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and als
   - database.ogg (additional) = Future Bossa
   - loadout.ogg (additional) = MX Adventure
 
+## Mod System Requirements
+
+this mod require to allocate your machine RAM is 4-6GB RAM Allocation 
+
 ## Building
 
 To generate the mod jar, you can do this below with platform specified jar:
