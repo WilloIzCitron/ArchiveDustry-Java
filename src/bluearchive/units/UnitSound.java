@@ -6,17 +6,19 @@ import arc.struct.Seq;
 import arc.util.Interval;
 import arc.util.Log;
 import arc.util.Time;
+import arc.util.Timer;
 import mindustry.content.UnitTypes;
 import mindustry.game.EventType;
 import mindustry.game.EventType.*;
 import mindustry.Vars;
-import mindustry.gen.Unit;
+import mindustry.gen.Sounds;
 
 
 public class UnitSound {
     public static Seq<Sound> arrivalSound = Seq.with();
     public static Seq<Sound> hitSound = Seq.with();
-    static Interval hitInterval = new Interval(5);
+    public static Seq<Sound> shootSound = Seq.with();
+    static Interval interval = new Interval(5);
     public static void init() {
         // collaris atlas start
         Events.on(PayloadDropEvent.class, e -> {
@@ -33,7 +35,7 @@ public class UnitSound {
         });
         Events.on(UnitDamageEvent.class, e -> {
             /* Check if the unit is same as intended, hit sound was being interval */
-            if (e.unit.type == Vars.content.unit("collaris") && hitInterval.get(300)) {
+            if (e.unit.type == Vars.content.unit("collaris") && interval.get(300)) {
                 hitSound = Seq.with(new Sound(Vars.tree.get("sounds/units/collaris-hit1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-hit2.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-hit3.ogg")));
                 if (!e.unit.dead) {
                     Time.run(0f, () -> {
@@ -42,7 +44,16 @@ public class UnitSound {
                 }
             }
         });
-        UnitTypes.collaris.deathSound = new Sound(Vars.tree.get("sounds/units/collaris-death.ogg"));
+        Timer.schedule(() -> {
+            UnitTypes.collaris.deathSound = new Sound(Vars.tree.get("sounds/units/collaris-death.ogg"));
+            /* 4/1 chance to get unique sound */
+            shootSound = Seq.with(Sounds.pulseBlast, Sounds.pulseBlast, Sounds.pulseBlast, Sounds.pulseBlast, new Sound(Vars.tree.get("sounds/units/collaris-attack1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-attack2.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-attack3.ogg")));
+            Sound assignedSound = shootSound.random();
+            UnitTypes.collaris.weapons.get(0).shootSound = assignedSound;
+            UnitTypes.collaris.weapons.get(1).shootSound = assignedSound;
+            UnitTypes.collaris.weapons.get(0).soundPitchMin = 1f;
+            UnitTypes.collaris.weapons.get(1).soundPitchMin = 1f;
+        }, 0, 2.15f);
         // collaris atlas end
 
         Log.infoTag("ArchiveDustry", "Unit Sounds Loaded!");

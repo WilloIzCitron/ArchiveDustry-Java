@@ -9,6 +9,7 @@ import arc.scene.ui.layout.*;
 import arc.scene.utils.Elem;
 import arc.util.*;
 import bluearchive.ui.*;
+import mindustry.game.SectorInfo;
 import mindustry.gen.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
@@ -106,8 +107,9 @@ public class ArchiveDustry extends Mod {
             if(currentPlay != null) {
                 currentPlay.stop();
             }
+            tree.loadMusic("win").play();
             Time.run(306f, () -> {
-                Reflect.invoke(tree.loadMusic("win"), "silence");
+                tree.loadMusic("win").stop();
                 Time.clear();
             });
         });
