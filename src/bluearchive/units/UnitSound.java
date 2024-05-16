@@ -17,20 +17,32 @@ import mindustry.gen.Sounds;
 public class UnitSound {
     public static Seq<Sound> arrivalSound = Seq.with();
     public static Seq<Sound> hitSound = Seq.with();
+    public static Sound arrivalAssignedSound;
     public static Seq<Sound> shootSound = Seq.with();
+    public static Sound pickedSound = new Sound(Vars.tree.get("sounds/units/collaris-pickup.ogg"));
     static Interval interval = new Interval(5);
     public static void init() {
         // collaris atlas start
         Events.on(PayloadDropEvent.class, e -> {
-            if (e.unit.type == Vars.content.unit("collaris")) {
-                arrivalSound = Seq.with(new Sound(Vars.tree.get("sounds/units/collaris-arrival1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-arrival2.ogg")));
-                arrivalSound.random().play();
+            /* pass if the e.unit */
+            if (e.unit != null) {
+                /* pass if the e.unit is specified */
+                if (e.unit.type == Vars.content.unit("collaris")) {
+                    pickedSound.stop();
+                    arrivalSound = Seq.with(new Sound(Vars.tree.get("sounds/units/collaris-arrival1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-arrival2.ogg")));
+                    arrivalAssignedSound =  arrivalSound.random();
+                    arrivalAssignedSound.play();
+                }
             }
         });
         Events.on(PickupEvent.class, e -> {
-            if (e.unit.type == Vars.content.unit("collaris")) {
-                Sound pickedSound = new Sound(Vars.tree.get("sounds/units/collaris-pickup.ogg"));
-                pickedSound.play();
+            /* pass if the e.unit */
+            if (e.unit != null) {
+                /* pass if the e.unit is specified */
+                if (e.unit.type == Vars.content.unit("collaris")) {
+                    arrivalAssignedSound.stop();
+                    pickedSound.play();
+                }
             }
         });
         Events.on(UnitDamageEvent.class, e -> {
