@@ -40,7 +40,7 @@ A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and als
 
 ## Mod System Requirements
 
-this mod require to allocate your machine RAM is 4-6GB RAM Allocation 
+This mod require to allocate your machine RAM into 4-6GB RAM Allocation 
 
 ## Building
 
