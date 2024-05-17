@@ -8,8 +8,6 @@ import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.scene.utils.Elem;
 import arc.util.*;
-import bluearchive.ui.*;
-import mindustry.game.SectorInfo;
 import mindustry.gen.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
@@ -20,9 +18,8 @@ import mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable.*;
 
 import static mindustry.Vars.*;
 
-public class ArchiveDustry extends Mod {
-    public static Music recollectionMusic;
-    public ArchiveDustry() {
+public class ArchiveDustryLite extends Mod {
+    public ArchiveDustryLite() {
         //listen for game load event
         Events.on(ClientLoadEvent.class, event -> {
             Log.infoTag("ArchiveDustry", "Fully Loaded!");
@@ -120,18 +117,6 @@ public class ArchiveDustry extends Mod {
             UnitHalo.init();
         }
         UnitSound.init();
-        if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D", true)) {
-            switch (Core.settings.getInt("setL2D")) {
-                case 1:
-                    ArchivDBackground.buildL2D("kotama", 68, 5f);
-                    recollectionMusic = tree.loadMusic("menuaira");
-                    break;
-                case 2:
-                    ArchivDBackground.buildL2D("noa", 68, 5f);
-                    recollectionMusic = tree.loadMusic("menurcl");
-                    break;
-            }
-        }
         loadSettings();
         switch (Core.settings.getInt("setSong")) {
             case 1:
@@ -139,9 +124,6 @@ public class ArchiveDustry extends Mod {
                 break;
             case 2:
                 Musics.menu = tree.loadMusic("menure-aoh");
-                break;
-            case 3:
-                Musics.menu = recollectionMusic;
                 break;
         }
 
@@ -152,27 +134,7 @@ public class ArchiveDustry extends Mod {
             t.pref(new Banner("bluearchive-logo", -1));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.general-setting")));
             t.pref(new Separator(4));
-            if (Core.settings.getBool("enableL2D")) {
-                t.sliderPref("setL2D", 2, 1, 2, 1, i -> Core.bundle.get("ba-l2d" + (int) i + ".name"));
-                t.sliderPref("setSong", 1, 1, 3, 1, i -> {
-                    switch (i) {
-                        case 1:
-                            Musics.menu = tree.loadMusic("menucm");
-                            break;
-                        case 2:
-                            Musics.menu = tree.loadMusic("menure-aoh");
-                            break;
-                        case 3:
-                            if (Core.settings.getBool("enableL2D")) {
-                                Musics.menu = recollectionMusic;
-                            }
-
-                            break;
-                    }
-                    return Core.bundle.get("ba-music" + (int) i + ".name");
-                });
-            } else {
-                t.sliderPref("setSong", 1, 1, 2, 1, i -> {
+            t.sliderPref("setSong", 1, 1, 2, 1, i -> {
                     switch (i) {
                         case 1:
                             Musics.menu = tree.loadMusic("menucm");
@@ -183,8 +145,6 @@ public class ArchiveDustry extends Mod {
                     }
                     return Core.bundle.get("ba-music" + (int) i + ".name");
                 });
-            }
-            t.checkPref("enableL2D", true);
             t.checkPref("ba-firstTime", true);
             t.checkPref("ba-addHalo", true);
             t.pref(new TextSeparator(Core.bundle.get("setting.category.links")));
