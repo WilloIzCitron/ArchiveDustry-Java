@@ -61,10 +61,15 @@ public class UnitSound {
             /* 4/1 chance to get unique sound */
             shootSound = Seq.with(Sounds.pulseBlast, Sounds.pulseBlast, Sounds.pulseBlast, Sounds.pulseBlast, new Sound(Vars.tree.get("sounds/units/collaris-attack1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-attack2.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-attack3.ogg")));
             Sound assignedSound = shootSound.random();
+            if(assignedSound != Sounds.pulseBlast) {
+                UnitTypes.collaris.weapons.get(0).soundPitchMin = 1f;
+                UnitTypes.collaris.weapons.get(1).soundPitchMin = 1f;
+            } else {
+                UnitTypes.collaris.weapons.get(0).soundPitchMin = 0.8f;
+                UnitTypes.collaris.weapons.get(1).soundPitchMin = 0.8f;
+            }
             UnitTypes.collaris.weapons.get(0).shootSound = assignedSound;
             UnitTypes.collaris.weapons.get(1).shootSound = assignedSound;
-            UnitTypes.collaris.weapons.get(0).soundPitchMin = 1f;
-            UnitTypes.collaris.weapons.get(1).soundPitchMin = 1f;
         }, 0, 2.15f);
         // collaris atlas end
 
