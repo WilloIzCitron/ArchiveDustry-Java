@@ -28,7 +28,7 @@ public class UnitSound {
             if (e.unit != null) {
                 /* pass if the e.unit is specified */
                 if (e.unit.type == Vars.content.unit("collaris")) {
-                    pickedSound.stop();
+                    if(pickedSound != null) pickedSound.stop();
                     arrivalSound = Seq.with(new Sound(Vars.tree.get("sounds/units/collaris-arrival1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-arrival2.ogg")));
                     arrivalAssignedSound =  arrivalSound.random();
                     arrivalAssignedSound.play();
@@ -40,7 +40,7 @@ public class UnitSound {
             if (e.unit != null) {
                 /* pass if the e.unit is specified */
                 if (e.unit.type == Vars.content.unit("collaris")) {
-                    arrivalAssignedSound.stop();
+                    if(arrivalAssignedSound != null) arrivalAssignedSound.stop();
                     pickedSound.play();
                 }
             }

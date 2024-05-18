@@ -157,3 +157,5 @@ Thumbs.db
 android/libs/
 ## Debuging Jar
 Mindustry.jar
+## Personal Debuging Script
+debug.bat
