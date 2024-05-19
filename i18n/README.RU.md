@@ -40,7 +40,7 @@
 
 ## Системные требования мода
 
-Этот мод требует 4-6ГБ свободной оперативной памяти вашего компьютера
+Этот мод требует 4-6ГБ свободной оперативной памяти вашего компьютера.
 
 ## Компиляция
 
@@ -50,19 +50,8 @@
 
 для развертывания сборки(рабочий стол и андроид) вы можете сделать `gradlew deploy`
 
-## Bleeding Edges(Snapshot)
-Every BE(Snapshot) builds was generated via Actions, you can check on Actions section and select the specific workflow,
-then download the artifact on the workflow runs
+## Bleeding Edges(Снапшот)
+Каждая сборка BE(Снапшот)  была скомпилирована через Действия, вы можете проверить раздел "Действия" и выбрать конкретный рабочий процесс, а затем загрузить артефакт при запуске рабочего процесса.
 
-## Star History
-
-<a href="https://star-history.com/#WilloIzCitron/ArchiveDustry-Java&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=WilloIzCitron/ArchiveDustry-Java&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=WilloIzCitron/ArchiveDustry-Java&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=WilloIzCitron/ArchiveDustry-Java&type=Date" />
- </picture>
-</a>
-
-## Credits
-- Music: Nor, Mitsukiyo and KARUT
+## Кредиты
+- Музыка: Nor, Mitsukiyo и KARUT
