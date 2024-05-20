@@ -113,6 +113,7 @@ public class ArchiveDustryLite extends Mod {
     }
     @Override
     public void init(){
+        ArchivDMusic.load();
         if(Core.settings.getBool("ba-addHalo", true)) {
             UnitHalo.init();
         }
