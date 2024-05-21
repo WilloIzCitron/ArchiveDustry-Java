@@ -1,9 +1,9 @@
   name: bluearchive,
-  displayName: "[blue[]]Archive[white[]]Dustry Java Lite",
+  displayName: "[blue[]]Archive[white[]]Dustry Java",
   author: WilloIzCitron. Copyrights remains with Nexon, Nexon Games and Yostar,
   description:
     "
-    This is a fanmade mod of Blue Archive Soundtrack in Mindustry. It's the lite version of ArchiveDustry
+    This is a fanmade mod of Blue Archive Soundtrack in Mindustry.
 
     [yellow[]]Purposes:[[]]
     This mod replace vanilla soundtrack into [blue]Blue [white]Archive []Soundtrack, also add additional soundtrack for essentials and the halo too!.
@@ -13,7 +13,7 @@
     Nexon, Nexon Games and Yostar.
     ",
   version: "1.1",
-  main: bluearchive.ArchiveDustryLite,
+  main: bluearchive.ArchiveDustry,
   minGameVersion: "146",
   dependencies: [],
   java: true,
