@@ -9,7 +9,7 @@ import arc.scene.ui.layout.*;
 import arc.scene.utils.Elem;
 import arc.util.*;
 import bluearchive.ui.*;
-import mindustry.game.SectorInfo;
+import bluearchive.ui.dialogs.*;
 import mindustry.gen.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
@@ -27,11 +27,7 @@ public class ArchiveDustry extends Mod {
         Events.on(ClientLoadEvent.class, event -> {
             Log.infoTag("ArchiveDustry", "Fully Loaded!");
             if(Core.settings.getBool("ba-firstTime")) {
-                BaseDialog dialog = new BaseDialog(Core.bundle.get("ba-firstTimeDialog.title"));
-                dialog.cont.image(Core.atlas.find("bluearchive-mikalove")).pad(20).size(200f, 200f).row();
-                dialog.cont.add(Core.bundle.get("ba-firstTimeDialog.description")).row();
-                dialog.cont.button(Core.bundle.get("ba-firstTimeDialog.button"), dialog::hide).size(200f, 50f).row();
-                dialog.show();
+                new ArchivDFirstTimeDialog().show();
             }
             tree.loadMusic("research").setLooping(true);
             tree.loadMusic("database").setLooping(true);
@@ -196,7 +192,10 @@ public class ArchiveDustry extends Mod {
             t.pref(new ButtonSetting("ba-github", Icon.github, () -> {
                 Core.app.openURI("https://www.github.com/willoizcitron/archivedustry-java");
             }, 32));
-            t.pref(new ButtonSetting("Credits", Icon.info, this::showCredits, 32));
+            t.pref(new ButtonSetting("Credits", Icon.info, () -> {
+                BaseDialog credits = new ArchivDCreditsDialog();
+                credits.show();
+                } , 32));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.mixer")));
             t.pref(new Separator(4));
             int defaultVolume = Core.settings.has("musicvol") ? Core.settings.getInt("musicvol") : (int) Core.settings.getDefault("musicvol");
@@ -223,68 +222,6 @@ public class ArchiveDustry extends Mod {
                 t.pref(new TextSeparator("< Developer Settings >"));
             };
         });
-    }
-
-    public void showCredits() {
-        BaseDialog credit = new BaseDialog("Credits");
-        credit.addCloseButton();
-        Table in = new Table();
-        ScrollPane pane = new ScrollPane(in);
-        credit.cont.pane(new Table() {{
-            center();
-            image(Tex.clear).height(25).padTop(3f).row();
-            image(Core.atlas.find("bluearchive-logo")).row();
-            image(Tex.clear).height(25f).padTop(3f).row();
-            add("Developed by").row();
-            image(Tex.clear).height(5f).padTop(3f).row();
-            add("WilloIzCitron").row();
-            image(Tex.clear).height(25f).padTop(3f).row();
-            image(Tex.clear).height(5f).padTop(3f).row();
-            add("Music by").row();
-            add("Nor").row();
-            add("Mitsukiyo").row();
-            add("KARUT").row();
-            image(Tex.clear).height(25f).padTop(3f).row();
-            add("Music list").row();
-            image(Tex.clear).height(5f).padTop(3f).row();
-            add("menu.ogg = Constant Moderato & RE Aoharu").row();
-            add("launch.ogg = Shooting Stars").row();
-            add("game1.ogg = Rolling Beat").row();
-            add("game2.ogg = Acceleration").row();
-            add("game3.ogg = KIRISAME").row();
-            add("game4.ogg = Midnight Trip").row();
-            add("game6.ogg = Formless Dream").row();
-            add("game7.ogg = Vivid Night").row();
-            add("game8.ogg = Crucial Issue").row();
-            add("game9.ogg = KARAKURhythm").row();
-            add("editor.ogg = Mischievous Step").row();
-            add("land.ogg = Aoharu (Intro Sampling)").row();
-            add("boss1.ogg = Endless Carnival").row();
-            add("boss2.ogg = Out of Control").row();
-            add("fine.ogg = Alkaline Tears").row();
-            image(Tex.clear).height(10f).padTop(3f).row();
-            add("lose.ogg (additional) = Fade Out").row();
-            add("win.ogg (additional) = Party Time").row();
-            add("research.ogg (additional) = Future Lab").row();
-            add("database.ogg (additional) = Future Bossa").row();
-            add("loadout.ogg (additional) = MX Adventure").row();
-            image(Tex.clear).height(25f).padTop(3f).row();
-            add("Legal Notice").row();
-            image(Tex.clear).height(5f).padTop(3f).row();
-            add("This is a fanmade mod! it obeys the Fankit Guidelines.").row();
-            add("THIS MOD IS NOT INTENDED FOR COMMERCIAL USE!").row();
-            image(Tex.clear).height(2f).padTop(3f).row();
-            image(Tex.clear).height(1f).padTop(3f).row();
-            add("Mindustry is developed by Anuke, and is licensed under GNU GPLv3.0").row();
-            image(Tex.clear).height(1f).padTop(3f).row();
-            add("This mod is MIT Licensed").row();
-            image(Tex.clear).height(25f).padTop(25f).row();
-            add("Blue Archive is copyrighted to Nexon, Nexon Games and Yostar. All Rights Reserved").row();
-            image(Core.atlas.find("bluearchive-creditpart")).row();
-            image(Tex.clear).height(25f).padTop(25f).row();
-            //logo for
-        }}).growX();
-        credit.show();
     }
 
     /** Not a setting, but rather a button in the settings menu. */
