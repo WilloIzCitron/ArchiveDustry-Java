@@ -35,9 +35,17 @@ public class ArchivDMusic {
         Events.on(EventType.ClientLoadEvent.class, e -> {
             current = null;
             //music loader
-            Music wave1, cat, aspiration, dawn, bunny, aira, sugar, hare, oriental;
+            Music
+                    wave1, wave2, wave3, wave4,
+                    cat, aspiration, dawn, bunny,
+                    aira, sugar, hare, oriental,
+                    boss3, boss4, dreamer, game10,
+                    game11, honey, amplify;
             try {
                 wave1 = new Music(tree.get("music/wave1.ogg"));
+                wave2 = new Music(tree.get("music/wave2.ogg"));
+                wave3 = new Music(tree.get("music/wave3.ogg"));
+                wave4 = new Music(tree.get("music/wave4.ogg"));
                 cat = new Music(tree.get("music/cat.ogg"));
                 aspiration = new Music(tree.get("music/aspiration.ogg"));
                 dawn = new Music(tree.get("music/dawn.ogg"));
@@ -46,21 +54,30 @@ public class ArchivDMusic {
                 sugar = new Music(tree.get("music/menurcl.ogg"));
                 hare = new Music(tree.get("music/hare.ogg"));
                 oriental = new Music(tree.get("music/oriental.ogg"));
+                game10 = new Music(tree.get("music/game10.ogg"));
+                game11 = new Music(tree.get("music/game11.ogg"));
+                honey = new Music(tree.get("music/honey.ogg"));
+                dreamer = new Music(tree.get("music/dreamer.ogg"));
+                boss3 = new Music(tree.get("music/boss3.ogg"));
+                boss4 = new Music(tree.get("music/boss4.ogg"));
+                amplify = new Music(tree.get("music/amplify.ogg"));
             } catch (Exception ex) {
                 // Music has exception throw, why it was created
                 throw new RuntimeException(ex);
             }
             // add custom music contents to vanilla SoundControl's music sequences
-            control.sound.ambientMusic.addAll(dawn, cat, bunny);
-            control.sound.darkMusic.addAll(aira, sugar, hare, oriental);
+            control.sound.ambientMusic.addAll(dawn, cat, bunny, game10, honey, amplify);
+            control.sound.darkMusic.addAll(aira, sugar, hare, oriental, dreamer, game11);
+            control.sound.bossMusic.addAll(boss3, boss4);
             // create wave music soundtrack
-            waveMusic = Seq.with(Musics.game2, Musics.game5, wave1, aspiration);
+            waveMusic = Seq.with(Musics.game2, Musics.game5, wave1, aspiration, wave2, wave3, wave4);
             // pls don't insult me btw... remove duplicates with by array itself
             control.sound.bossMusic.remove(2);
             control.sound.bossMusic.remove(2);
             control.sound.darkMusic.remove(0);
             control.sound.darkMusic.remove(0);
             // music updater
+            Log.infoTag("ArchiveDustry", "Music has been loaded!");
             Timer.schedule(() -> {
                 // stops if there's no enemy
                 if (current != null && state.enemies == 0){

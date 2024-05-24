@@ -359,17 +359,18 @@ public class UnitHalo {
                 new HaloPart() {{
                     color = Pal.sapBullet;
                     layer = Layer.effect;
-                    haloRotateSpeed = 3f;
-                    shapes = 8;
+                    shapes = 24;
+                    shapeRotation = 90;
+                    radius = 3f;
+                    haloRadius = 13f;
                     y = -5f;
                 }},
                 new ShapePart() {{
                     color = Pal.sapBullet;
                     layer = Layer.effect;
-                    circle = true;
+                    sides = 4;
                     stroke = 3;
-                    hollow = true;
-                    radius = 15f;
+                    radius = 5f;
                     y = -5f;
                 }},
                 new HaloPart() {{
@@ -401,7 +402,7 @@ public class UnitHalo {
                     sides = 8;
                     hollow = true;
                     stroke = 2;
-                    radius = 9;
+                    radius = 12;
                     y = -5f;
                 }}
             );
