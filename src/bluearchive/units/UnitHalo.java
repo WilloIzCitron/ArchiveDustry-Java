@@ -359,7 +359,7 @@ public class UnitHalo {
                 new HaloPart() {{
                     color = Pal.sapBullet;
                     layer = Layer.effect;
-                    shapes = 24;
+                    shapes = 16;
                     shapeRotation = 90;
                     radius = 3f;
                     haloRadius = 13f;
@@ -961,39 +961,58 @@ public class UnitHalo {
                         stroke = 1.2f;
                     }}
             );
-
+            // iroha
             UnitTypes.conquer.parts.addAll(
-                new ShapePart() {{
-                    circle = true;
-                    radius = 20;
-                    hollow = true;
+                new HaloPart() {{
+                    shapes = 1;
+                    tri = true;
+                    triLength = 7.7f;
+                    haloRadius = 13f;
                     color = Color.valueOf("feb380");
                     layer = Layer.effect;
-                    stroke = 3;
+                    radius = 7f;
+                    haloRotation = 0f;
                 }},
+                    new HaloPart() {{
+                        shapes = 1;
+                        tri = true;
+                        triLength = 7.7f;
+                        haloRadius = 13.4f;
+                        shapeRotation = 180f;
+                        color = Color.valueOf("feb380");
+                        layer = Layer.effect;
+                        radius = 7f;
+                        haloRotation = 0f;
+                    }},
                 new HaloPart() {{
-                    shapes = 4;
+                    shapes = 1;
+                    tri = true;
+                    triLength = 7.7f;
+                    haloRadius = 12.7f;
                     haloRotation = 45f;
-                    haloRadius = 11f;
                     color = Color.valueOf("feb380");
                     layer = Layer.effect;
-                    radius = 3f;
+                    radius = 5f;
+                    mirror = true;
                 }},
-                new HaloPart() {{
-                    shapes = 4;
-                    sides = 4;
-                    haloRadius = 10f;
-                    color = Color.valueOf("feb380");
-                    layer = Layer.effect;
-                    radius = 3f;
-                }},
+                    new HaloPart() {{
+                        shapes = 1;
+                        tri = true;
+                        triLength = 7.7f;
+                        haloRadius = 14.7f;
+                        haloRotation = 135f;
+                        color = Color.valueOf("feb380");
+                        layer = Layer.effect;
+                        radius = 5f;
+                        mirror = true;
+                    }},
                 new ShapePart() {{
                     circle = true;
-                    radius = 10;
+                    radius = 13;
                     hollow = true;
                     color = Color.valueOf("feb380");
                     layer = Layer.effect;
-                    stroke = 2;
+                    stroke = 1.5f;
                 }}
             );
 

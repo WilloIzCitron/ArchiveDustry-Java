@@ -27,7 +27,7 @@ public class ArchiveDustry extends Mod {
         Events.on(ClientLoadEvent.class, event -> {
             Log.infoTag("ArchiveDustry", "Fully Loaded!");
             if(Core.settings.getBool("ba-firstTime")) {
-                new ArchivDFirstTimeDialog().show();
+                new ArchivDFirstTimeDialog();
             }
             tree.loadMusic("research").setLooping(true);
             tree.loadMusic("database").setLooping(true);
@@ -192,10 +192,7 @@ public class ArchiveDustry extends Mod {
             t.pref(new ButtonSetting("ba-github", Icon.github, () -> {
                 Core.app.openURI("https://www.github.com/willoizcitron/archivedustry-java");
             }, 32));
-            t.pref(new ButtonSetting("Credits", Icon.info, () -> {
-                BaseDialog credits = new ArchivDCreditsDialog();
-                credits.show();
-                } , 32));
+            t.pref(new ButtonSetting("Credits", Icon.info, ArchivDCreditsDialog::new, 32));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.mixer")));
             t.pref(new Separator(4));
             int defaultVolume = Core.settings.has("musicvol") ? Core.settings.getInt("musicvol") : (int) Core.settings.getDefault("musicvol");
