@@ -355,6 +355,7 @@ public class UnitHalo {
                     y = -3.5f;
                 }}
             );
+            //hina
             UnitTypes.toxopid.parts.addAll(
                 new HaloPart() {{
                     color = Pal.sapBullet;
@@ -401,7 +402,7 @@ public class UnitHalo {
                     layer = Layer.effect;
                     sides = 8;
                     hollow = true;
-                    stroke = 2;
+                    stroke = 3;
                     radius = 12;
                     y = -5f;
                 }}

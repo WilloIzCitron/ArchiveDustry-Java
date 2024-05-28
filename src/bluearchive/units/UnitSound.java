@@ -27,6 +27,7 @@ public class UnitSound {
     static Sound ToxopidArrivalAssignedSound;
     static Seq<Sound> ToxopidShootSound = Seq.with();
     static Sound ToxopidPickedSound = new Sound(Vars.tree.get("sounds/units/toxopid-pickup.ogg"));
+    // Interval
     static Interval interval = new Interval(5);
     public static void init() {
         // collaris atlas start
@@ -87,7 +88,7 @@ public class UnitSound {
                 /* pass if the e.unit is specified */
                 if (e.unit.type == Vars.content.unit("toxopid")) {
                     if(ToxopidPickedSound != null) ToxopidPickedSound.stop();
-                    ToxopidArrivalSound = Seq.with(new Sound(Vars.tree.get("sounds/units/toxopid-arrival1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-arrival2.ogg")));
+                    ToxopidArrivalSound = Seq.with(new Sound(Vars.tree.get("sounds/units/toxopid-arrival1.ogg")), new Sound(Vars.tree.get("sounds/units/toxopid-arrival2.ogg")));
                     ToxopidArrivalAssignedSound =  ToxopidArrivalSound.random();
                     ToxopidArrivalAssignedSound.play();
                 }
@@ -110,26 +111,38 @@ public class UnitSound {
                 if (!e.unit.dead) {
                     Time.run(0f, () -> {
                         ToxopidHitSound.random().play();
-                    });
+                        });
                 }
             }
         });
         Timer.schedule(() -> {
-            UnitTypes.collaris.deathSound = new Sound(Vars.tree.get("sounds/units/collaris-death.ogg"));
-            /* 4/1 chance to get unique sound */
-            ToxopidShootSound = Seq.with(Sounds.pulseBlast, Sounds.pulseBlast, Sounds.pulseBlast, Sounds.pulseBlast, new Sound(Vars.tree.get("sounds/units/collaris-attack1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-attack2.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-attack3.ogg")));
+            UnitTypes.toxopid.deathSound = new Sound(Vars.tree.get("sounds/units/toxopid-death.ogg"));
+            /* 6/1 chance to get unique sound */
+            ToxopidShootSound = Seq.with(Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, new Sound(Vars.tree.get("sounds/units/toxopid-attack1.ogg")), new Sound(Vars.tree.get("sounds/units/toxopid-attack2.ogg")), new Sound(Vars.tree.get("sounds/units/toxopid-attack3.ogg")));
             Sound ToxopidAssignedSound = ToxopidShootSound.random();
-            if(ToxopidAssignedSound != Sounds.pulseBlast) {
-                UnitTypes.collaris.weapons.get(0).soundPitchMin = 1f;
-                UnitTypes.collaris.weapons.get(1).soundPitchMin = 1f;
+            if(ToxopidAssignedSound != Sounds.shootBig) {
+                UnitTypes.toxopid.weapons.get(0).soundPitchMin = 1f;
+                UnitTypes.toxopid.weapons.get(1).soundPitchMin = 1f;
             } else {
-                UnitTypes.collaris.weapons.get(0).soundPitchMin = 0.8f;
-                UnitTypes.collaris.weapons.get(1).soundPitchMin = 0.8f;
+                UnitTypes.toxopid.weapons.get(0).soundPitchMin = 0.8f;
+                UnitTypes.toxopid.weapons.get(1).soundPitchMin = 0.8f;
             }
-            UnitTypes.collaris.weapons.get(0).shootSound = ToxopidAssignedSound;
-            UnitTypes.collaris.weapons.get(1).shootSound = ToxopidAssignedSound;
-        }, 0, 2.15f);
-        
+            UnitTypes.toxopid.weapons.get(0).shootSound = ToxopidAssignedSound;
+            UnitTypes.toxopid.weapons.get(1).shootSound = ToxopidAssignedSound;
+         }, 0, 0.5f);
+
+        Timer.schedule(() -> {
+            /* 4/1 chance to get unique sound */
+            Seq<Sound> ToxopidArtillerySound = Seq.with(Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, new Sound(Vars.tree.get("sounds/units/toxopid-artillery.ogg")));
+            Sound ToxopidArtilleryAssignedSound = ToxopidArtillerySound.random();
+            if(ToxopidArtilleryAssignedSound != Sounds.shootBig) {
+                UnitTypes.toxopid.weapons.get(2).soundPitchMin = 1f;
+            } else {
+                UnitTypes.toxopid.weapons.get(2).soundPitchMin = 0.8f;
+            }
+            UnitTypes.toxopid.weapons.get(2).shootSound = ToxopidArtilleryAssignedSound;
+        }, 0, 3.5f);
+        //toxopid atlas end
 
         Log.infoTag("ArchiveDustry", "Unit Sounds Loaded!");
     }
