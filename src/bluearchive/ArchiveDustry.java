@@ -37,9 +37,8 @@ public class ArchiveDustry extends Mod {
             });
             ui.research.update(() -> {
                 if (state.isMenu() || ui.planet.isShown() || ui.editor.isShown() || state.rules.editor) {
-                    Reflect.set(control.sound, "fade", 0f);
-                    Reflect.invoke(control.sound, "silence");
-                    if (soundControlPlaying() != null) {Reflect.invoke(control.sound, "silence");} //Counteract fade in
+                    control.sound.stop();
+                    if (soundControlPlaying() != null) {control.sound.stop();} //Counteract fade in
                 }
             });
             ui.research.hidden(() -> {
@@ -50,9 +49,8 @@ public class ArchiveDustry extends Mod {
             });
             ui.database.update(() -> {
                 if (state.isMenu() || ui.planet.isShown() || ui.editor.isShown() || state.rules.editor) {
-                    Reflect.set(control.sound, "fade", 0f);
-                    Reflect.invoke(control.sound, "silence");
-                    if (soundControlPlaying() != null) {Reflect.invoke(control.sound, "silence");} //Counteract fade in
+                    control.sound.stop();
+                    if (soundControlPlaying() != null) {control.sound.stop();} //Counteract fade in
                 }
             });
             ui.database.hidden(() -> {
@@ -63,9 +61,8 @@ public class ArchiveDustry extends Mod {
             });
             ui.schematics.update(() -> {
                 if (state.isMenu() || ui.planet.isShown() || ui.editor.isShown() || state.rules.editor) {
-                    Reflect.set(control.sound, "fade", 0f);
-                    Reflect.invoke(control.sound, "silence");
-                    if (soundControlPlaying() != null) {Reflect.invoke(control.sound, "silence");} //Counteract fade in
+                    control.sound.stop();
+                    if (soundControlPlaying() != null) {control.sound.stop();} //Counteract fade in
                 }
             });
             ui.schematics.hidden(() -> {

@@ -72,10 +72,10 @@ public class ArchivDMusic {
             // create wave music soundtrack
             waveMusic = Seq.with(Musics.game2, Musics.game5, wave1, aspiration, wave2, wave3, wave4);
             // pls don't insult me btw... remove duplicates with by array itself
-            control.sound.bossMusic.remove(2);
-            control.sound.bossMusic.remove(2);
-            control.sound.darkMusic.remove(0);
-            control.sound.darkMusic.remove(0);
+            control.sound.bossMusic.remove(Musics.game2);
+            control.sound.bossMusic.remove(Musics.game5);
+            control.sound.darkMusic.remove(Musics.game2);
+            control.sound.darkMusic.remove(Musics.game5);
             // music updater
             Log.infoTag("ArchiveDustry", "Music has been loaded!");
             Timer.schedule(() -> {
