@@ -11,7 +11,7 @@
 > [!NOTE]
 > This Mod was being migrated from JS<sup>JavaScript</sup> was being archived, this mod are almost perfect.
 
-> [!NOTE]
+> [!TIP]
 > Language: English (you can choose your language readme at i18n directory)
 
 A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and also adds the cosmetics for units such as halo. This mod is unaffiliated with developer of  Blue Archive game: Nexon, NAT GAMES and Yostar.
