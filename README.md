@@ -38,6 +38,7 @@ A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and als
   - research.ogg (additional) = Future Lab
   - database.ogg (additional) = Future Bossa
   - loadout.ogg (additional) = MX Adventure
+  - and more...
 
 ## Building
 
