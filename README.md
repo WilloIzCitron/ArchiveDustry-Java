@@ -8,9 +8,10 @@
 [![Stars - ArchiveDustry-Java](https://img.shields.io/github/stars/WilloIzCitron/ArchiveDustry-Java)](https://github.com/WilloIzCitron/ArchiveDustry-Java/stargazers)
 [![GitHub followers of WilloIzCitron](https://img.shields.io/github/followers/WilloIzCitron)](https://github.com/WilloIzCitron)
 
+> [!NOTE]
+> This Mod was being migrated from JS<sup>JavaScript</sup> was being archived, this mod are almost perfect.
 
-> ℹ️ This Mod was being migrated from JS<sup>JavaScript</sup> was being archived, this mod are almost perfect.
-
+> [!TIP]
 > Language: English (you can choose your language readme at i18n directory)
 
 A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and also adds the cosmetics for units such as halo. This mod is unaffiliated with developer of  Blue Archive game: Nexon, NAT GAMES and Yostar.
