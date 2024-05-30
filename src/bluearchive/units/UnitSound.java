@@ -53,13 +53,14 @@ public class UnitSound {
             if (e.unit != null) {
                 /* pass if the e.unit is specified */
                 if (e.unit.type == Vars.content.unit("collaris")) {
-                    if(CollarisArrivalAssignedSound != null) CollarisArrivalAssignedSound.stop();
+                    if (CollarisArrivalAssignedSound != null) CollarisArrivalAssignedSound.stop();
                     CollarisPickedSound.play();
                 }
                 if (e.unit.type == Vars.content.unit("toxopid")) {
-                    if(ToxopidArrivalAssignedSound != null) ToxopidArrivalAssignedSound.stop();
+                    if (ToxopidArrivalAssignedSound != null) ToxopidArrivalAssignedSound.stop();
                     ToxopidPickedSound.play();
                 }
+            }
 
         });
         Events.on(UnitDamageEvent.class, e -> {
