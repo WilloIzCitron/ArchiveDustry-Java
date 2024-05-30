@@ -30,7 +30,6 @@ public class UnitSound {
     // Interval
     static Interval interval = new Interval(5);
     public static void init() {
-        // collaris atlas start
         Events.on(PayloadDropEvent.class, e -> {
             /* pass if the e.unit */
             if (e.unit != null) {
@@ -40,6 +39,12 @@ public class UnitSound {
                     CollarisArrivalSound = Seq.with(new Sound(Vars.tree.get("sounds/units/collaris-arrival1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-arrival2.ogg")));
                     CollarisArrivalAssignedSound =  CollarisArrivalSound.random();
                     CollarisArrivalAssignedSound.play();
+                }
+                if (e.unit.type == Vars.content.unit("toxopid")) {
+                    if(ToxopidPickedSound != null) ToxopidPickedSound.stop();
+                    ToxopidArrivalSound = Seq.with(new Sound(Vars.tree.get("sounds/units/toxopid-arrival1.ogg")), new Sound(Vars.tree.get("sounds/units/toxopid-arrival2.ogg")));
+                    ToxopidArrivalAssignedSound =  ToxopidArrivalSound.random();
+                    ToxopidArrivalAssignedSound.play();
                 }
             }
         });
@@ -51,7 +56,11 @@ public class UnitSound {
                     if(CollarisArrivalAssignedSound != null) CollarisArrivalAssignedSound.stop();
                     CollarisPickedSound.play();
                 }
-            }
+                if (e.unit.type == Vars.content.unit("toxopid")) {
+                    if(ToxopidArrivalAssignedSound != null) ToxopidArrivalAssignedSound.stop();
+                    ToxopidPickedSound.play();
+                }
+
         });
         Events.on(UnitDamageEvent.class, e -> {
             /* Check if the unit is same as intended, hit sound was being interval */
@@ -60,6 +69,14 @@ public class UnitSound {
                 if (!e.unit.dead) {
                     Time.run(0f, () -> {
                         CollarisHitSound.random().play();
+                    });
+                }
+            }
+            if (e.unit.type == Vars.content.unit("toxopid") && interval.get(300)) {
+                ToxopidHitSound = Seq.with(new Sound(Vars.tree.get("sounds/units/toxopid-hit1.ogg")), new Sound(Vars.tree.get("sounds/units/toxopid-hit2.ogg")), new Sound(Vars.tree.get("sounds/units/toxopid-hit3.ogg")));
+                if (!e.unit.dead) {
+                    Time.run(0f, () -> {
+                        ToxopidHitSound.random().play();
                     });
                 }
             }
@@ -79,42 +96,7 @@ public class UnitSound {
             UnitTypes.collaris.weapons.get(0).shootSound = CollarisAssignedSound;
             UnitTypes.collaris.weapons.get(1).shootSound = CollarisAssignedSound;
         }, 0, 2.15f);
-        // collaris atlas end
 
-        // toxopid atlas start
-        Events.on(PayloadDropEvent.class, e -> {
-            /* pass if the e.unit */
-            if (e.unit != null) {
-                /* pass if the e.unit is specified */
-                if (e.unit.type == Vars.content.unit("toxopid")) {
-                    if(ToxopidPickedSound != null) ToxopidPickedSound.stop();
-                    ToxopidArrivalSound = Seq.with(new Sound(Vars.tree.get("sounds/units/toxopid-arrival1.ogg")), new Sound(Vars.tree.get("sounds/units/toxopid-arrival2.ogg")));
-                    ToxopidArrivalAssignedSound =  ToxopidArrivalSound.random();
-                    ToxopidArrivalAssignedSound.play();
-                }
-            }
-        });
-        Events.on(PickupEvent.class, e -> {
-            /* pass if the e.unit */
-            if (e.unit != null) {
-                /* pass if the e.unit is specified */
-                if (e.unit.type == Vars.content.unit("toxopid")) {
-                    if(ToxopidArrivalAssignedSound != null) ToxopidArrivalAssignedSound.stop();
-                    ToxopidPickedSound.play();
-                }
-            }
-        });
-        Events.on(UnitDamageEvent.class, e -> {
-            /* Check if the unit is same as intended, hit sound was being interval */
-            if (e.unit.type == Vars.content.unit("toxopid") && interval.get(300)) {
-                ToxopidHitSound = Seq.with(new Sound(Vars.tree.get("sounds/units/toxopid-hit1.ogg")), new Sound(Vars.tree.get("sounds/units/toxopid-hit2.ogg")), new Sound(Vars.tree.get("sounds/units/toxopid-hit3.ogg")));
-                if (!e.unit.dead) {
-                    Time.run(0f, () -> {
-                        ToxopidHitSound.random().play();
-                        });
-                }
-            }
-        });
         Timer.schedule(() -> {
             UnitTypes.toxopid.deathSound = new Sound(Vars.tree.get("sounds/units/toxopid-death.ogg"));
             /* 6/1 chance to get unique sound */
@@ -142,7 +124,6 @@ public class UnitSound {
             }
             UnitTypes.toxopid.weapons.get(2).shootSound = ToxopidArtilleryAssignedSound;
         }, 0, 3.5f);
-        //toxopid atlas end
 
         Log.infoTag("ArchiveDustry", "Unit Sounds Loaded!");
     }
