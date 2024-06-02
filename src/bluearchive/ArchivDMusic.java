@@ -40,7 +40,7 @@ public class ArchivDMusic {
                     cat, aspiration, dawn, bunny,
                     aira, sugar, hare, oriental,
                     boss3, boss4, dreamer, game10,
-                    game11, honey, amplify;
+                    game11, honey, amplify, moment;
             try {
                 wave1 = new Music(tree.get("music/wave1.ogg"));
                 wave2 = new Music(tree.get("music/wave2.ogg"));
@@ -61,13 +61,14 @@ public class ArchivDMusic {
                 boss3 = new Music(tree.get("music/boss3.ogg"));
                 boss4 = new Music(tree.get("music/boss4.ogg"));
                 amplify = new Music(tree.get("music/amplify.ogg"));
+                moment = new Music(tree.get("music/moment.ogg"));
             } catch (Exception ex) {
                 // Music has exception throw, why it was created
                 throw new RuntimeException(ex);
             }
             // add custom music contents to vanilla SoundControl's music sequences
             control.sound.ambientMusic.addAll(dawn, cat, bunny, game10, honey, amplify);
-            control.sound.darkMusic.addAll(aira, sugar, hare, oriental, dreamer, game11);
+            control.sound.darkMusic.addAll(aira, sugar, hare, oriental, dreamer, game11,moment);
             control.sound.bossMusic.addAll(boss3, boss4);
             // create wave music soundtrack
             waveMusic = Seq.with(Musics.game2, Musics.game5, wave1, aspiration, wave2, wave3, wave4);

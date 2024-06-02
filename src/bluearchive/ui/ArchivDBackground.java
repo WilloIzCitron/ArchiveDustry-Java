@@ -12,15 +12,10 @@ import arc.util.*;
 import arc.util.serialization.*;
 import mindustry.Vars;
 import mindustry.game.EventType;
-import mindustry.gen.Tex;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Enumeration;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 import static mindustry.Vars.*;
 
@@ -49,7 +44,7 @@ public class ArchivDBackground {
             Time.runTask (12f, () -> {
                 group.addChildAt (0, animBG);
                 for (int i = 0; i <= frames - 1; i++) {
-                    region[i] = Core.atlas.addRegion ("bluearchive-" + name + (1 + i), new TextureRegion (new Texture (Fi.get (dataDirectory + "/live2d/" + name + "/" + name + (1 + i) + ".png"))));
+                    region[i] = Core.atlas.addRegion ("bluearchive-" + name + (1 + i), new TextureRegion (new Texture (Fi.get (dataDirectory + "/live2d/" + name + "/"+(1 + i) + ".png"))));
                     tex[i] = region[i];
                     if (i == frames - 1) {
                         img = tex[0];
