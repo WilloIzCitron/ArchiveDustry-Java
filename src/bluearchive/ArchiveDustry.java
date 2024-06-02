@@ -17,7 +17,9 @@ import bluearchive.units.*;
 import mindustry.ui.dialogs.*;
 import mindustry.ui.dialogs.SettingsMenuDialog.*;
 import mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable.*;
+import mindustry.ui.fragments.LoadingFragment;
 
+import static bluearchive.ui.ArchivDBackground.L2DInstalled;
 import static mindustry.Vars.*;
 
 public class ArchiveDustry extends Mod {
@@ -69,6 +71,8 @@ public class ArchiveDustry extends Mod {
                 tree.loadMusic("loadout").stop();
             });
         });
+
+
 
 
         Events.on(WinEvent.class, winner -> {
@@ -178,9 +182,12 @@ public class ArchiveDustry extends Mod {
                     return Core.bundle.get("ba-music" + (int) i + ".name");
                 });
             }
-            t.checkPref("enableL2D", true);
+            if(Core.settings.getBool("live2dinstalled", false)) {
+                t.checkPref("enableL2D", false);
+            }
             t.checkPref("ba-firstTime", true);
             t.checkPref("ba-addHalo", true);
+            t.pref(new ButtonSetting("ba-downloadLive2D", Icon.download, ArchivDBackground::downloadLive2D, 32));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.links")));
             t.pref(new Separator(4));
             t.pref(new ButtonSetting("ba-youtube", Icon.play, () -> {
