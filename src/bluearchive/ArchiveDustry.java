@@ -129,8 +129,12 @@ public class ArchiveDustry extends Mod {
                     recollectionMusic = tree.loadMusic("menurcl");
                     break;
                 case 3:
-                    ArchivDBackground.buildL2D("mika", 68, 5f);
+                    ArchivDBackground.buildL2D("mika", 98, 5f);
                     recollectionMusic = tree.loadMusic("moment");
+                    break;
+                case 4:
+                    ArchivDBackground.buildL2D("saori", 49, 5f);
+                    recollectionMusic = Musics.fine;
                     break;
             }
         }
@@ -155,7 +159,7 @@ public class ArchiveDustry extends Mod {
             t.pref(new TextSeparator(Core.bundle.get("setting.category.general-setting")));
             t.pref(new Separator(4));
             if (Core.settings.getBool("enableL2D")) {
-                t.sliderPref("setL2D", 2, 1, 3, 1, i -> Core.bundle.get("ba-l2d" + (int) i + ".name"));
+                t.sliderPref("setL2D", 2, 1, 4, 1, i -> Core.bundle.get("ba-l2d" + (int) i + ".name"));
                 t.sliderPref("setSong", 1, 1, 3, 1, i -> {
                     switch (i) {
                         case 1:
@@ -168,7 +172,6 @@ public class ArchiveDustry extends Mod {
                             if (Core.settings.getBool("enableL2D")) {
                                 Musics.menu = recollectionMusic;
                             }
-
                             break;
                     }
                     return Core.bundle.get("ba-music" + (int) i + ".name");
@@ -200,7 +203,7 @@ public class ArchiveDustry extends Mod {
             t.pref(new ButtonSetting("ba-github", Icon.github, () -> {
                 Core.app.openURI("https://www.github.com/willoizcitron/archivedustry-java");
             }, 32));
-            t.pref(new ButtonSetting("Credits", Icon.info, ArchivDCreditsDialog::new, 32));
+            t.pref(new ButtonSetting(Core.bundle.get("credits"), Icon.info, ArchivDCreditsDialog::new, 32));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.mixer")));
             t.pref(new Separator(4));
             int defaultVolume = Core.settings.has("musicvol") ? Core.settings.getInt("musicvol") : (int) Core.settings.getDefault("musicvol");
