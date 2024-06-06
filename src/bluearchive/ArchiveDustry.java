@@ -11,6 +11,7 @@ import arc.util.*;
 import bluearchive.ui.*;
 import bluearchive.ui.dialogs.*;
 import mindustry.gen.*;
+import bluearchive.gen.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
