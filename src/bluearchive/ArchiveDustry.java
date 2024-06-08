@@ -11,16 +11,13 @@ import arc.util.*;
 import bluearchive.ui.*;
 import bluearchive.ui.dialogs.*;
 import mindustry.gen.*;
-import bluearchive.gen.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
 import mindustry.ui.dialogs.*;
 import mindustry.ui.dialogs.SettingsMenuDialog.*;
 import mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable.*;
-import mindustry.ui.fragments.LoadingFragment;
 
-import static bluearchive.ui.ArchivDBackground.L2DInstalled;
 import static mindustry.Vars.*;
 
 public class ArchiveDustry extends Mod {
@@ -115,6 +112,7 @@ public class ArchiveDustry extends Mod {
     @Override
     public void init(){
         ArchivDMusic.load();
+
         if(Core.settings.getBool("ba-addHalo", true)) {
             UnitHalo.init();
         }
@@ -123,19 +121,23 @@ public class ArchiveDustry extends Mod {
             switch (Core.settings.getInt("setL2D")) {
                 case 1:
                     ArchivDBackground.buildL2D("kotama", 68, 5f);
-                    recollectionMusic = tree.loadMusic("menuaira");
+                    recollectionMusic = ArchivDMusic.sugar;
                     break;
                 case 2:
                     ArchivDBackground.buildL2D("noa", 68, 5f);
-                    recollectionMusic = tree.loadMusic("menurcl");
+                    recollectionMusic = ArchivDMusic.aira;
                     break;
                 case 3:
                     ArchivDBackground.buildL2D("mika", 98, 5f);
-                    recollectionMusic = tree.loadMusic("moment");
+                    recollectionMusic = ArchivDMusic.moment;
                     break;
                 case 4:
                     ArchivDBackground.buildL2D("saori", 49, 5f);
                     recollectionMusic = Musics.fine;
+                    break;
+                case 5:
+                    ArchivDBackground.buildL2D("arisu", 68, 5f);
+                    recollectionMusic = tree.loadMusic("somedaySometime");
                     break;
             }
         }
@@ -160,7 +162,7 @@ public class ArchiveDustry extends Mod {
             t.pref(new TextSeparator(Core.bundle.get("setting.category.general-setting")));
             t.pref(new Separator(4));
             if (Core.settings.getBool("enableL2D")) {
-                t.sliderPref("setL2D", 2, 1, 4, 1, i -> Core.bundle.get("ba-l2d" + (int) i + ".name"));
+                t.sliderPref("setL2D", 2, 1, 5, 1, i -> Core.bundle.get("ba-l2d" + (int) i + ".name"));
                 t.sliderPref("setSong", 1, 1, 3, 1, i -> {
                     switch (i) {
                         case 1:
@@ -311,7 +313,7 @@ public class ArchiveDustry extends Mod {
         }
     }
 
-    protected static Music soundControlPlaying() {
+    public static Music soundControlPlaying() {
         if (state.isMenu()) {
             if (ui.planet.isShown()) {
                 return Musics.launch;

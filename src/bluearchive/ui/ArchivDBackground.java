@@ -29,6 +29,8 @@ public class ArchivDBackground {
     public static boolean L2DInstalled = false;
 
     public static void buildL2D(String name, int frames, float speed){
+        // Nullable, can be kill every mod with custom MenuRenderer
+        Reflect.set(Vars.ui.menufrag, "renderer", null);
         Element tmp = Vars.ui.menuGroup.getChildren().first();
         if (!(tmp instanceof Group group)) return;
         Element render = group.getChildren().first();
