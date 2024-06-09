@@ -24,7 +24,7 @@ public class ArchivDBackground {
     static Image animBG = new Image(new TextureRegion());
     private static float l2dImportProg;
     static boolean cancel = false;
-    static final String version = "v1.2";
+    static final String version = "v1.3";
     private static final Interval interval = new Interval(2);
     public static boolean L2DInstalled = false;
 
