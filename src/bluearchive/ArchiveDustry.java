@@ -56,6 +56,10 @@ public class ArchiveDustry extends Mod {
                     ArchivDBackground.buildL2D("arisu", 58, 5f);
                     recollectionMusic = tree.loadMusic("somedaySometime");
                     break;
+                case 6:
+                    ArchivDBackground.buildL2D("reisa", 146, 4f);
+                    recollectionMusic = tree.loadMusic("somedaySometime");
+                    break;
             }
         }
         ArchivDSettings.loadSettings();

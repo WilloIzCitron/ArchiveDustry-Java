@@ -62,7 +62,7 @@ public class ArchivDBackground {
             });
     });
     }
-    public static void downloadLive2D(){
+    public static void downloadLive2D() {
         l2dImportProg = 0f;
         ui.loadfrag.show();
         ui.loadfrag.setText(Core.bundle.get("l2dDownload"));
@@ -71,23 +71,27 @@ public class ArchivDBackground {
             cancel = true;
             ui.loadfrag.hide();
         });
-        Http.get(ghApi + "/repos/WilloIzCitron/ArchiveDustryLive2DRepo/releases/latest", res -> {
-        var json = Jval.read(res.getResultAsString());
-        var value = json.get("assets").asArray().find(v -> v.getString("name", "").startsWith("ArchivDLive2D-"+version+".zip"));
-        var downloadZip = value.getString("browser_download_url");
-        var dest = dataDirectory+"/live2dzip/";
-        var toDest = dataDirectory+"/live2d/";
-        download(downloadZip, new Fi(dest+"ArchivDLive2D-"+version+".zip"), i -> l2dImportProg = i, () -> cancel, () -> {
-                ui.loadfrag.setText(Core.bundle.get("l2dInstall"));
-                unzip(dest + "ArchivDLive2D-" + version + ".zip", toDest);
-                ui.loadfrag.setText(Core.bundle.get("l2dComplete"));
-                ui.loadfrag.hide();
-                Vars.ui.showInfoFade(Core.bundle.get("l2dRestartRequired"));
-                Core.settings.put("live2dinstalled", true);
-                Core.settings.put("setSong", 3);
-                Fi.get(dest).deleteDirectory();
-        });
-        }, e -> ui.showException(e));
+        if (!OS.is64Bit) {
+            ui.showInfo(Core.bundle.get("unsupported32Bit"));
+        } else {
+            Http.get(ghApi + "/repos/WilloIzCitron/ArchiveDustryLive2DRepo/releases/latest", res -> {
+                var json = Jval.read(res.getResultAsString());
+                var value = json.get("assets").asArray().find(v -> v.getString("name", "").startsWith("ArchivDLive2D-" + version + ".zip"));
+                var downloadZip = value.getString("browser_download_url");
+                var dest = dataDirectory + "/live2dzip/";
+                var toDest = dataDirectory + "/live2d/";
+                download(downloadZip, new Fi(dest + "ArchivDLive2D-" + version + ".zip"), i -> l2dImportProg = i, () -> cancel, () -> {
+                    ui.loadfrag.setText(Core.bundle.get("l2dInstall"));
+                    unzip(dest + "ArchivDLive2D-" + version + ".zip", toDest);
+                    ui.loadfrag.setText(Core.bundle.get("l2dComplete"));
+                    ui.loadfrag.hide();
+                    Vars.ui.showInfoFade(Core.bundle.get("l2dRestartRequired"));
+                    Core.settings.put("live2dinstalled", true);
+                    Core.settings.put("setSong", 3);
+                    Fi.get(dest).deleteDirectory();
+                });
+            }, e -> ui.showException(e));
+        }
     }
     private static void setRegion(Image img, TextureRegion reg) {
         img.getRegion().set(reg);

@@ -61,6 +61,9 @@ public class ArchivDCreditsDialog extends BaseDialog {
             image(Tex.clear).height(1f).padTop(3f).row();
             add("This mod is MIT Licensed").row();
             image(Tex.clear).height(25f).padTop(25f).row();
+            add("Special Thanks for NekoUI by Hans404").row();
+            image(Core.atlas.find("bluearchive-nekoui")).size(420f/2,185f/2).row();
+            image(Tex.clear).height(25f).padTop(25f).row();
             add("Blue Archive is copyrighted to Nexon, Nexon Games and Yostar. All Rights Reserved").row();
             image(Core.atlas.find("bluearchive-creditpart")).row();
             image(Tex.clear).height(25f).padTop(25f).row();
