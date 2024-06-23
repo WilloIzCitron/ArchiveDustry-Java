@@ -12,6 +12,7 @@ import arc.util.OS;
 import arc.util.Scaling;
 import bluearchive.ArchiveDustry;
 import bluearchive.ui.dialogs.ArchivDCreditsDialog;
+import bluearchive.ui.dialogs.ArchivDLive2DManager;
 import mindustry.gen.Icon;
 import mindustry.gen.Musics;
 import mindustry.gen.Tex;
@@ -28,7 +29,7 @@ public class ArchivDSettings {
             t.pref(new TextSeparator(Core.bundle.get("setting.category.general-setting")));
             t.pref(new Separator(4));
             if (Core.settings.getBool("enableL2D")) {
-                t.sliderPref("setL2D", 2, 1, 6, 1, i -> Core.bundle.get("ba-l2d" + (int) i + ".name"));
+                t.pref(new ButtonSetting(Core.bundle.get("ba-l2dManager"), Icon.settings, ArchivDLive2DManager::new, 32));
                 t.sliderPref("setSong", 1, 1, 3, 1, i -> {
                     switch (i) {
                         case 1:

@@ -23,6 +23,7 @@ import static mindustry.Vars.*;
 
 public class ArchiveDustry extends Mod {
     public static Music recollectionMusic;
+
     public ArchiveDustry() {
         ArchivDClientLoad.load();
     }
@@ -34,19 +35,20 @@ public class ArchiveDustry extends Mod {
             UnitHalo.init();
         }
         UnitSound.init();
+        ArchivDSettings.loadSettings();
         if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D", true)) {
             switch (Core.settings.getInt("setL2D")) {
                 case 1:
                     ArchivDBackground.buildL2D("kotama", 68, 5f);
-                    recollectionMusic = ArchivDMusic.sugar;
+                    recollectionMusic = tree.loadMusic("menuaira");
                     break;
                 case 2:
                     ArchivDBackground.buildL2D("noa", 68, 5f);
-                    recollectionMusic = ArchivDMusic.aira;
+                    recollectionMusic = tree.loadMusic("menurcl");
                     break;
                 case 3:
                     ArchivDBackground.buildL2D("mika", 98, 5f);
-                    recollectionMusic = ArchivDMusic.moment;
+                    recollectionMusic = tree.loadMusic("moment");
                     break;
                 case 4:
                     ArchivDBackground.buildL2D("saori", 49, 5f);
@@ -62,7 +64,6 @@ public class ArchiveDustry extends Mod {
                     break;
             }
         }
-        ArchivDSettings.loadSettings();
         switch (Core.settings.getInt("setSong")) {
             case 1:
                 Musics.menu = tree.loadMusic("menucm");
