@@ -2,8 +2,10 @@ package bluearchive.ui.dialogs;
 
 import arc.Core;
 import arc.graphics.Color;
+import arc.scene.Element;
 import arc.scene.Group;
 import arc.scene.ui.Dialog;
+import arc.scene.ui.ScrollPane;
 import arc.scene.ui.TextButton;
 import arc.scene.ui.layout.*;
 import arc.util.*;
@@ -22,17 +24,20 @@ public class ArchivDLive2DManager extends BaseDialog {
                     cont.add(bundle.get("ba-restartDialogText")).right().row();
                     cont.button(bundle.get("ba-restartConfirm"), Styles.flatt, () -> Core.app.exit()).size(250f, 50f);
                 }};
-        }}).style(Styles.grayi);
+        }});
     }};
     Table tabl = new Table(){{
         for (int i = 1; i < 7; i++) {
             int finalI = i;
             cont.button(con -> {
+                            con.row();
+                            con.image(atlas.find("bluearchive-l2d"+finalI) != atlas.find("error") ? atlas.find("bluearchive-l2d"+finalI) : atlas.find("error")).size(270/2f,213/2f).left().padLeft(2f).row();
                             con.add(bundle.get("ba-l2d"+ finalI +".name")).row();
-                            con.add(bundle.get("ba-l2d"+ finalI +".author")).color(Color.gray);
-                            }, Styles.flatBordert, () -> { Core.settings.put("setL2D", finalI); restartDialog.show();});
+                            con.add(bundle.get("ba-l2d"+ finalI +".author")).color(Color.gray).bottom().row();
+                            }, Styles.flatBordert, () -> { Core.settings.put("setL2D", finalI); restartDialog.show();}).size((270/2f)+48f,(213/2f)+64f);
         }
     }};
+    ScrollPane scrl = new ScrollPane(tabl);
 
     public ArchivDLive2DManager(){
         super(bundle.get("ba-l2dManager"));
