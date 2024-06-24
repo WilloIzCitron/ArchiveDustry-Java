@@ -46,7 +46,7 @@ To generate the mod jar, you can do this below with platform specified jar:
 - Android: `gradlew jarAndroid`
 - PC: `gradlew jar`
 
-for Build Deployment(desktop and android) you can do `gradlew deploy`
+for Build Deployment(desktop and android) you can do `gradlew build`
 
 ## Bleeding Edges(Snapshot)
 Every BE(Snapshot) builds was generated via Actions, you can check on Actions section and select the specific workflow,

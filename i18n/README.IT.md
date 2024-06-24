@@ -44,7 +44,7 @@ Per generare il jar di questa mod, esegui il comando qui sotto in base alla piat
 - Android: `gradlew jarAndroid`
 - PC: `gradlew jar`
 
-Per entrambe le piattaforme esegui: `gradlew deploy`
+Per entrambe le piattaforme esegui: `gradlew build`
 
 ## Versioni all'Avanguardia (Bleeding Edge)
 Le Versioni all'Avanguardia (Bleeding Edge) vengono generate automaticamente da Github Actions, puoi trovarle nella sezione Actions selezionando un workflow e poi scaricando l'artefatto.
