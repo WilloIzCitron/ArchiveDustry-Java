@@ -38,6 +38,9 @@ configure(allprojects){
         mindustry = {String module ->
             "com.github.Anuken.Mindustry$module:$mindustryVersion"
         }
+
+        isWindows = System.getProperty("os.name").toLowerCase().contains("windows")
+        //i took it from Anuken/MindustryJavaModTemplate (Windows purely sucks)
     }
 
     configurations.configureEach{
@@ -155,8 +158,8 @@ configure(rootProject){
                             { throw new GradleException('Neither `ANDROID_SDK_ROOT` nor `ANDROID_HOME` is set') }
             )
 
-            // Find `d8`.
-            def d8 = file("$sdkRoot/build-tools/$androidBuildVersion/d8")
+            // Find `d8`. for Windows, 'd8.bat'.
+            def d8 = isWindows ? file("$sdkRoot/build-tools/$androidBuildVersion/d8.bat") : file("$sdkRoot/build-tools/$androidBuildVersion/d8")
             if(!d8.exists()){
                 throw new GradleException("Android SDK `build-tools;$androidBuildVersion` isn't installed or is corrupted")
             }
