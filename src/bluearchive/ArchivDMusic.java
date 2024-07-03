@@ -11,6 +11,7 @@ import mindustry.content.*;
 import mindustry.game.EventType;
 import mindustry.gen.*;
 
+import static bluearchive.ui.ArchivDSettings.waveVolume;
 import static mindustry.Vars.*;
 
 public class ArchivDMusic {
@@ -28,10 +29,10 @@ public class ArchivDMusic {
 
     // i hope this work :)
     protected static void playMusic(Music music){
-        if(current != null || music == null || !(boolean)(Core.settings.getInt("musicvol") > 0)) return;
+        if(current != null || music == null || !(boolean)((Core.settings.getInt("musicvol") > 0) || waveVolume > 0)) return;
         lastMusicPlayed = music;
         current = music;
-        current.setVolume(1f);
+        current.setVolume(waveVolume);
         current.setLooping(false);
         current.play();
 

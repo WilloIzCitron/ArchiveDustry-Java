@@ -35,7 +35,6 @@ public class ArchiveDustry extends Mod {
             UnitHalo.init();
         }
         UnitSound.init();
-        ArchivDSettings.loadSettings();
         if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D", true)) {
             switch (Core.settings.getInt("setL2D")) {
                 case 1:
@@ -55,7 +54,7 @@ public class ArchiveDustry extends Mod {
                     recollectionMusic = Musics.fine;
                     break;
                 case 5:
-                    ArchivDBackground.buildL2D("arisu", 58, 5f);
+                    ArchivDBackground.buildL2D("arisu", 150, 5f);
                     recollectionMusic = tree.loadMusic("somedaySometime");
                     break;
                 case 6:
@@ -64,18 +63,18 @@ public class ArchiveDustry extends Mod {
                     break;
             }
         }
+        ArchivDSettings.loadSettings();
         switch (Core.settings.getInt("setSong")) {
             case 1:
-                Musics.menu = tree.loadMusic("menucm");
+                if(Musics.menu != tree.loadMusic("menucm")) Musics.menu = tree.loadMusic("menucm");
                 break;
             case 2:
-                Musics.menu = tree.loadMusic("menure-aoh");
+                if(Musics.menu != tree.loadMusic("menure-aoh")) Musics.menu = tree.loadMusic("menure-aoh");
                 break;
             case 3:
-                Musics.menu = recollectionMusic;
+                if(Musics.menu != recollectionMusic) Musics.menu = recollectionMusic;
                 break;
         }
-
     }
 }
 

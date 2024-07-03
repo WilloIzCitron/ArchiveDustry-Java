@@ -22,6 +22,7 @@ import static mindustry.Vars.tree;
 import static mindustry.Vars.ui;
 
 public class ArchivDSettings {
+    public static float waveVolume;
 
     public static void loadSettings(){
         ui.settings.addCategory("ArchiveDustry", t -> {
@@ -92,6 +93,10 @@ public class ArchivDSettings {
             });
             t.sliderPref("loadout", defaultVolume,0, 100,1,i -> {
                 tree.loadMusic("loadout").setVolume(i / 100f);
+                return i + "%";
+            });
+            t.sliderPref("wave", defaultVolume,0, 100,1,i -> {
+                waveVolume = i / 100f;
                 return i + "%";
             });
             t.pref(new Separator(2));
