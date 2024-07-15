@@ -2,14 +2,9 @@ package bluearchive.ui.dialogs;
 
 import arc.Core;
 import arc.graphics.Color;
-import arc.scene.Element;
-import arc.scene.Group;
 import arc.scene.ui.Dialog;
 import arc.scene.ui.ScrollPane;
-import arc.scene.ui.TextButton;
 import arc.scene.ui.layout.*;
-import arc.util.*;
-import mindustry.gen.Tex;
 import mindustry.ui.Styles;
 import mindustry.ui.dialogs.BaseDialog;
 
@@ -27,7 +22,7 @@ public class ArchivDLive2DManager extends BaseDialog {
         }});
     }};
     Table tabl = new Table(){{
-        for (int i = 1; i < 7; i++) {
+        for (int i = 1; i < 9; i++) {
             int finalI = i;
             cont.button(con -> {
                             con.row();
@@ -43,6 +38,7 @@ public class ArchivDLive2DManager extends BaseDialog {
         super(bundle.get("ba-l2dManager"));
         addCloseButton();
         cont.add(tabl).row();
+        scrl.draw();
         show();
     }
 }

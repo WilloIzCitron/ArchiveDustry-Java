@@ -2,22 +2,12 @@ package bluearchive;
 
 import arc.*;
 import arc.audio.*;
-import arc.scene.style.Drawable;
-import arc.scene.style.TextureRegionDrawable;
-import arc.scene.ui.*;
-import arc.scene.ui.layout.*;
-import arc.scene.utils.Elem;
-import arc.util.*;
 import bluearchive.events.ArchivDClientLoad;
 import bluearchive.ui.*;
-import bluearchive.ui.dialogs.*;
 import mindustry.game.EventType;
 import mindustry.gen.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
-import mindustry.ui.dialogs.*;
-import mindustry.ui.dialogs.SettingsMenuDialog.*;
-import mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable.*;
 
 import static mindustry.Vars.*;
 
@@ -62,11 +52,11 @@ public class ArchiveDustry extends Mod {
                     recollectionMusic = tree.loadMusic("somedaySometime");
                     break;
                 case 7:
-                    ArchivDBackground.buildL2D("mina", 68, 4f);
+                    ArchivDBackground.buildL2D("mina", 68, 3f);
                     recollectionMusic = tree.loadMusic("t171");
                     break;
                 case 8:
-                    ArchivDBackground.buildL2D("nonomi", 63, 4f);
+                    ArchivDBackground.buildL2D("nonomi", 63, 5f);
                     recollectionMusic = tree.loadMusic("cat");
                     break;
             }
