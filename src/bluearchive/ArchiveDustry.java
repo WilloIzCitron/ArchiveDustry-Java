@@ -11,8 +11,8 @@ import arc.util.*;
 import bluearchive.events.ArchivDClientLoad;
 import bluearchive.ui.*;
 import bluearchive.ui.dialogs.*;
+import mindustry.game.EventType;
 import mindustry.gen.*;
-import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
 import mindustry.ui.dialogs.*;
@@ -61,20 +61,30 @@ public class ArchiveDustry extends Mod {
                     ArchivDBackground.buildL2D("reisa", 146, 4f);
                     recollectionMusic = tree.loadMusic("somedaySometime");
                     break;
+                case 7:
+                    ArchivDBackground.buildL2D("mina", 68, 4f);
+                    recollectionMusic = tree.loadMusic("t171");
+                    break;
+                case 8:
+                    ArchivDBackground.buildL2D("nonomi", 63, 4f);
+                    recollectionMusic = tree.loadMusic("cat");
+                    break;
             }
         }
         ArchivDSettings.loadSettings();
-        switch (Core.settings.getInt("setSong")) {
-            case 1:
-                if(Musics.menu != tree.loadMusic("menucm")) Musics.menu = tree.loadMusic("menucm");
-                break;
-            case 2:
-                if(Musics.menu != tree.loadMusic("menure-aoh")) Musics.menu = tree.loadMusic("menure-aoh");
-                break;
-            case 3:
-                if(Musics.menu != recollectionMusic) Musics.menu = recollectionMusic;
-                break;
-        }
+        Events.on(EventType.ClientLoadEvent.class, e -> {
+            switch (Core.settings.getInt("setSong")) {
+                case 1:
+                    if(Musics.menu != tree.loadMusic("menucm")) Musics.menu = tree.loadMusic("menucm");
+                    break;
+                case 2:
+                    if(Musics.menu != tree.loadMusic("menure-aoh")) Musics.menu = tree.loadMusic("menure-aoh");
+                    break;
+                case 3:
+                    if(Musics.menu != recollectionMusic) Musics.menu = recollectionMusic;
+                    break;
+            }
+        });
     }
 }
 

@@ -25,7 +25,7 @@ public class ArchivDMusic {
             cat, aspiration, dawn, bunny,
             aira, sugar, hare, oriental,
             boss3, boss4, dreamer, game10,
-            game11, honey, amplify, moment, somedaySometime;
+            game11, honey, amplify, moment, somedaySometime, t171;
 
     // i hope this work :)
     protected static void playMusic(Music music){
@@ -64,12 +64,13 @@ public class ArchivDMusic {
                 amplify = new Music(tree.get("music/amplify.ogg"));
                 moment = new Music(tree.get("music/moment.ogg"));
                 somedaySometime = new Music(tree.get("music/somedaySometime.ogg"));
+                t171 = new Music(tree.get("music/t171.ogg"));
             } catch (Exception ex) {
                 // Music has exception throw, why it was created
                 throw new RuntimeException(ex);
             }
             // add custom music contents to vanilla SoundControl's music sequences
-            control.sound.ambientMusic.addAll(dawn, cat, bunny, game10, honey, amplify);
+            control.sound.ambientMusic.addAll(dawn, cat, bunny, game10, honey, amplify, t171);
             control.sound.darkMusic.addAll(aira, sugar, hare, oriental, dreamer, game11,moment, somedaySometime);
             control.sound.bossMusic.addAll(boss3, boss4);
             // create wave music soundtrack

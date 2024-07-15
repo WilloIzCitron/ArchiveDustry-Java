@@ -12,6 +12,7 @@ import arc.util.*;
 import arc.util.serialization.*;
 import mindustry.Vars;
 import mindustry.game.EventType;
+import mindustry.gen.Tex;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -27,6 +28,7 @@ public class ArchivDBackground {
     static final String version = "v1.3";
     private static final Interval interval = new Interval(2);
     public static boolean L2DInstalled = false;
+    protected static int animBGFrame;
 
     public static void buildL2D(String name, int frames, float speed){
         // Nullable, can be kill every mod with custom MenuRenderer
@@ -43,21 +45,24 @@ public class ArchivDBackground {
             animBG.setFillParent(true);
             TextureRegion[] tex = new TextureRegion[frames];
             final TextureAtlas.AtlasRegion[] region = new TextureAtlas.AtlasRegion[frames];
+            for (int i = 0; i <= frames - 1; i++) {
+                region[i] = Core.atlas.addRegion ("bluearchive-" + name + (1 + i), new TextureRegion (new Texture (Fi.get (dataDirectory + "/live2d/" + name + "/"+(1 + i) + ".png"))));
+                tex[i] = region[i];
+                if (i == frames - 1) {
+                    img = tex[0];
+                    break;
+                }
+            }
             Time.runTask (12f, () -> {
                 group.addChildAt (0, animBG);
-                for (int i = 0; i <= frames - 1; i++) {
-                    region[i] = Core.atlas.addRegion ("bluearchive-" + name + (1 + i), new TextureRegion (new Texture (Fi.get (dataDirectory + "/live2d/" + name + "/"+(1 + i) + ".png"))));
-                    tex[i] = region[i];
-                    if (i == frames - 1) {
-                        img = tex[0];
-                        break;
-                    }
-                }
                 Log.infoTag ("ArchiveDustry", "Background Loaded!");
                 Events.run (EventType.Trigger.update, () -> {
-                    int animBGFrame = (int) ((Time.globalTime / speed) % tex.length);
+                    animBGFrame = (int) ((Time.globalTime / speed) % tex.length);
                     img.set (tex[animBGFrame]);
                     setRegion (animBG, img);
+                    if(!state.isMenu() || ui.planet.showed || ui.maps.isShown() || state.rules.editor){
+                        animBG.clear();
+                    }
                 });
             });
     });
@@ -138,5 +143,4 @@ public class ArchivDBackground {
             ui.showException(e);
         }
     }
-
 }
