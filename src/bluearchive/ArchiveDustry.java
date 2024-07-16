@@ -4,6 +4,8 @@ import arc.*;
 import arc.audio.*;
 import bluearchive.events.ArchivDClientLoad;
 import bluearchive.ui.*;
+import bluearchive.ui.overrides.ArchivDLoadingFragment;
+import mindustry.Vars;
 import mindustry.game.EventType;
 import mindustry.gen.*;
 import mindustry.mod.*;
@@ -20,6 +22,7 @@ public class ArchiveDustry extends Mod {
     @Override
     public void init(){
         ArchivDMusic.load();
+        ArchivDLoadingFragment.init();
 
         if(Core.settings.getBool("ba-addHalo", true)) {
             UnitHalo.init();
