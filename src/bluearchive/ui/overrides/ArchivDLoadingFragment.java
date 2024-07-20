@@ -12,6 +12,7 @@ import arc.scene.ui.layout.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
 import mindustry.ui.fragments.*;
+import arc.math.*;
 
 import javax.swing.*;
 
@@ -23,6 +24,8 @@ public class ArchivDLoadingFragment extends LoadingFragment {
     private Bar bar;
     private Label nameLabel;
     private float progValue;
+    private Label tooltipTitle;
+    private Label tooltipInfo;
 
     public static void init() {
         ui.loadfrag = new ArchivDLoadingFragment();
@@ -38,7 +41,13 @@ public class ArchivDLoadingFragment extends LoadingFragment {
             });
             t.visible = false;
             t.touchable = Touchable.enabled;
-            t.add().height(Core.graphics.getHeight() - 25f).row();
+            t.add().height((Core.graphics.getHeight())/2f).row();
+            t.row();
+            tooltipTitle = t.add("Lorem Ipsum").fontScale(1.5f).style(Styles.techLabel).pad(10).left().get();
+            t.row();
+            tooltipInfo = t.add("Line1\nline2\nline3\n").pad(10).left().get();
+            t.row();
+            t.add().height((Core.graphics.getHeight() - 25f)/2f).row();
             t.row();
             nameLabel = t.add("@loading").pad(10f).style(Styles.techLabel).left().get();
             t.row();
@@ -86,6 +95,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
     }
 
     public void show(){
+        tree.loadSound("chatMessage").play();
         show("@loading");
     }
 
@@ -93,10 +103,12 @@ public class ArchivDLoadingFragment extends LoadingFragment {
         tree.loadSound("chatMessage").play();
         button.visible = false;
         nameLabel.setColor(Color.white);
+        tooltipTitle.setColor(Color.white);
         bar.visible = false;
         table.clearActions();
         table.touchable = Touchable.enabled;
         text(text);
+        tooltipRNG();
         table.visible = true;
         table.color.a = 1f;
         table.toFront();
@@ -123,6 +135,20 @@ public class ArchivDLoadingFragment extends LoadingFragment {
             }
         }
         nameLabel.setStyle(Styles.techLabel);
+    }
+    private void tooltipRNG() {
+        int randomNum = Mathf.random(4);
+        tooltipTitle.setColor(Pal.accent);
+        tooltipTitle.setText(Core.bundle.get("tooltipTitle-"+randomNum));
+        tooltipInfo.setText(Core.bundle.get("tooltipInfo-"+randomNum));
+        CharSequence realTooltipText = tooltipTitle.getText();
+        for(int i = 0; i < realTooltipText.length(); i++){
+            if(Fonts.tech.getData().getGlyph(realTooltipText.charAt(i)) == null){
+                tooltipTitle.setStyle(Styles.defaultLabel);
+                return;
+            }
+        }
+        tooltipTitle.setStyle(Styles.techLabel);
     }
 }
 
