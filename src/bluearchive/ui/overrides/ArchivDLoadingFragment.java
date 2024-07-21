@@ -137,7 +137,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
         nameLabel.setStyle(Styles.techLabel);
     }
     private void tooltipRNG() {
-        int randomNum = Mathf.random(4);
+        int randomNum = Mathf.random(7);
         tooltipTitle.setColor(Pal.accent);
         tooltipTitle.setText(Core.bundle.get("tooltipTitle-"+randomNum));
         tooltipInfo.setText(Core.bundle.get("tooltipInfo-"+randomNum));
