@@ -22,7 +22,7 @@ public class ArchivDLive2DManager extends BaseDialog {
         }});
     }};
     Table tabl = new Table(){{
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 11; i++) {
             int finalI = i;
             cont.button(con -> {
                             con.row();

@@ -25,7 +25,7 @@ public class ArchivDMusic {
             cat, aspiration, dawn, bunny,
             aira, sugar, hare, oriental,
             boss3, boss4, dreamer, game10,
-            game11, honey, amplify, moment, somedaySometime, t171, theme220;
+            game11, honey, amplify, moment, somedaySometime, t171, theme220, theme228;
 
     // i hope this work :)
     protected static void playMusic(Music music){
@@ -66,6 +66,7 @@ public class ArchivDMusic {
                 somedaySometime = new Music(tree.get("music/somedaySometime.ogg"));
                 t171 = new Music(tree.get("music/t171.ogg"));
                 theme220 = new Music(tree.get("music/theme220.ogg"));
+                theme228 = new Music(tree.get("music/theme228.ogg"));
             } catch (Exception ex) {
                 // Music has exception throw, why it was created
                 throw new RuntimeException(ex);
