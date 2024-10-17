@@ -2,14 +2,18 @@ package bluearchive;
 
 import arc.*;
 import arc.audio.*;
+import arc.graphics.*;
+import arc.scene.style.TextureRegionDrawable;
 import bluearchive.events.ArchivDClientLoad;
 import bluearchive.ui.*;
 import bluearchive.ui.overrides.ArchivDLoadingFragment;
 import mindustry.Vars;
 import mindustry.game.EventType;
 import mindustry.gen.*;
+import mindustry.graphics.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
+import mindustry.ui.Styles;
 
 import static mindustry.Vars.*;
 
@@ -21,6 +25,12 @@ public class ArchiveDustry extends Mod {
     }
     @Override
     public void init(){
+
+        var whiteui = (TextureRegionDrawable)Tex.whiteui;
+        Pal.stat = Color.valueOf("8ca9e8");
+        Pal.accent = Color.valueOf("8ca9e8");
+        Styles.accentDrawable = whiteui.tint(Pal.accent);
+
         ArchivDMusic.load();
         ArchivDLoadingFragment.init();
 
