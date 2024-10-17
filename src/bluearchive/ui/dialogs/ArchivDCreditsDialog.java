@@ -71,12 +71,12 @@ public class ArchivDCreditsDialog extends Dialog {
         image(Tex.clear).height(1f).padTop(3f).row();
         add("This mod is MIT Licensed").row();
         image(Tex.clear).height(25f).padTop(25f).row();
-        add("Special Thanks for NekoUI by Hans404").row();
+        add("Special Thanks for: NekoUI by Hans404 and BetMC by BetSoi2411").row();
         add(nekoUILogo).size(420f/2,185f/2).row();
         image(Tex.clear).height(25f).padTop(25f).row();
         add("Blue Archive is copyrighted to Nexon, Nexon Games and Yostar. All Rights Reserved").row();
         add(nexonLogo).size(522, 82).row();
-        image(Tex.clear).height(Core.graphics.getHeight()).padTop(25f).row();
+        image(Tex.clear).height(1280).padTop(25f).row();
         //logo for
     }};
     float scrollBar;
