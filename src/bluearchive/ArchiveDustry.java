@@ -77,7 +77,7 @@ public class ArchiveDustry extends Mod {
                     recollectionMusic = tree.loadMusic("theme220");
                     break;
                 case 10:
-                    ArchivDBackground.buildL2D("shiroko-terror", 80, 5f);
+                    ArchivDBackground.buildL2D("shiroko-terror", 93, 5f);
                     recollectionMusic = tree.loadMusic("theme220");
                     break;
             }
