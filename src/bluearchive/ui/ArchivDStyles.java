@@ -1,5 +1,7 @@
 package bluearchive.ui;
 
+import mindustry.ui.*;
+
 import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -17,90 +19,12 @@ import arc.scene.ui.TextField.*;
 import arc.scene.ui.TreeElement.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.ui.*;
 
-import static mindustry.Vars.*;
 import static mindustry.gen.Tex.*;
 
-public class ArchivDStyles extends Styles {
+public class ArchivDStyles extends Styles{
 
-
-    //TODO all these names are inconsistent and not descriptive
-    public static Drawable black, black9, black8, black6, black3, black5, grayPanel, none, flatDown, flatOver, accentDrawable;
-
-    public static ButtonStyle defaultb, underlineb;
-
-    /** Default text button style - gray corners at 45 degrees. */
-    public static TextButtonStyle defaultt,
-    /** Flat, square, opaque. */
-    flatt,
-    /** Flat, square, opaque, gray. */
-    grayt,
-    /** Flat, square, toggleable. */
-    flatTogglet,
-    /** Flat, square, gray border.*/
-    flatBordert,
-    /** No background whatsoever, only text. */
-    nonet,
-    /** Similar to flatToggle, but slightly tweaked for logic. */
-    logicTogglet,
-    /** Similar to flatToggle, but with a transparent base background. */
-    flatToggleMenut,
-    /** Toggle variant of default style. */
-    togglet,
-    /** Partially transparent square button. */
-    cleart,
-    /** Clear, square, orange border, toggleable. */
-    clearTogglet,
-    /** Similar to flatToggle, but without a darker border. */
-    fullTogglet,
-    /** Toggle-able version of flatBorder. */
-    squareTogglet,
-    /** Special square button for logic dialogs. */
-    logict;
-
-    /** Default image button style - gray corners at 45 degrees. */
-    public static ImageButtonStyle defaulti,
-    /** Used for research nodes in the tech tree. */
-    nodei,
-    /** No background, tints the image itself when hovered. */
-    emptyi,
-    /** Toggleable variant of emptyi */
-    emptyTogglei,
-    /** Displays border around image when selected; used in placement fragment. */
-    selecti,
-    /** Pure black version of emptyi, used for logic toolbar. */
-    logici,
-    /** Used for toolbar in map generation filters. */
-    geni,
-    /** Gray, toggleable, no background. */
-    grayi,
-    /** Gray square background, standard behavior. Equivalent to grayt. */
-    graySquarei,
-    /** Flat, square, black background. */
-    flati,
-    /** Square border. */
-    squarei,
-    /** Square border, toggleable. */
-    squareTogglei,
-    /** No background unless focused, no border. */
-    clearNonei,
-    /** Partially transparent black background. */
-    cleari,
-    /** Toggleable variant of cleari. */
-    clearTogglei,
-    /** clearNone, but toggleable. */
-    clearNoneTogglei;
-
-    public static ScrollPaneStyle defaultPane, horizontalPane, smallPane, noBarPane;
-    public static SliderStyle defaultSlider;
-    public static LabelStyle defaultLabel, outlineLabel, techLabel;
-    public static TextFieldStyle defaultField, nodeField, areaField, nodeArea;
-    public static CheckBoxStyle defaultCheck;
-    public static DialogStyle defaultDialog, fullDialog;
-    public static TreeStyle defaultTree;
-
-    public static void load() {
+    public static void load(){
         var whiteui = (TextureRegionDrawable)Tex.whiteui;
 
         black = whiteui.tint(0f, 0f, 0f, 1f);
@@ -225,16 +149,6 @@ public class ArchivDStyles extends Styles {
             disabled = buttonDisabled;
             disabledFontColor = Color.gray;
         }};
-        clearTogglet = new TextButtonStyle(){{
-            font = Fonts.def;
-            fontColor = Color.white;
-            down = flatDown;
-            checked = flatDown;
-            up = black6;
-            over = flatOver;
-            disabled = black;
-            disabledFontColor = Color.gray;
-        }};
         fullTogglet = new TextButtonStyle(){{
             font = Fonts.def;
             fontColor = Color.white;
@@ -291,14 +205,6 @@ public class ArchivDStyles extends Styles {
         grayi = new ImageButtonStyle(){{
             imageUpColor = Color.lightGray;
             imageDownColor = Color.white;
-        }};
-        graySquarei = new ImageButtonStyle(){{
-            imageUpColor = Color.white;
-            imageDownColor = Color.lightGray;
-
-            over = flatOver;
-            down = flatOver;
-            up = grayPanel;
         }};
         flati = new ImageButtonStyle(){{
             down = flatOver;
@@ -461,6 +367,7 @@ public class ArchivDStyles extends Styles {
             over = flatOver;
         }};
     }
+
     private static Drawable createFlatDown(){
         AtlasRegion region = Core.atlas.find("flat-down-base");
         int[] splits = region.splits;

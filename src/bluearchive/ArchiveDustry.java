@@ -13,7 +13,6 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
-import mindustry.ui.Styles;
 
 import static mindustry.Vars.*;
 
