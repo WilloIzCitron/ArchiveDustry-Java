@@ -20,6 +20,27 @@ public class ArchivDStyles extends Styles{
         defaultDialog.titleFontColor = Pal.techBlue;
         fullDialog.titleFontColor = Pal.techBlue;
         techLabel.fontColor = Pal.techBlue;
+        defaultt.downFontColor = Pal.techBlue;
+        defaulti.imageDownColor = Pal.techBlue;
+        flatt.downFontColor = Pal.techBlue;
+        flati.imageDownColor = Pal.techBlue;
+        flatBordert.downFontColor = Pal.techBlue;
+        defaultCheck.checkedFontColor = Pal.techBlue;
+
+        defaultt.overFontColor = Pal.techBlue;
+        defaulti.imageOverColor = Pal.techBlue;
+        flatt.overFontColor = Pal.techBlue;
+        flatBordert.overFontColor = Pal.techBlue;
+        flati.imageOverColor = Pal.techBlue;
+        squarei.imageDownColor = Pal.techBlue;
+        squarei.imageOverColor = Pal.techBlue;
+        defaultt.checkedFontColor = Pal.techBlue;
+        defaulti.imageCheckedColor = Pal.techBlue;
+        flatt.checkedFontColor = Pal.techBlue;
+        flati.imageCheckedColor = Pal.techBlue;
+        squarei.imageCheckedColor = Pal.techBlue;
+        defaultt.checkedOverFontColor = Pal.techBlue;
+        flatt.checkedOverFontColor = Pal.techBlue;
 
     }
 }
