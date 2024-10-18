@@ -26,11 +26,7 @@ public class ArchiveDustry extends Mod {
     @Override
     public void init(){
 
-        var whiteui = (TextureRegionDrawable)Tex.whiteui;
-        Pal.stat = Color.valueOf("8ca9e8");
-        Pal.accent = Color.valueOf("8ca9e8");
-        Styles.accentDrawable = whiteui.tint(Pal.accent);
-
+        Styles.load();
         ArchivDMusic.load();
         ArchivDLoadingFragment.init();
 
@@ -78,7 +74,7 @@ public class ArchiveDustry extends Mod {
                     break;
                 case 10:
                     ArchivDBackground.buildL2D("shiroko-terror", 93, 5f);
-                    recollectionMusic = tree.loadMusic("theme220");
+                    recollectionMusic = tree.loadMusic("theme228");
                     break;
             }
         }

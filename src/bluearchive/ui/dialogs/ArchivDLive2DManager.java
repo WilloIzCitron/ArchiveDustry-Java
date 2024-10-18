@@ -5,6 +5,7 @@ import arc.graphics.Color;
 import arc.scene.ui.Dialog;
 import arc.scene.ui.ScrollPane;
 import arc.scene.ui.layout.*;
+import arc.util.Time;
 import mindustry.ui.Styles;
 import mindustry.ui.dialogs.BaseDialog;
 
@@ -29,7 +30,7 @@ public class ArchivDLive2DManager extends BaseDialog {
                             con.image(atlas.find("bluearchive-l2d"+finalI) != atlas.find("error") ? atlas.find("bluearchive-l2d"+finalI) : atlas.find("error")).size(270/2f,213/2f).left().padLeft(2f).row();
                             con.add(bundle.get("ba-l2d"+ finalI +".name")).row();
                             con.add(bundle.get("ba-l2d"+ finalI +".author")).color(Color.gray).bottom().row();
-                            }, Styles.flatBordert, () -> { Core.settings.put("setL2D", finalI); restartDialog.show();}).size((270/2f)+48f,(213/2f)+64f);
+                            }, Styles.flatBordert, () -> { Core.settings.put("setL2D", finalI); restartDialog.show();}).size((280/2f)+48f,(235/2f)+64f);
         }
     }};
     ScrollPane scrl = new ScrollPane(tabl);
@@ -39,6 +40,8 @@ public class ArchivDLive2DManager extends BaseDialog {
         addCloseButton();
         cont.add(tabl).row();
         scrl.draw();
+        scrl.setWidth(10f);
+        scrl.act(Time.delta);
         show();
     }
 }
