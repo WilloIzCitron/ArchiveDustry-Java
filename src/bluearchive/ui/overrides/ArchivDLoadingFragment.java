@@ -44,18 +44,18 @@ public class ArchivDLoadingFragment extends LoadingFragment {
             t.touchable = Touchable.enabled;
             t.add().height((Core.graphics.getHeight())/2f).row();
             t.row();
-            tooltipTitle = t.add("Lorem Ipsum").fontScale(1.5f).style(Styles.techLabel).pad(10).left().get();
+            tooltipTitle = t.add("Lorem Ipsum").color(Pal.techBlue).fontScale(1.5f).style(Styles.techLabel).pad(10).left().get();
             t.row();
-            tooltipInfo = t.add("Line1\nline2\nline3\n").pad(10).left().get();
+            tooltipInfo = t.add("Line1\nline2\nline3\n").color(Pal.techBlue).pad(10).left().get();
             t.row();
             t.add().height((Core.graphics.getHeight() - 25f)/2f).row();
             t.row();
-            nameLabel = t.add("@loading").pad(10f).style(Styles.techLabel).left().get();
+            nameLabel = t.add("@loading").color(Pal.techBlue).pad(10f).style(Styles.techLabel).left().get();
             t.row();
-            t.add(new WarningBar()).growX().height(24f);
+            t.add(new WarningBar()).color(Pal.techBlue).growX().height(24f);
             t.row();
             text("@loading");
-            bar = t.add(new Bar()).pad(3).padTop(6).height(40f).growX().visible(false).get();
+            bar = t.add(new Bar()).pad(3).padTop(6).height(40f).growX().visible(false).color(Pal.techBlue).get();
             t.row();
             button = t.button("@cancel", () -> {
             }).size(250f, 50f).visible(false).get();
