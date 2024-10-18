@@ -22,7 +22,7 @@ import mindustry.ui.*;
 import static mindustry.Vars.*;
 import static mindustry.gen.Tex.*;
 
-public class Styles {
+public class ArchivDStyles extends Styles {
 
 
     //TODO all these names are inconsistent and not descriptive

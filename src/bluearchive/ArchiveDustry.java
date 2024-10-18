@@ -26,7 +26,7 @@ public class ArchiveDustry extends Mod {
     @Override
     public void init(){
 
-        Styles.load();
+        ArchivDStyles.load();
         ArchivDMusic.load();
         ArchivDLoadingFragment.init();
 
