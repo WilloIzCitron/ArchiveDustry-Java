@@ -25,11 +25,11 @@ public class ArchiveDustry extends Mod {
     @Override
     public void init(){
 
+        //Use Pal.accent first... experimental Styles
         //ArchivDStyles.load();
         ArchivDMusic.load();
-        //Use Pal.accent first... experimental
         ArchivDLoadingFragment.init();
-//        ArchivDUI.loadColors();
+        ArchivDUI.loadColors();
 
         if(Core.settings.getBool("ba-addHalo", true)) {
             UnitHalo.init();
