@@ -142,6 +142,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
         tooltipTitle.setColor(Pal.techBlue);
         tooltipTitle.setText(Core.bundle.get("tooltipTitle-"+randomNum));
         tooltipInfo.setText(Core.bundle.get("tooltipInfo-"+randomNum));
+        tooltipInfo.setColor(Pal.techBlue);
         CharSequence realTooltipText = tooltipTitle.getText();
         for(int i = 0; i < realTooltipText.length(); i++){
             if(Fonts.tech.getData().getGlyph(realTooltipText.charAt(i)) == null){
