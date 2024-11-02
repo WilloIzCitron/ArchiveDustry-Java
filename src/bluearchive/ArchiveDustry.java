@@ -29,7 +29,6 @@ public class ArchiveDustry extends Mod {
         //ArchivDStyles.load();
         ArchivDMusic.load();
         ArchivDLoadingFragment.init();
-        ArchivDUI.loadColors();
 
         if(Core.settings.getBool("ba-addHalo", true)) {
             UnitHalo.init();

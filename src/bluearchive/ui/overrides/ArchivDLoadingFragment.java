@@ -46,7 +46,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
             t.row();
             tooltipTitle = t.add("Lorem Ipsum").color(Pal.techBlue).fontScale(1.5f).style(Styles.techLabel).pad(10).left().get();
             t.row();
-            tooltipInfo = t.add("Line1\nline2\nline3\n").color(Pal.techBlue).pad(10).left().get();
+            tooltipInfo = t.add("Line1\nline2\nline3\n").pad(10).left().get();
             t.row();
             t.add().height((Core.graphics.getHeight() - 25f)/2f).row();
             t.row();
@@ -124,6 +124,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
 
     private void text(String text){
         nameLabel.setText(text);
+        nameLabel.setColor(Pal.techBlue);
 
         CharSequence realText = nameLabel.getText();
 
@@ -142,7 +143,6 @@ public class ArchivDLoadingFragment extends LoadingFragment {
         tooltipTitle.setColor(Pal.techBlue);
         tooltipTitle.setText(Core.bundle.get("tooltipTitle-"+randomNum));
         tooltipInfo.setText(Core.bundle.get("tooltipInfo-"+randomNum));
-        tooltipInfo.setColor(Pal.techBlue);
         CharSequence realTooltipText = tooltipTitle.getText();
         for(int i = 0; i < realTooltipText.length(); i++){
             if(Fonts.tech.getData().getGlyph(realTooltipText.charAt(i)) == null){

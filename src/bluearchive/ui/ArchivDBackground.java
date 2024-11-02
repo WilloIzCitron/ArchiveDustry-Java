@@ -12,11 +12,11 @@ import arc.util.*;
 import arc.util.serialization.*;
 import mindustry.Vars;
 import mindustry.game.EventType;
-import mindustry.gen.Tex;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static mindustry.Vars.*;
 
@@ -30,8 +30,9 @@ public class ArchivDBackground {
     public static boolean L2DInstalled = false;
     protected static int animBGFrame;
 
-    public static void buildL2D(String name, int frames, float speed){
+    public static void buildL2D(String name, int frames, float framespeed){
         // Nullable, can be kill every mod with custom MenuRenderer
+        AtomicReference<Float> speed = new AtomicReference<>(framespeed);
         Reflect.set(Vars.ui.menufrag, "renderer", null);
         Element tmp = Vars.ui.menuGroup.getChildren().first();
         if (!(tmp instanceof Group group)) return;
@@ -57,12 +58,12 @@ public class ArchivDBackground {
                 group.addChildAt (0, animBG);
                 Log.infoTag ("ArchiveDustry", "Background Loaded!");
                 Events.run (EventType.Trigger.update, () -> {
-                    animBGFrame = (int) ((Time.globalTime / speed) % tex.length);
-                    img.set (tex[animBGFrame]);
-                    setRegion (animBG, img);
                     if(!state.isMenu() || ui.planet.showed || ui.maps.isShown() || state.rules.editor){
-                        animBG.clear();
-                    }
+                        speed.set(0f);
+                    } else speed.set(framespeed);
+                    animBGFrame = (int) ((Time.globalTime / speed.get()) % tex.length);
+                    img.set(tex[animBGFrame]);
+                    setRegion(animBG, img);
                 });
             });
     });
@@ -100,6 +101,7 @@ public class ArchivDBackground {
     }
     private static void setRegion(Image img, TextureRegion reg) {
         img.getRegion().set(reg);
+        img.clear();
     }
 
     private static void download(String furl, Fi dest, Floatc progressor, Boolp canceled, Runnable done) {
