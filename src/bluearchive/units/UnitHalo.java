@@ -397,7 +397,7 @@ public class UnitHalo {
                         radius = 9f;
                         y = hy;
                     }},
-                    new HaloPart() {{//зубчики по краям
+                    new HaloPart() {{
                         color = Pal.sapBullet;
                         layer = Layer.effect+1;
                         haloRadius = 18f;
@@ -408,7 +408,7 @@ public class UnitHalo {
                         tri = true;
                         y = hy;
                     }},
-                    new HaloPart() {{//зубчики обратная сторона
+                    new HaloPart() {{
                         color = Pal.sapBullet;
                         layer = Layer.effect+1;
                         haloRadius = 18f;
@@ -420,7 +420,7 @@ public class UnitHalo {
                         tri = true;
                         y = hy;
                     }},
-                    new HaloPart() {{//зубчики по краям свечение
+                    new HaloPart() {{
                         color = Pal.sapBullet;
                         layer = Layer.effect;
                         haloRadius = 18f;
@@ -431,7 +431,7 @@ public class UnitHalo {
                         tri = true;
                         y = hy;
                     }},
-                    new HaloPart() {{//зубчики обратная сторона свечение
+                    new HaloPart() {{
                         color = Pal.sapBullet;
                         layer = Layer.effect;
                         haloRadius = 18f;
@@ -443,7 +443,6 @@ public class UnitHalo {
                         tri = true;
                         y = hy;
                     }},
-                    //кружок большой
                     new ShapePart() {{
                         sides = 360;
                         color = Pal.sapBullet;
@@ -453,7 +452,7 @@ public class UnitHalo {
                         radius = 12.15f;
                         y = hy;
                     }},
-                    new HaloPart() {{//зубчики у круга
+                    new HaloPart() {{
                         color = Pal.sapBullet;
                         layer = Layer.effect;
                         shapes = 16;
@@ -462,8 +461,7 @@ public class UnitHalo {
                         haloRadius = 12.9f;
                         y = hy;
                     }},
-                    //начиная отсюда тут полоски в чёрном круге
-                    new ShapePart() {{//кружок негр внутренний
+                    new ShapePart() {{
                         sides = 360;
                         color = Pal.coalBlack;
                         layer = Layer.effect+1;
@@ -472,7 +470,7 @@ public class UnitHalo {
                         radius = 10.85f;
                         y = hy;
                     }},
-                    new ShapePart() {{//кружок негр наружный
+                    new ShapePart() {{
                         sides = 360;
                         color = Pal.coalBlack;
                         layer = Layer.effect+1;
@@ -481,7 +479,7 @@ public class UnitHalo {
                         radius = 13.45f;
                         y = hy;
                     }},
-                    new HaloPart() {{ //треуглы для полосочек 1
+                    new HaloPart() {{
                         color = Pal.coalBlack;
                         layer = Layer.effect+1;
                         tri = true;
@@ -492,7 +490,7 @@ public class UnitHalo {
                         shapeRotation = 180f;
                         y = hy;
                     }},
-                    new HaloPart() {{ //треуглы для полосочек 2
+                    new HaloPart() {{
                         color = Pal.coalBlack;
                         layer = Layer.effect+1;
                         tri = true;
@@ -503,7 +501,7 @@ public class UnitHalo {
                         triLength = 2.5f;
                         y = hy;
                     }},
-                    new ShapePart() {{//бля я уже заебался это всё подписывать
+                    new ShapePart() {{
                         sides = 360;
                         color = Pal.sapBullet;
                         layer = Layer.effect+0.96f;
@@ -512,7 +510,7 @@ public class UnitHalo {
                         hollow = true;
                         y = hy;
                     }},
-                    new HaloPart() {{//зубчики негры у круга
+                    new HaloPart() {{
                         color = Pal.coalBlack;
                         layer = Layer.effect+0.95f;
                         shapes = 16;
