@@ -20,14 +20,12 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static mindustry.Vars.*;
 
-public class ArchivDBackground {
+public class ArchivDBackground implements Disposable {
     public static TextureRegion img;
     static Image animBG = new Image(new TextureRegion());
     private static float l2dImportProg;
     static boolean cancel = false;
-    static final String version = "v1.3";
-    private static final Interval interval = new Interval(2);
-    public static boolean L2DInstalled = false;
+    static final String version = "v1.4";
     protected static int animBGFrame;
 
     public static void buildL2D(String name, int frames, float framespeed){
@@ -54,19 +52,21 @@ public class ArchivDBackground {
                     break;
                 }
             }
-            Time.runTask (12f, () -> {
                 group.addChildAt (0, animBG);
                 Log.infoTag ("ArchiveDustry", "Background Loaded!");
                 Events.run (EventType.Trigger.update, () -> {
-                    if(!state.isMenu() || ui.planet.showed || ui.maps.isShown() || state.rules.editor){
+                    if(!state.isMenu()){
                         speed.set(0f);
-                    } else speed.set(framespeed);
-                    animBGFrame = (int) ((Time.globalTime / speed.get()) % tex.length);
-                    img.set(tex[animBGFrame]);
+                        img.set(tex[0]);
+                        return;
+                    } else {
+                        speed.set(framespeed);
+                        animBGFrame = (int) ((Time.globalTime / speed.get()) % tex.length);
+                        img.set(tex[animBGFrame]);
+                    }
                     setRegion(animBG, img);
                 });
             });
-    });
     }
     public static void downloadLive2D() {
         l2dImportProg = 0f;
@@ -144,5 +144,14 @@ public class ArchivDBackground {
         } catch (Exception e) {
             ui.showException(e);
         }
+    }
+    @Override
+    public void dispose() {
+
+    }
+
+    @Override
+    public boolean isDisposed() {
+        return Disposable.super.isDisposed();
     }
 }
