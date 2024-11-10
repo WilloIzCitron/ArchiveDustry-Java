@@ -55,7 +55,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
             t.add(new WarningBar()).color(Pal.techBlue).growX().height(24f);
             t.row();
             text("@loading");
-            bar = t.add(new Bar()).pad(3).padTop(6).height(40f).growX().visible(false).color(Pal.techBlue).get();
+            bar = t.add(new Bar()).pad(3).padTop(6).height(40f).growX().visible(false).get();
             t.row();
             button = t.button("@cancel", () -> {
             }).size(250f, 50f).visible(false).get();
@@ -70,7 +70,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
     public void setProgress(Floatp progress){
         bar.reset(0f);
         bar.visible = true;
-        bar.set(() -> ((int)(progress.get() * 100) + "%"), progress, Pal.accent);
+        bar.set(() -> ((int)(progress.get() * 100) + "%"), progress, Pal.techBlue);
     }
 
     public void snapProgress(){

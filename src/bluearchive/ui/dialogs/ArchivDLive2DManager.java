@@ -34,15 +34,13 @@ public class ArchivDLive2DManager extends BaseDialog {
                             }, Styles.flatBordert, () -> { Core.settings.put("setL2D", finalI); restartDialog.show();}).size((280/2f)+48f,(235/2f)+64f);
         }
     }};
-    ScrollPane scrl = new ScrollPane(tabl);
+    ScrollPane scrl = new ScrollPane(tabl, Styles.defaultPane);
 
     public ArchivDLive2DManager(){
         super(bundle.get("ba-l2dManager"));
         addCloseButton();
-        cont.add(tabl).row();
         scrl.draw();
-        scrl.setWidth(10f);
-        scrl.act(Time.delta);
+        cont.pane(tabl).scrollX(false).row();
         show();
     }
 }

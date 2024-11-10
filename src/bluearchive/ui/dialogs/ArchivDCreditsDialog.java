@@ -2,13 +2,11 @@ package bluearchive.ui.dialogs;
 
 import arc.Core;
 import arc.input.KeyCode;
-import arc.scene.Element;
 import arc.scene.style.TextureRegionDrawable;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import bluearchive.ArchivDMusic;
-import mindustry.gen.Musics;
 import mindustry.gen.*;
 import mindustry.ui.*;
 

@@ -61,19 +61,19 @@ public class ArchiveDustry extends Mod {
                     recollectionMusic = tree.loadMusic("somedaySometime");
                     break;
                 case 7:
-                    ArchivDBackground.buildL2D("mina", 68, 3f);
+                    ArchivDBackground.buildL2D("mina", 68, 4.5f);
                     recollectionMusic = tree.loadMusic("t171");
                     break;
                 case 8:
-                    ArchivDBackground.buildL2D("nonomi", 63, 4f);
+                    ArchivDBackground.buildL2D("nonomi", 63, 4.5f);
                     recollectionMusic = tree.loadMusic("cat");
                     break;
                 case 9:
-                    ArchivDBackground.buildL2D("kirino-swimsuit", 80, 3f);
+                    ArchivDBackground.buildL2D("kirino-swimsuit", 80, 3.2f);
                     recollectionMusic = tree.loadMusic("theme220");
                     break;
                 case 10:
-                    ArchivDBackground.buildL2D("shiroko-terror", 93, 3f);
+                    ArchivDBackground.buildL2D("shiroko-terror", 93, 3.2f);
                     recollectionMusic = tree.loadMusic("theme228");
                     break;
             }
