@@ -7,6 +7,7 @@
 [![issues - ArchiveDustry-Java](https://img.shields.io/github/issues/WilloIzCitron/ArchiveDustry-Java)](https://github.com/WilloIzCitron/ArchiveDustry-Java/issues)
 [![Stars - ArchiveDustry-Java](https://img.shields.io/github/stars/WilloIzCitron/ArchiveDustry-Java)](https://github.com/WilloIzCitron/ArchiveDustry-Java/stargazers)
 [![GitHub followers of WilloIzCitron](https://img.shields.io/github/followers/WilloIzCitron)](https://github.com/WilloIzCitron)
+[![Developer Donation (Indo Only)](https://img.shields.io/badge/Donate%20to%20Developer%20via%20Saweria-yellow)](https://saweria.co/willoizcitron)
 
 > [!NOTE]
 > This Mod was being migrated from JS<sup>JavaScript</sup> was being archived, this mod are almost perfect.
