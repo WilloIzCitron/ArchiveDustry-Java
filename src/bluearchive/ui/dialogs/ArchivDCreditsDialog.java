@@ -88,7 +88,7 @@ public class ArchivDCreditsDialog extends Dialog {
         //addCloseButton();
         scrollBar = 0f;
 
-        tree.loadMusic("menure-aoh").play();
+        ArchivDMusic.re_aoh.play();
         show();
     }
 
@@ -113,8 +113,8 @@ public class ArchivDCreditsDialog extends Dialog {
                 } //Counteract fade in
             }
         });
-        this.hidden(() -> tree.loadMusic("menure-aoh").stop());
-        if(((scrollBar > (halfTableHeight * 2f)) && tableHeight > 0) || Core.input.keyDown(KeyCode.escape)) {
+        this.hidden(() -> ArchivDMusic.re_aoh.stop());
+        if(((scrollBar > (halfTableHeight * 2f)) && tableHeight > 0) || Core.input.keyDown(KeyCode.escape) || Core.input.isTouched()) {
             this.hide();
         };
     }

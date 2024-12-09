@@ -8,14 +8,17 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.scene.*;
 import arc.scene.ui.*;
+import arc.struct.Seq;
 import arc.util.*;
 import arc.util.serialization.*;
+import bluearchive.l2d.Live2DBackgrounds;
 import mindustry.Vars;
 import mindustry.game.EventType;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static mindustry.Vars.*;
@@ -27,9 +30,14 @@ public class ArchivDBackground implements Disposable {
     static boolean cancel = false;
     static final String version = "v1.4";
     protected static int animBGFrame;
+    protected static TextureRegion[] tex;
 
-    public static void buildL2D(String name, int frames, float framespeed){
-        // Nullable, can be kill every mod with custom MenuRenderer
+    public static void buildL2D(String name){
+        // Nullable, can kill every mod with custom MenuRenderer
+        try {
+        Live2DBackgrounds.LoadedL2D l2dLoaded = Live2DBackgrounds.getL2D(name);
+        int frames = l2dLoaded.frames;
+        float framespeed = l2dLoaded.frameSpeed;
         AtomicReference<Float> speed = new AtomicReference<>(framespeed);
         Reflect.set(Vars.ui.menufrag, "renderer", null);
         Element tmp = Vars.ui.menuGroup.getChildren().first();
@@ -41,21 +49,21 @@ public class ArchivDBackground implements Disposable {
         render.visible = false;
 
         Events.on(EventType.ClientLoadEvent.class, e -> {
-            animBG.setFillParent(true);
-            TextureRegion[] tex = new TextureRegion[frames];
-            final TextureAtlas.AtlasRegion[] region = new TextureAtlas.AtlasRegion[frames];
-            for (int i = 0; i <= frames - 1; i++) {
-                region[i] = Core.atlas.addRegion ("bluearchive-" + name + (1 + i), new TextureRegion (new Texture (Fi.get (dataDirectory + "/live2d/" + name + "/"+(1 + i) + ".png"))));
-                tex[i] = region[i];
-                if (i == frames - 1) {
-                    img = tex[0];
-                    break;
+                animBG.setFillParent(true);
+                TextureRegion[] tex = new TextureRegion[frames];
+                final TextureAtlas.AtlasRegion[] region = new TextureAtlas.AtlasRegion[frames];
+                for (int i = 0; i <= frames - 1; i++) {
+                    region[i] = Core.atlas.addRegion("bluearchive-" + name + (1 + i), new TextureRegion(l2dLoaded.loadedL2ds.get(i)));
+                    tex[i] = region[i];
+                    if (i == frames - 1) {
+                        img = tex[0];
+                        break;
+                    }
                 }
-            }
-                group.addChildAt (0, animBG);
-                Log.infoTag ("ArchiveDustry", "Background Loaded!");
-                Events.run (EventType.Trigger.update, () -> {
-                    if(!state.isMenu()){
+                group.addChildAt(0, animBG);
+                Log.infoTag("ArchiveDustry", "Background Loaded!");
+                Events.run(EventType.Trigger.update, () -> {
+                    if (!state.isMenu()) {
                         speed.set(0f);
                         img.set(tex[0]);
                         return;
@@ -66,7 +74,10 @@ public class ArchivDBackground implements Disposable {
                     }
                     setRegion(animBG, img);
                 });
-            });
+        });
+        } catch (Exception error) {
+            throw new RuntimeException(error);
+        }
     }
     public static void downloadLive2D() {
         l2dImportProg = 0f;
@@ -77,9 +88,6 @@ public class ArchivDBackground implements Disposable {
             cancel = true;
             ui.loadfrag.hide();
         });
-        if (!OS.is64Bit) {
-            ui.showInfo(Core.bundle.get("unsupported32Bit"));
-        } else {
             Http.get(ghApi + "/repos/WilloIzCitron/ArchiveDustryLive2DRepo/releases/latest", res -> {
                 var json = Jval.read(res.getResultAsString());
                 var value = json.get("assets").asArray().find(v -> v.getString("name", "").startsWith("ArchivDLive2D-" + version + ".zip"));
@@ -97,7 +105,6 @@ public class ArchivDBackground implements Disposable {
                     Fi.get(dest).deleteDirectory();
                 });
             }, e -> ui.showException(e));
-        }
     }
     private static void setRegion(Image img, TextureRegion reg) {
         img.getRegion().set(reg);
@@ -147,7 +154,10 @@ public class ArchivDBackground implements Disposable {
     }
     @Override
     public void dispose() {
-
+        if (tex[animBGFrame-1] != null){
+            tex[animBGFrame-1].texture.dispose();
+            tex[animBGFrame-1] = null;
+        }
     }
 
     @Override

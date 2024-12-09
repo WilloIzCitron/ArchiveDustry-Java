@@ -4,7 +4,9 @@ import arc.*;
 import arc.audio.*;
 import arc.graphics.*;
 import arc.scene.style.TextureRegionDrawable;
+import arc.util.Log;
 import bluearchive.events.ArchivDClientLoad;
+import bluearchive.l2d.Live2DBackgrounds;
 import bluearchive.ui.*;
 import bluearchive.ui.overrides.ArchivDLoadingFragment;
 import mindustry.Vars;
@@ -18,6 +20,7 @@ import static mindustry.Vars.*;
 
 public class ArchiveDustry extends Mod {
     public static Music recollectionMusic;
+    int foundL2D, loadedL2D, erroredL2D;
 
     public ArchiveDustry() {
         ArchivDClientLoad.load();
@@ -27,6 +30,16 @@ public class ArchiveDustry extends Mod {
 
         //Use Pal.accent first... experimental Styles
         //ArchivDStyles.load();
+        dataDirectory.child("live2d").walk(f -> {
+            foundL2D++;
+            try {
+                Live2DBackgrounds.load(f);
+                loadedL2D++;
+            } catch(Exception e) {
+                Log.err(e);
+                erroredL2D++;
+            }
+        });
         ArchivDMusic.load();
         ArchivDLoadingFragment.init();
 
@@ -37,43 +50,43 @@ public class ArchiveDustry extends Mod {
         if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D", true)) {
             switch (Core.settings.getInt("setL2D")) {
                 case 1:
-                    ArchivDBackground.buildL2D("kotama", 68, 5f);
+                    ArchivDBackground.buildL2D("kotama");
                     recollectionMusic = tree.loadMusic("menuaira");
                     break;
                 case 2:
-                    ArchivDBackground.buildL2D("noa", 68, 5f);
+                    ArchivDBackground.buildL2D("noa");
                     recollectionMusic = tree.loadMusic("menurcl");
                     break;
                 case 3:
-                    ArchivDBackground.buildL2D("mika", 98, 5f);
+                    ArchivDBackground.buildL2D("mika");
                     recollectionMusic = tree.loadMusic("moment");
                     break;
                 case 4:
-                    ArchivDBackground.buildL2D("saori", 49, 5f);
+                    ArchivDBackground.buildL2D("saori");
                     recollectionMusic = Musics.fine;
                     break;
                 case 5:
-                    ArchivDBackground.buildL2D("arisu", 150, 5f);
+                    ArchivDBackground.buildL2D("arisu");
                     recollectionMusic = tree.loadMusic("somedaySometime");
                     break;
                 case 6:
-                    ArchivDBackground.buildL2D("reisa", 146, 4f);
+                    ArchivDBackground.buildL2D("reisa");
                     recollectionMusic = tree.loadMusic("somedaySometime");
                     break;
                 case 7:
-                    ArchivDBackground.buildL2D("mina", 68, 4.5f);
+                    ArchivDBackground.buildL2D("mina");
                     recollectionMusic = tree.loadMusic("t171");
                     break;
                 case 8:
-                    ArchivDBackground.buildL2D("nonomi", 63, 4.5f);
+                    ArchivDBackground.buildL2D("nonomi");
                     recollectionMusic = tree.loadMusic("cat");
                     break;
                 case 9:
-                    ArchivDBackground.buildL2D("kirino-swimsuit", 80, 3.2f);
+                    ArchivDBackground.buildL2D("kirinoSwimsuit");
                     recollectionMusic = tree.loadMusic("theme220");
                     break;
                 case 10:
-                    ArchivDBackground.buildL2D("shiroko-terror", 93, 3.2f);
+                    ArchivDBackground.buildL2D("shirokoTerror");
                     recollectionMusic = tree.loadMusic("theme228");
                     break;
             }

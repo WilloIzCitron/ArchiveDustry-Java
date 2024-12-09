@@ -27,10 +27,16 @@ public class ArchivDLoadingFragment extends LoadingFragment {
     private float progValue;
     private Label tooltipTitle;
     private Label tooltipInfo;
+    private static float scale;
 
     public static void init() {
         ui.loadfrag = new ArchivDLoadingFragment();
         ui.loadfrag.build(Core.scene.root);
+        if(!mobile){
+            scale = 45f;
+        } else {
+            scale = 25f;
+        }
     }
 
     public void build(Group parent){
@@ -48,7 +54,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
             t.row();
             tooltipInfo = t.add("Line1\nline2\nline3\n").pad(10).left().get();
             t.row();
-            t.add().height((Core.graphics.getHeight() - 25f)/2f).row();
+            t.add().height((Core.graphics.getHeight() - scale)/2f).row();
             t.row();
             nameLabel = t.add("@loading").color(Pal.techBlue).pad(10f).style(Styles.techLabel).left().get();
             t.row();
