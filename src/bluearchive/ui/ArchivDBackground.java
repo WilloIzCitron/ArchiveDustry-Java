@@ -2,6 +2,7 @@ package bluearchive.ui;
 
 import arc.Core;
 import arc.*;
+import arc.audio.Music;
 import arc.files.*;
 import arc.func.*;
 import arc.graphics.*;
@@ -11,6 +12,7 @@ import arc.scene.ui.*;
 import arc.struct.Seq;
 import arc.util.*;
 import arc.util.serialization.*;
+import bluearchive.ArchiveDustry;
 import bluearchive.l2d.Live2DBackgrounds;
 import mindustry.Vars;
 import mindustry.game.EventType;
@@ -36,7 +38,12 @@ public class ArchivDBackground implements Disposable {
         // Nullable, can kill every mod with custom MenuRenderer
         try {
         Live2DBackgrounds.LoadedL2D l2dLoaded = Live2DBackgrounds.getL2D(name);
-        int frames = l2dLoaded.frames;
+        if(l2dLoaded.isSoundTrackLocal) {
+            ArchiveDustry.recollectionMusic = tree.loadMusic(l2dLoaded.localSoundTrack);
+        } else {
+            ArchiveDustry.recollectionMusic = l2dLoaded.soundTrack;
+        }
+        int frames = l2dLoaded.loadedL2ds.size;
         float framespeed = l2dLoaded.frameSpeed;
         AtomicReference<Float> speed = new AtomicReference<>(framespeed);
         Reflect.set(Vars.ui.menufrag, "renderer", null);
@@ -71,6 +78,7 @@ public class ArchivDBackground implements Disposable {
                         speed.set(framespeed);
                         animBGFrame = (int) ((Time.globalTime / speed.get()) % tex.length);
                         img.set(tex[animBGFrame]);
+                        //Log.infoTag("ArchiveDustry Debug", "L2D on:" +animBGFrame);
                     }
                     setRegion(animBG, img);
                 });
