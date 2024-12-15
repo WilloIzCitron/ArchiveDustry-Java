@@ -35,8 +35,22 @@ public class Live2DBackgrounds {
             int finalI = i;
             loadedL2ds.add(new Texture(rawL2d.find(m -> Objects.equals(m.nameWithoutExtension(), String.valueOf(finalI+1)))));
         }
-        if(!meta.isSoundTrackLocal)
-            soundTrack = new Music(f.child("soundtrack.ogg"));
+        if(!meta.isSoundTrackLocal) {
+            try {
+                Fi track = f.child("soundtrack.ogg");
+                if (track.exists()) {
+                    soundTrack = new Music(track);
+                } else {
+                    Fi trackMP3 = f.child("soundtrack.mp3");
+                    if (trackMP3.exists()) {
+                        soundTrack = new Music(trackMP3);
+                    }
+                }
+            } catch (RuntimeException r) {
+                throw new RuntimeException("Live2d \'"+(meta.name)+ "\' specifies that it uses an exclusive soundtrack file, but it does not have one. (is it named incorrectly?");
+
+            }
+        }
         LoadedL2D l2d = new LoadedL2D(meta.name, live2d, meta, meta.frameSpeed, meta.isSoundTrackLocal, meta.localSoundTrack, loadedL2ds, soundTrack);
         Log.infoTag("ArchiveDustry", (meta.displayName)+ " has been loaded!");
         live2ds.add(l2d);
@@ -67,7 +81,11 @@ public class Live2DBackgrounds {
         public final float frameSpeed;
         public final Seq<Texture> loadedL2ds;
         public final @Nullable Music soundTrack;
-        /* Local Soundtrack means the mod's soundtrack */
+        /*
+        * Local Soundtrack means the internal mod soundtrack.
+        * `isSoundTrackLocal` is a boolean that Live2D package use internal mod soundtrack as main menu music.
+        * `localSoundTrack` is a music name of local mod soundtrack.
+        */
         public final boolean isSoundTrackLocal;
         public final @Nullable String localSoundTrack;
 
