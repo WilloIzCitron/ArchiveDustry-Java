@@ -30,7 +30,7 @@ public class Live2DBackgrounds {
         L2DMeta meta = metaBuild(reader.parse(s));
         AtomicInteger L2DCount = new AtomicInteger();
         // Single line? why?
-        f.child("l2d").walk(l2dFound -> {L2DCount.getAndIncrement(); /*Log.infoTag("ArchiveDustry Debug", "L2D loaded no: "+(L2DCount.get())+" with filename "+(l2dFound.name())+" from "+(meta.name));*/ try {rawL2d.add(l2dFound);}catch(Exception e){ throw new RuntimeException("No frames found inside the Live2D zip file");}});
+        f.child("l2d").walk(l2dFound -> {L2DCount.getAndIncrement(); /*Log.infoTag("ArchiveDustry Debug", "L2D loaded no: "+(L2DCount.get())+" with filename "+(l2dFound.name())+" from "+(meta.name));*/ try {rawL2d.add(l2dFound);}catch(RuntimeException e){ throw new L2DNoFramesException("No frames found inside the Live2D zip file");}});
         for (int i = 0; i <= L2DCount.get()-1; i++) {
             int finalI = i;
             loadedL2ds.add(new Texture(rawL2d.find(m -> Objects.equals(m.nameWithoutExtension(), String.valueOf(finalI+1)))));
