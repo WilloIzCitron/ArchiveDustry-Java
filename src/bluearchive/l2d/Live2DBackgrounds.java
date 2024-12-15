@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Live2DBackgrounds {
     public static Seq<LoadedL2D> live2ds = new Seq<>();
     public static JsonReader reader = new JsonReader();
+    public static Music soundTrack = new Music();
 
     public static void load(Fi live2d) throws Exception {
         ZipFi f = new ZipFi(live2d);
