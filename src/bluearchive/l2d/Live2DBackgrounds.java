@@ -74,12 +74,15 @@ public class Live2DBackgrounds {
     }
 
     public static class LoadedL2D{
+        /* Internal name, display name and author who made this package. */
         public final String name, displayName, author;
         public final Fi file;
         public final L2DMeta meta;
-        //public final int frames;
+        /* Frame speed of Live2D, how fast could it run. */
         public final float frameSpeed;
+        /* Loaded Live2D frames are inside of Sequence, they can be loaded on `ArchivDBackground.java` */
         public final Seq<Texture> loadedL2ds;
+        /* Custom Soundtrack for Live2D, must be named "soundtrack.ogg" or "soundtrack.mp3". */
         public final @Nullable Music soundTrack;
         /*
         * Local Soundtrack means the internal mod soundtrack.
