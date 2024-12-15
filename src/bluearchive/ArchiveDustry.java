@@ -47,47 +47,47 @@ public class ArchiveDustry extends Mod {
             UnitHalo.init();
         }
         UnitSound.init();
-        if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D", true)) {
-            switch (Core.settings.getInt("setL2D")) {
-                case 1:
-                    ArchivDBackground.buildL2D("kotama");
-                    recollectionMusic = tree.loadMusic("menuaira");
-                    break;
-                case 2:
-                    ArchivDBackground.buildL2D("noa");
-                    recollectionMusic = tree.loadMusic("menurcl");
-                    break;
-                case 3:
-                    ArchivDBackground.buildL2D("mika");
-                    recollectionMusic = tree.loadMusic("moment");
-                    break;
-                case 4:
-                    ArchivDBackground.buildL2D("saori");
-                    recollectionMusic = Musics.fine;
-                    break;
-                case 5:
-                    ArchivDBackground.buildL2D("arisu");
-                    recollectionMusic = tree.loadMusic("somedaySometime");
-                    break;
-                case 6:
-                    ArchivDBackground.buildL2D("reisa");
-                    recollectionMusic = tree.loadMusic("somedaySometime");
-                    break;
-                case 7:
-                    ArchivDBackground.buildL2D("mina");
-                    recollectionMusic = tree.loadMusic("t171");
-                    break;
-                case 8:
-                    ArchivDBackground.buildL2D("nonomi");
-                    recollectionMusic = tree.loadMusic("cat");
-                    break;
-                case 9:
-                    ArchivDBackground.buildL2D("kirinoSwimsuit");
-                    break;
-                case 10:
-                    ArchivDBackground.buildL2D("shirokoTerror");
-                    break;
-            }
+        if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D", true) && Core.settings.has("setL2D-new")) {
+//            switch (Core.settings.getInt("setL2D")) {
+//                case 1:
+//                    ArchivDBackground.buildL2D("kotama");
+//                    recollectionMusic = tree.loadMusic("menuaira");
+//                    break;
+//                case 2:
+//                    ArchivDBackground.buildL2D("noa");
+//                    recollectionMusic = tree.loadMusic("menurcl");
+//                    break;
+//                case 3:
+//                    ArchivDBackground.buildL2D("mika");
+//                    recollectionMusic = tree.loadMusic("moment");
+//                    break;
+//                case 4:
+//                    ArchivDBackground.buildL2D("saori");
+//                    recollectionMusic = Musics.fine;
+//                    break;
+//                case 5:
+//                    ArchivDBackground.buildL2D("arisu");
+//                    recollectionMusic = tree.loadMusic("somedaySometime");
+//                    break;
+//                case 6:
+//                    ArchivDBackground.buildL2D("reisa");
+//                    recollectionMusic = tree.loadMusic("somedaySometime");
+//                    break;
+//                case 7:
+//                    ArchivDBackground.buildL2D("mina");
+//                    recollectionMusic = tree.loadMusic("t171");
+//                    break;
+//                case 8:
+//                    ArchivDBackground.buildL2D("nonomi");
+//                    recollectionMusic = tree.loadMusic("cat");
+//                    break;
+//                case 9:
+//                    ArchivDBackground.buildL2D("kirinoSwimsuit");
+//                    break;
+//                case 10:
+                    ArchivDBackground.buildL2D(Core.settings.getString("setL2D-new", "kirinoSwimsuit"));
+//                  break;
+//            }
         }
         ArchivDSettings.loadSettings();
         Events.on(EventType.ClientLoadEvent.class, e -> {

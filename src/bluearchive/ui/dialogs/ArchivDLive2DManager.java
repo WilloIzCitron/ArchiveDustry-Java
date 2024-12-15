@@ -11,6 +11,7 @@ import mindustry.ui.Styles;
 import mindustry.ui.dialogs.BaseDialog;
 
 import static arc.Core.*;
+import static bluearchive.l2d.Live2DBackgrounds.live2ds;
 
 public class ArchivDLive2DManager extends BaseDialog {
     //TODO: make another dialog in order to view Live2D(Recollection) Metadata
@@ -25,15 +26,13 @@ public class ArchivDLive2DManager extends BaseDialog {
         }});
     }};
     Table tabl = new Table(){{
-        //TODO: integrate with Live2DBackgrounds
-        for (int i = 1; i < 11; i++) {
-            int finalI = i;
-            cont.button(con -> {
-                            con.row();
-                            con.add(bundle.get("ba-l2d"+ finalI +".name")).row();
-                            con.add(bundle.get("ba-l2d"+ finalI +".author")).color(Color.gray).bottom().row();
-                            }, Styles.flatBordert, () -> { Core.settings.put("setL2D", finalI); restartDialog.show();}).growX().row();
-        }
+            live2ds.forEach(l -> {
+                cont.button(con -> {
+                con.row();
+                con.add(l.displayName).row();
+                con.add(bundle.formatString(bundle.get("ba-l2d.author"), l.author)).color(Color.gray).bottom().row();
+            }, Styles.flatBordert, () -> { Core.settings.put("setL2D-new", l.name); restartDialog.show();}).growX().row();
+            });
     }};
     ScrollPane scrl = new ScrollPane(tabl, Styles.defaultPane);
 

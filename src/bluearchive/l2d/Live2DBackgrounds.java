@@ -1,18 +1,18 @@
 package bluearchive.l2d;
 
+import arc.Core;
 import arc.audio.Music;
-import arc.files.Fi;
+import arc.files.*;
 import arc.files.ZipFi;
 import arc.graphics.Texture;
 import arc.struct.*;
 import arc.util.Log;
 import arc.util.Nullable;
-import arc.util.Strings;
 import arc.util.serialization.*;
 
-import java.util.Collections;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
+import static mindustry.Vars.*;
 
 public class Live2DBackgrounds {
     public static Seq<LoadedL2D> live2ds = new Seq<>();
@@ -23,9 +23,9 @@ public class Live2DBackgrounds {
         ZipFi f = new ZipFi(live2d);
         Seq<Texture> loadedL2ds = new Seq<>();
         Seq<Fi> rawL2d = new Seq<>();
-        Music soundTrack = null;
-        if (!f.child("live2d.hjson").exists()) throw new L2DMetaMissingException("Live2d \'"+ live2d.nameWithoutExtension()+ "\' has no live2d.hjson in metadata");
-        String s = f.child("live2d.hjson").readString();
+        String s;
+        if (!f.child("live2d.hjson").exists() && !f.child("live2d.json").exists()) throw new L2DMetaMissingException("Live2d \'"+ live2d.nameWithoutExtension()+ "\' has no live2d.hjson or live2d.json in metadata");
+        if (f.child("live2d.hjson").exists()) {s = f.child("live2d.hjson").readString();} else {s = f.child("live2d.json").readString();}
         if(!s.startsWith("{")) s = "{\n" + s + "\n}";
         L2DMeta meta = metaBuild(reader.parse(s));
         AtomicInteger L2DCount = new AtomicInteger();
@@ -35,10 +35,10 @@ public class Live2DBackgrounds {
             int finalI = i;
             loadedL2ds.add(new Texture(rawL2d.find(m -> Objects.equals(m.nameWithoutExtension(), String.valueOf(finalI+1)))));
         }
-        if(!meta.isSoundTrackLocal) {
+        if(!meta.isSoundTrackLocal)
             soundTrack = new Music(f.child("soundtrack.ogg"));
-        };
         LoadedL2D l2d = new LoadedL2D(meta.name, live2d, meta, meta.frameSpeed, meta.isSoundTrackLocal, meta.localSoundTrack, loadedL2ds, soundTrack);
+        Log.infoTag("ArchiveDustry", (meta.displayName)+ " has been loaded!");
         live2ds.add(l2d);
     }
 
@@ -60,7 +60,7 @@ public class Live2DBackgrounds {
     }
 
     public static class LoadedL2D{
-        public final String name;
+        public final String name, displayName, author;
         public final Fi file;
         public final L2DMeta meta;
         //public final int frames;
@@ -74,6 +74,8 @@ public class Live2DBackgrounds {
         public LoadedL2D(String name, Fi file, L2DMeta meta/*, int frames*/, float frameSpeed, boolean isSoundTrackLocal, @Nullable String localSoundTrack, Seq<Texture> loadedL2ds, Music soundTrack) {
             this.name = name;
             this.file = file;
+            this.displayName = meta.displayName;
+            this.author = meta.author;
             this.meta = meta;
             //this.frames = frames;
             this.frameSpeed = frameSpeed;
@@ -94,7 +96,7 @@ public class Live2DBackgrounds {
 
     }
 
-    public static class L2DMetaMissingException extends Exception{
+    public static class L2DMetaMissingException extends RuntimeException{
 
         public L2DMetaMissingException(){
         }
@@ -112,7 +114,7 @@ public class Live2DBackgrounds {
         }
 
     }
-    public static class L2DNoFramesException extends Exception{
+    public static class L2DNoFramesException extends RuntimeException{
         public L2DNoFramesException(){
         }
         public L2DNoFramesException(String message){super(message);}

@@ -12,6 +12,7 @@ import arc.scene.ui.*;
 import arc.struct.Seq;
 import arc.util.*;
 import arc.util.serialization.*;
+import bluearchive.ArchivDMusic;
 import bluearchive.ArchiveDustry;
 import bluearchive.l2d.Live2DBackgrounds;
 import mindustry.Vars;

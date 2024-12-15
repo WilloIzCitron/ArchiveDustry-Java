@@ -1,15 +1,15 @@
 package bluearchive;
 
-import arc.*;
-import arc.audio.*;
+import arc.Core;
+import arc.Events;
+import arc.audio.Music;
 import arc.math.Mathf;
-import arc.struct.*;
+import arc.struct.ObjectMap;
+import arc.struct.Seq;
 import arc.util.*;
-import mindustry.Vars;
-import mindustry.audio.SoundControl;
-import mindustry.content.*;
+import mindustry.content.StatusEffects;
 import mindustry.game.EventType;
-import mindustry.gen.*;
+import mindustry.gen.Musics;
 
 import static bluearchive.ui.ArchivDSettings.waveVolume;
 import static mindustry.Vars.*;
@@ -20,6 +20,7 @@ public class ArchivDMusic {
     private static Music lastMusicPlayed;
     protected static long lastPlayed;
     private static Music currentPlay;
+    public static ObjectMap<String, Music> loadedMusic = new ObjectMap<>();
     public static Music
             wave1, wave2, wave3, wave4,
             cat, aspiration, dawn, bunny,
@@ -72,6 +73,39 @@ public class ArchivDMusic {
                 // Music has exception throw, why it was created
                 throw new RuntimeException(ex);
             }
+
+            loadedMusic.put("wave1", wave1);
+            loadedMusic.put("wave2", wave2);
+            loadedMusic.put("wave3", wave3);
+            loadedMusic.put("wave4", wave4);
+            loadedMusic.put("cat", cat);
+            loadedMusic.put("aspiration", aspiration);
+            loadedMusic.put("dawn", dawn);
+            loadedMusic.put("bunny", bunny);
+            loadedMusic.put("aira", aira);
+            loadedMusic.put("sugar", sugar);
+            loadedMusic.put("hare", hare);
+            loadedMusic.put("oriental", oriental);
+            loadedMusic.put("game10", game10);
+            loadedMusic.put("game11", game11);
+            loadedMusic.put("honey", honey);
+            loadedMusic.put("dreamer", dreamer);
+            loadedMusic.put("boss3", boss3);
+            loadedMusic.put("boss4", boss4);
+            loadedMusic.put("amplify", amplify);
+            loadedMusic.put("moment", moment);
+            loadedMusic.put("somedaySometime", somedaySometime);
+            loadedMusic.put("t171", t171);
+            loadedMusic.put("theme220", theme220);
+            loadedMusic.put("theme228", theme228);
+            loadedMusic.put("re_aoh", re_aoh);
+
+            // Add 'mindustry.gen.Musics' musics as well
+            loadedMusic.put("game2", Musics.game2);
+            loadedMusic.put("game5", Musics.game5);
+            loadedMusic.put("menu", Musics.menu);
+            loadedMusic.put("fine", Musics.fine);
+            
             // add custom music contents to vanilla SoundControl's music sequences
             control.sound.ambientMusic.addAll(dawn, cat, bunny, game10, honey, amplify, t171);
             control.sound.darkMusic.addAll(aira, sugar, hare, oriental, dreamer, game11,moment, somedaySometime);
