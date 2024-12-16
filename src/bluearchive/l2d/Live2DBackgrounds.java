@@ -47,7 +47,7 @@ public class Live2DBackgrounds {
                     }
                 }
             } catch (RuntimeException r) {
-                throw new RuntimeException("Live2d \'"+(meta.name)+ "\' specifies that it uses an exclusive soundtrack file, but it does not have one. (is it named incorrectly?");
+                throw new RuntimeException("Live2d \'"+(meta.name)+ "\' uses an external soundtrack file, but it does not have one. (is it was named incorrectly?)");
 
             }
         }
