@@ -77,7 +77,6 @@ public class ArchiveDustry extends Mod {
 //                    break;
                     if(!Core.settings.getString("setL2D-new").isEmpty()) {
                         ArchivDBackground.buildL2D(Core.settings.getString("setL2D-new"));
-                        ArchivDBackground.initiate();
                     } else {
                         Core.settings.put("enableL2D", false); //fallback if setl2d is blank
                         Core.settings.put("setSong", 1);
@@ -104,10 +103,7 @@ public class ArchiveDustry extends Mod {
                 tree.loadMusic("research").setLooping(true);
                 tree.loadMusic("database").setLooping(true);
                 tree.loadMusic("loadout").setLooping(true);
-                ui.research.shown(() -> {
-                    ArchivDBackground.stop();
-                    tree.loadMusic("research").play();
-                });
+                ui.research.shown(() -> tree.loadMusic("research").play());
                 ui.research.update(() -> {
                     if (state.isMenu() || ui.planet.isShown() || ui.editor.isShown() || state.rules.editor) {
                         control.sound.stop();
@@ -116,12 +112,8 @@ public class ArchiveDustry extends Mod {
                         } //Counteract fade in
                     }
                 });
-                ui.research.hidden(() -> {
-                    tree.loadMusic("research").stop();
-                });
-                ui.database.shown(() -> {
-                    tree.loadMusic("database").play();
-                });
+                ui.research.hidden(() -> tree.loadMusic("research").stop());
+                ui.database.shown(() -> tree.loadMusic("database").play());
                 ui.database.update(() -> {
                     if (state.isMenu() || ui.planet.isShown() || ui.editor.isShown() || state.rules.editor) {
                         control.sound.stop();
@@ -130,12 +122,8 @@ public class ArchiveDustry extends Mod {
                         } //Counteract fade in
                     }
                 });
-                ui.database.hidden(() -> {
-                    tree.loadMusic("database").stop();
-                });
-                ui.schematics.shown(() -> {
-                    tree.loadMusic("loadout").play();
-                });
+                ui.database.hidden(() -> tree.loadMusic("database").stop());
+                ui.schematics.shown(() -> tree.loadMusic("loadout").play());
                 ui.schematics.update(() -> {
                     if (state.isMenu() || ui.planet.isShown() || ui.editor.isShown() || state.rules.editor) {
                         control.sound.stop();
@@ -144,19 +132,8 @@ public class ArchiveDustry extends Mod {
                         } //Counteract fade in
                     }
                 });
-                ui.schematics.hidden(() -> {
-                    tree.loadMusic("loadout").stop();
-                });
+                ui.schematics.hidden(() -> tree.loadMusic("loadout").stop());
             });
-            Events.run(EventType.Trigger.update, () -> {
-                    if (!state.isMenu()) {
-                        ArchivDBackground.stop();
-                    } else if(state.isPlaying()) ArchivDBackground.stop();
-                    else {
-                        ArchivDBackground.initiate();
-                    }
-            });
-
 
             Events.on(EventType.WinEvent.class, winner -> {
                 Music currentPlay = Reflect.get(control.sound, "current");
@@ -164,10 +141,7 @@ public class ArchiveDustry extends Mod {
                     currentPlay.stop();
                 }
                 tree.loadMusic("win").play();
-                ui.restart.hidden(() -> {
-                    tree.loadMusic("win").stop();
-
-                });
+                ui.restart.hidden(() -> tree.loadMusic("win").stop());
             });
             Events.on(EventType.LoseEvent.class, winner -> {
                 Music currentPlay = Reflect.get(control.sound, "current");
@@ -175,9 +149,7 @@ public class ArchiveDustry extends Mod {
                     currentPlay.stop();
                 }
                 tree.loadMusic("lose").play();
-                ui.restart.hidden(() -> {
-                    tree.loadMusic("lose").stop();
-                });
+                ui.restart.hidden(() -> tree.loadMusic("lose").stop());
             });
 
 

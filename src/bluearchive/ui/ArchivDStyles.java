@@ -1,7 +1,5 @@
 package bluearchive.ui;
 
-import arc.scene.Element;
-import mindustry.core.UI;
 import mindustry.ui.*;
 
 import arc.scene.style.*;

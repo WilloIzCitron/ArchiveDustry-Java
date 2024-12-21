@@ -8,7 +8,6 @@ import arc.util.Log;
 import arc.util.Time;
 import arc.util.Timer;
 import mindustry.content.UnitTypes;
-import mindustry.game.EventType;
 import mindustry.game.EventType.*;
 import mindustry.Vars;
 import mindustry.gen.Sounds;
@@ -68,17 +67,13 @@ public class UnitSound {
             if (e.unit.type == Vars.content.unit("collaris") && interval.get(300)) {
                 CollarisHitSound = Seq.with(new Sound(Vars.tree.get("sounds/units/collaris-hit1.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-hit2.ogg")), new Sound(Vars.tree.get("sounds/units/collaris-hit3.ogg")));
                 if (!e.unit.dead) {
-                    Time.run(0f, () -> {
-                        CollarisHitSound.random().play();
-                    });
+                    Time.run(0f, () -> CollarisHitSound.random().play());
                 }
             }
             if (e.unit.type == Vars.content.unit("toxopid") && interval.get(300)) {
                 ToxopidHitSound = Seq.with(new Sound(Vars.tree.get("sounds/units/toxopid-hit1.ogg")), new Sound(Vars.tree.get("sounds/units/toxopid-hit2.ogg")), new Sound(Vars.tree.get("sounds/units/toxopid-hit3.ogg")));
                 if (!e.unit.dead) {
-                    Time.run(0f, () -> {
-                        ToxopidHitSound.random().play();
-                    });
+                    Time.run(0f, () -> ToxopidHitSound.random().play());
                 }
             }
         });

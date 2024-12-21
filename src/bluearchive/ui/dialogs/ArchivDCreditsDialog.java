@@ -14,9 +14,9 @@ import static bluearchive.ArchiveDustry.soundControlPlaying; //inherited
 import static mindustry.Vars.*;
 
 public class ArchivDCreditsDialog extends Dialog {
-    Image modLogo = new Image(new TextureRegionDrawable(Core.atlas.find("bluearchive-logo")), Scaling.fit);
-    Image nekoUILogo = new Image(new TextureRegionDrawable(Core.atlas.find("bluearchive-nekoui")), Scaling.fit);
-    Image nexonLogo = new Image(new TextureRegionDrawable(Core.atlas.find("bluearchive-creditpart")), Scaling.fit);
+    final Image modLogo = new Image(new TextureRegionDrawable(Core.atlas.find("bluearchive-logo")), Scaling.fit);
+    final Image nekoUILogo = new Image(new TextureRegionDrawable(Core.atlas.find("bluearchive-nekoui")), Scaling.fit);
+    final Image nexonLogo = new Image(new TextureRegionDrawable(Core.atlas.find("bluearchive-creditpart")), Scaling.fit);
     Table in = new Table(){{
         center();
         add(modLogo).size(768, 153).row();
@@ -113,10 +113,10 @@ public class ArchivDCreditsDialog extends Dialog {
                 } //Counteract fade in
             }
         });
-        this.hidden(() -> {ArchivDMusic.re_aoh.stop(); modLogo = null; nekoUILogo = null; nexonLogo = null;});
+        this.hidden(() -> ArchivDMusic.re_aoh.stop());
         if(((scrollBar > (halfTableHeight * 2f)) && tableHeight > 0) || Core.input.keyDown(KeyCode.escape) || Core.input.isTouched()) {
             this.hide();
-        };
+        }
     }
 
     @Override

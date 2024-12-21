@@ -10,13 +10,10 @@ import arc.scene.event.*;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.util.Nullable;
-import bluearchive.ui.ArchivDStyles;
 import mindustry.graphics.*;
 import mindustry.ui.*;
 import mindustry.ui.fragments.*;
 import arc.math.*;
-
-import javax.swing.*;
 
 import static mindustry.Vars.*;
 

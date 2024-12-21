@@ -2,7 +2,6 @@ package bluearchive.l2d;
 
 import arc.audio.Music;
 import arc.files.*;
-import arc.files.ZipFi;
 import arc.graphics.Texture;
 import arc.struct.*;
 import arc.util.Log;

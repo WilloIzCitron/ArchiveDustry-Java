@@ -25,7 +25,7 @@ public class ArchivDMusic {
             boss3, boss4, dreamer, game10,
             game11, honey, amplify, moment, somedaySometime, t171, theme220, theme228, re_aoh;
 
-    // i hope this work :)
+    // I hope this work :)
     protected static void playMusic(Music music){
         if(current != null || music == null || !(boolean)((Core.settings.getInt("musicvol") > 0) || waveVolume > 0)) return;
         lastMusicPlayed = music;

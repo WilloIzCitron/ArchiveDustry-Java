@@ -68,12 +68,8 @@ public class ArchivDSettings {
             t.pref(new ButtonSetting("ba-downloadLive2D", Icon.download, ArchivDBackground::downloadLive2D, 32));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.links")));
             t.pref(new Separator(4));
-            t.pref(new ButtonSetting("ba-youtube", Icon.play, () -> {
-                Core.app.openURI("https://www.youtube.com/channel/UCsrnDYrkovQhCCE8kwKcvKQ");
-            }, 32));
-            t.pref(new ButtonSetting("ba-github", Icon.github, () -> {
-                Core.app.openURI("https://www.github.com/willoizcitron/archivedustry-java");
-            }, 32));
+            t.pref(new ButtonSetting("ba-youtube", Icon.play, () -> Core.app.openURI("https://www.youtube.com/channel/UCsrnDYrkovQhCCE8kwKcvKQ"), 32));
+            t.pref(new ButtonSetting("ba-github", Icon.github, () -> Core.app.openURI("https://www.github.com/willoizcitron/archivedustry-java"), 32));
             t.pref(new ButtonSetting(Core.bundle.get("credits"), Icon.info, ArchivDCreditsDialog::new, 32));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.mixer")));
             t.pref(new Separator(4));
@@ -103,7 +99,7 @@ public class ArchivDSettings {
             if (OS.username.startsWith("willoizcitron")){
                 t.pref(new Separator(2));
                 t.pref(new TextSeparator("< Developer Settings >"));
-            };
+            }
         });
     }
 
