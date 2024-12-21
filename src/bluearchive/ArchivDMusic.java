@@ -4,7 +4,6 @@ import arc.Core;
 import arc.Events;
 import arc.audio.Music;
 import arc.math.Mathf;
-import arc.struct.ObjectMap;
 import arc.struct.Seq;
 import arc.util.*;
 import mindustry.content.StatusEffects;
@@ -18,9 +17,7 @@ public class ArchivDMusic {
     public static Seq<Music> waveMusic = Seq.with();
     private static @Nullable Music current;
     private static Music lastMusicPlayed;
-    protected static long lastPlayed;
     private static Music currentPlay;
-    public static ObjectMap<String, Music> loadedMusic = new ObjectMap<>();
     public static Music
             wave1, wave2, wave3, wave4,
             cat, aspiration, dawn, bunny,
@@ -73,42 +70,10 @@ public class ArchivDMusic {
                 // Music has exception throw, why it was created
                 throw new RuntimeException(ex);
             }
-
-            loadedMusic.put("wave1", wave1);
-            loadedMusic.put("wave2", wave2);
-            loadedMusic.put("wave3", wave3);
-            loadedMusic.put("wave4", wave4);
-            loadedMusic.put("cat", cat);
-            loadedMusic.put("aspiration", aspiration);
-            loadedMusic.put("dawn", dawn);
-            loadedMusic.put("bunny", bunny);
-            loadedMusic.put("aira", aira);
-            loadedMusic.put("sugar", sugar);
-            loadedMusic.put("hare", hare);
-            loadedMusic.put("oriental", oriental);
-            loadedMusic.put("game10", game10);
-            loadedMusic.put("game11", game11);
-            loadedMusic.put("honey", honey);
-            loadedMusic.put("dreamer", dreamer);
-            loadedMusic.put("boss3", boss3);
-            loadedMusic.put("boss4", boss4);
-            loadedMusic.put("amplify", amplify);
-            loadedMusic.put("moment", moment);
-            loadedMusic.put("somedaySometime", somedaySometime);
-            loadedMusic.put("t171", t171);
-            loadedMusic.put("theme220", theme220);
-            loadedMusic.put("theme228", theme228);
-            loadedMusic.put("re_aoh", re_aoh);
-
-            // Add 'mindustry.gen.Musics' musics as well
-            loadedMusic.put("game2", Musics.game2);
-            loadedMusic.put("game5", Musics.game5);
-            loadedMusic.put("menu", Musics.menu);
-            loadedMusic.put("fine", Musics.fine);
             
             // add custom music contents to vanilla SoundControl's music sequences
-            control.sound.ambientMusic.addAll(dawn, cat, bunny, game10, honey, amplify, t171);
-            control.sound.darkMusic.addAll(aira, sugar, hare, oriental, dreamer, game11,moment, somedaySometime);
+            control.sound.ambientMusic.addAll(dawn, cat, bunny, game10, honey, amplify, t171, theme220);
+            control.sound.darkMusic.addAll(aira, sugar, hare, oriental, dreamer, game11,moment, somedaySometime, theme228);
             control.sound.bossMusic.addAll(boss3, boss4);
             // create wave music soundtrack
             waveMusic = Seq.with(Musics.game2, Musics.game5, wave1, aspiration, wave2, wave3, wave4);
@@ -120,19 +85,22 @@ public class ArchivDMusic {
             // music updater
             Log.infoTag("ArchiveDustry", "Music has been loaded!");
             Timer.schedule(() -> {
-                // stops if there's no enemy
-                if (current != null && state.enemies == 0){
-                    current.stop();
-                    current = null;
-                }
-                // no interruption from ambient soundtrack
-                if(current != null && Reflect.get(control.sound, "current") != null) {
-                    currentPlay = Reflect.get(control.sound, "current");
-                    currentPlay.stop();
+                if(state.isPlaying()) {
+                    // stops if there's no enemy
+                    if (current != null && state.enemies == 0) {
+                        current.stop();
+                        current = null;
+                    }
+                    // no interruption from ambient soundtrack
+                    if (current != null && Reflect.get(control.sound, "current") != null) {
+                        currentPlay = Reflect.get(control.sound, "current");
+                        currentPlay.stop();
+                    }
                 }
             }, 0f, 0.01f);
         });
             Events.on(EventType.WaveEvent.class, e -> {
+                if(state.isPlaying()) {
                 currentPlay = Reflect.get(control.sound, "current");
                 if(currentPlay != null) currentPlay.stop();
                 boolean boss = state.rules.spawns.contains(group -> group.getSpawned(state.wave - 2) > 0 && group.effect == StatusEffects.boss);
@@ -143,6 +111,7 @@ public class ArchivDMusic {
                         current = null;
                     }
             });
+                }
             });
     }
 }

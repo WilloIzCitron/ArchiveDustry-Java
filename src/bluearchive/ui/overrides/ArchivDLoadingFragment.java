@@ -9,6 +9,7 @@ import arc.scene.actions.*;
 import arc.scene.event.*;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
+import arc.util.Nullable;
 import bluearchive.ui.ArchivDStyles;
 import mindustry.graphics.*;
 import mindustry.ui.*;
@@ -60,7 +61,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
             t.row();
             t.add(new WarningBar()).color(Pal.techBlue).growX().height(24f);
             t.row();
-            text("@loading");
+            updateLabel(false,"@loading");
             bar = t.add(new Bar()).pad(3).padTop(6).height(40f).growX().visible(false).get();
             t.row();
             button = t.button("@cancel", () -> {
@@ -97,7 +98,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
     }
 
     public void setText(String text){
-        text(text);
+        updateLabel(false, text);
         nameLabel.setColor(Pal.accent);
     }
 
@@ -114,8 +115,8 @@ public class ArchivDLoadingFragment extends LoadingFragment {
         bar.visible = false;
         table.clearActions();
         table.touchable = Touchable.enabled;
-        text(text);
-        tooltipRNG();
+        updateLabel(false, text);
+        updateLabel(true, null);
         table.visible = true;
         table.color.a = 1f;
         table.toFront();
@@ -128,35 +129,25 @@ public class ArchivDLoadingFragment extends LoadingFragment {
         table.actions(Actions.fadeOut(0.5f), Actions.visible(false));
     }
 
-    private void text(String text){
-        nameLabel.setText(text);
-        nameLabel.setColor(Pal.techBlue);
+    private void updateLabel(boolean isTooltip, @Nullable String text) {
+        Label label = isTooltip ? tooltipTitle : nameLabel;
+        label.setText(text);
+        label.setColor(Pal.techBlue);
 
-        CharSequence realText = nameLabel.getText();
-
-        //fallback to the default font if characters are missing
-        //TODO this should happen everywhere
-        for(int i = 0; i < realText.length(); i++){
-            if(Fonts.tech.getData().getGlyph(realText.charAt(i)) == null){
-                nameLabel.setStyle(Styles.defaultLabel);
+        CharSequence realText = label.getText();
+        for (int i = 0; i < realText.length(); i++) {
+            if (Fonts.tech.getData().getGlyph(realText.charAt(i)) == null) {
+                label.setStyle(Styles.defaultLabel);
                 return;
             }
         }
-        nameLabel.setStyle(Styles.techLabel);
-    }
-    private void tooltipRNG() {
-        int randomNum = Mathf.random(7);
-        tooltipTitle.setColor(Pal.techBlue);
-        tooltipTitle.setText(Core.bundle.get("tooltipTitle-"+randomNum));
-        tooltipInfo.setText(Core.bundle.get("tooltipInfo-"+randomNum));
-        CharSequence realTooltipText = tooltipTitle.getText();
-        for(int i = 0; i < realTooltipText.length(); i++){
-            if(Fonts.tech.getData().getGlyph(realTooltipText.charAt(i)) == null){
-                tooltipTitle.setStyle(Styles.defaultLabel);
-                return;
-            }
+        label.setStyle(Styles.techLabel);
+
+        if (isTooltip) {
+            int randomNum = Mathf.random(7);
+            tooltipTitle.setText(Core.bundle.get("tooltipTitle-" + randomNum));
+            tooltipInfo.setText(Core.bundle.get("tooltipInfo-" + randomNum));
         }
-        tooltipTitle.setStyle(Styles.techLabel);
     }
 }
 

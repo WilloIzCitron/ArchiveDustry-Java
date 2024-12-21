@@ -5,8 +5,6 @@ import arc.graphics.Color;
 import arc.scene.ui.Dialog;
 import arc.scene.ui.ScrollPane;
 import arc.scene.ui.layout.*;
-import arc.util.Time;
-import bluearchive.ui.*;
 import mindustry.ui.Styles;
 import mindustry.ui.dialogs.BaseDialog;
 
@@ -26,13 +24,11 @@ public class ArchivDLive2DManager extends BaseDialog {
         }});
     }};
     Table tabl = new Table(){{
-            live2ds.forEach(l -> {
-                cont.button(con -> {
-                con.row();
-                con.add(l.displayName).row();
-                con.add(bundle.formatString(bundle.get("ba-l2d.author"), l.author)).color(Color.gray).bottom().row();
-            }, Styles.flatBordert, () -> { Core.settings.put("setL2D-new", l.name); restartDialog.show();}).growX().row();
-            });
+            live2ds.forEach(l -> cont.button(con -> {
+            con.row();
+            con.add(l.displayName).row();
+            con.add(bundle.formatString(bundle.get("ba-l2d.author"), l.author)).color(Color.gray).bottom().row();
+        }, Styles.flatBordert, () -> { Core.settings.put("setL2D-new", l.name); restartDialog.show();}).growX().row());
     }};
     ScrollPane scrl = new ScrollPane(tabl, Styles.defaultPane);
 

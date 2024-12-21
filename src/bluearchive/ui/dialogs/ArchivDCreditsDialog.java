@@ -10,7 +10,7 @@ import bluearchive.ArchivDMusic;
 import mindustry.gen.*;
 import mindustry.ui.*;
 
-import static bluearchive.events.ArchivDClientLoad.soundControlPlaying; //inherited
+import static bluearchive.ArchiveDustry.soundControlPlaying; //inherited
 import static mindustry.Vars.*;
 
 public class ArchivDCreditsDialog extends Dialog {
@@ -113,7 +113,7 @@ public class ArchivDCreditsDialog extends Dialog {
                 } //Counteract fade in
             }
         });
-        this.hidden(() -> ArchivDMusic.re_aoh.stop());
+        this.hidden(() -> {ArchivDMusic.re_aoh.stop(); modLogo = null; nekoUILogo = null; nexonLogo = null;});
         if(((scrollBar > (halfTableHeight * 2f)) && tableHeight > 0) || Core.input.keyDown(KeyCode.escape) || Core.input.isTouched()) {
             this.hide();
         };

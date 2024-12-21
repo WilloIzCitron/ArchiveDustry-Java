@@ -1,6 +1,5 @@
 package bluearchive.l2d;
 
-import arc.Core;
 import arc.audio.Music;
 import arc.files.*;
 import arc.files.ZipFi;
@@ -12,7 +11,6 @@ import arc.util.serialization.*;
 
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
-import static mindustry.Vars.*;
 
 public class Live2DBackgrounds {
     public static Seq<LoadedL2D> live2ds = new Seq<>();
@@ -35,6 +33,7 @@ public class Live2DBackgrounds {
             int finalI = i;
             loadedL2ds.add(new Texture(rawL2d.find(m -> Objects.equals(m.nameWithoutExtension(), String.valueOf(finalI+1)))));
         }
+        rawL2d.clear();
         if(!meta.isSoundTrackLocal) {
             try {
                 Fi track = f.child("soundtrack.ogg");
@@ -66,7 +65,6 @@ public class Live2DBackgrounds {
         meta.displayName = root.getString("displayName");
         meta.author = root.getString("author", null);
         meta.description = root.getString("description", null);
-        //meta.frames = root.getInt("frames", 0);
         meta.frameSpeed = root.getFloat("frameSpeed", 0f);
         meta.isSoundTrackLocal = root.getBoolean("isSoundTrackLocal", false);
         meta.localSoundTrack = root.getString("localSoundTrack", null);
@@ -109,7 +107,6 @@ public class Live2DBackgrounds {
 
     public static class L2DMeta{
         String name;
-        //int frames;
         float frameSpeed;
         @Nullable String displayName, author, description, localSoundTrack;
         boolean isSoundTrackLocal;
