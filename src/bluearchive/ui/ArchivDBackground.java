@@ -22,7 +22,7 @@ import static mindustry.Vars.*;
 
 public class ArchivDBackground implements Disposable {
     public static TextureRegion img;
-    final static Image animBG = new Image(new TextureRegion());
+    static Image animBG = new Image(new TextureRegion());
     private static float l2dImportProg;
     static boolean cancel = false;
     static final String version = "v1.5";
@@ -55,13 +55,8 @@ public class ArchivDBackground implements Disposable {
                             if (!state.isMenu()) {
                                 setRegion(animBG, new TextureRegion(l2dLoaded.loadedL2ds.get(0)));
                             } else {
-                                setRegion(animBG, new TextureRegion(l2dLoaded.loadedL2ds.get(((int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size))));
+                                    setRegion(animBG, new TextureRegion(l2dLoaded.loadedL2ds.get(((int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size))));
                             }
-                    });
-                    Time.run(((Time.globalTime / l2dLoaded.frameSpeed) + 1), () -> {
-                        if(animBG.getRegion().texture != null){
-                            animBG.getRegion().texture.dispose();
-                        }
                     });
                 });
         } catch (Exception error) {
@@ -144,6 +139,7 @@ public class ArchivDBackground implements Disposable {
     public void dispose() {
         if (animBG.getRegion() != null && animBG.getRegion().texture != null) {
             animBG.getRegion().texture.getTextureData().disposePixmap();
+            animBG.getRegion().texture.dispose();
         }
     }
 
