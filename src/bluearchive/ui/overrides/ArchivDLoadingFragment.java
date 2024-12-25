@@ -26,6 +26,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
     private Label tooltipTitle;
     private Label tooltipInfo;
     private static float scale;
+    public static boolean loadFragShow;
 
     public static void init() {
         ui.loadfrag = new ArchivDLoadingFragment();
@@ -117,6 +118,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
         table.visible = true;
         table.color.a = 1f;
         table.toFront();
+        loadFragShow = true;
     }
 
     public void hide(){
@@ -124,6 +126,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
         table.toFront();
         table.touchable = Touchable.disabled;
         table.actions(Actions.fadeOut(0.5f), Actions.visible(false));
+        loadFragShow = false;
     }
 
     private void updateLabel(boolean isTooltip, @Nullable String text) {

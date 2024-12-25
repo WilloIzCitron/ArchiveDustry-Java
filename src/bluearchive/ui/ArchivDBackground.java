@@ -16,8 +16,8 @@ import mindustry.game.EventType;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.concurrent.atomic.AtomicReference;
 
+import static bluearchive.ui.overrides.ArchivDLoadingFragment.*;
 import static mindustry.Vars.*;
 
 public class ArchivDBackground implements Disposable {
@@ -26,12 +26,11 @@ public class ArchivDBackground implements Disposable {
     private static float l2dImportProg;
     static boolean cancel = false;
     static final String version = "v1.5";
-    protected static int animBGFrame;
-    protected static TextureRegion[] tex;
 
     public static void buildL2D(String name){
         // Nullable, can kill every mod with custom MenuRenderer
         try {
+            if(!headless) {
                 Live2DBackgrounds.LoadedL2D l2dLoaded = Live2DBackgrounds.getL2D(name);
                 if (l2dLoaded.isSoundTrackLocal) {
                     ArchiveDustry.recollectionMusic = tree.loadMusic(l2dLoaded.localSoundTrack);
@@ -52,13 +51,17 @@ public class ArchivDBackground implements Disposable {
                     group.addChildAt(0, animBG);
                     Log.infoTag("ArchiveDustry", "Background Loaded!");
                     Events.run(EventType.Trigger.update, () -> {
-                            if (!state.isMenu()) {
-                                setRegion(animBG, new TextureRegion(l2dLoaded.loadedL2ds.get(0)));
-                            } else {
-                                    setRegion(animBG, new TextureRegion(l2dLoaded.loadedL2ds.get(((int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size))));
-                            }
+                        if (!state.isMenu() || loadFragShow) {
+                            //failsafe if it is still running in game
+                            setRegion(animBG, new TextureRegion(l2dLoaded.loadedL2ds.get(0)));
+                            return;
+                        }
+                        setRegion(animBG, new TextureRegion(l2dLoaded.loadedL2ds.get(((int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size))));
                     });
                 });
+            } else {
+                Log.infoTag("ArchiveDustry", "Headless detected! Background loading skipped.");
+            }
         } catch (Exception error) {
             throw new RuntimeException(error);
         }
