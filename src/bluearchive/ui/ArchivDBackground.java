@@ -23,8 +23,8 @@ public class ArchivDBackground implements Disposable {
     private static float l2dImportProg;
     static boolean cancel = false;
     static final String version = "v1.5";
-    static TextureRegion frame= new TextureRegion();
-    static Image animBG = new Image(new TextureRegion());
+    static TextureRegion frame = new TextureRegion();
+    static Image animBG = new Image(frame);
 
     public static void buildL2D(String name) {
         // Nullable, can kill every mod with custom MenuRenderer
@@ -46,14 +46,7 @@ public class ArchivDBackground implements Disposable {
                 render.visible = false;
 
                 Events.on(EventType.ClientLoadEvent.class, e -> {
-                    TextureRegion[] frames = new TextureRegion[l2dLoaded.loadedL2ds.size];
-                    for(int i = 0; i < l2dLoaded.loadedL2ds.size; i++){
-                        frames[i] = Core.atlas.addRegion("bluearchive-frame-"+l2dLoaded.name+"-"+(i), new TextureRegion(l2dLoaded.loadedL2ds.get(i)));
-                    }
-                    frame = frames[0];
-                    Events.run(EventType.Trigger.update, () -> {
-                        frame.set(frames[(int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size]);
-                    });
+                    Events.run(EventType.Trigger.update, () -> frame.set(l2dLoaded.loadedL2ds.get((int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size)));
                     animBG.setFillParent(true);
                     group.addChildAt(0, animBG);
                     Log.infoTag("ArchiveDustry", "Background Loaded!");
@@ -105,9 +98,6 @@ public class ArchivDBackground implements Disposable {
                     Fi.get(dest).deleteDirectory();
                 });
             }, e -> ui.showException(e));
-    }
-    private static void setRegion(Image img, TextureRegion reg) {
-        img.getRegion().set(reg);
     }
 
     private static void download(String furl, Fi dest, Floatc progressor, Boolp canceled, Runnable done) {
