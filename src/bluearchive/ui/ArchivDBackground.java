@@ -10,7 +10,6 @@ import arc.util.*;
 import arc.util.serialization.*;
 import bluearchive.ArchiveDustry;
 import bluearchive.l2d.Live2DBackgrounds;
-import mindustry.Vars;
 import mindustry.game.EventType;
 
 import java.io.*;
@@ -21,13 +20,13 @@ import static bluearchive.ui.overrides.ArchivDLoadingFragment.*;
 import static mindustry.Vars.*;
 
 public class ArchivDBackground implements Disposable {
-    public static TextureRegion img;
-    static Image animBG = new Image(new TextureRegion());
     private static float l2dImportProg;
     static boolean cancel = false;
     static final String version = "v1.5";
+    static TextureRegion frame= new TextureRegion();
+    static Image animBG = new Image(new TextureRegion());
 
-    public static void buildL2D(String name){
+    public static void buildL2D(String name) {
         // Nullable, can kill every mod with custom MenuRenderer
         try {
             if(!headless) {
@@ -37,8 +36,8 @@ public class ArchivDBackground implements Disposable {
                 } else {
                     ArchiveDustry.recollectionMusic = l2dLoaded.soundTrack;
                 }
-                Reflect.set(Vars.ui.menufrag, "renderer", null);
-                Element tmp = Vars.ui.menuGroup.getChildren().first();
+                Reflect.set(ui.menufrag, "renderer", null);
+                Element tmp = ui.menuGroup.getChildren().first();
                 if (!(tmp instanceof Group group)) return;
                 Element render = group.getChildren().first();
                 if (!(render.getClass().isAnonymousClass()
@@ -47,17 +46,31 @@ public class ArchivDBackground implements Disposable {
                 render.visible = false;
 
                 Events.on(EventType.ClientLoadEvent.class, e -> {
+                    TextureRegion[] frames = new TextureRegion[l2dLoaded.loadedL2ds.size];
+                    for(int i = 0; i < l2dLoaded.loadedL2ds.size; i++){
+                        frames[i] = Core.atlas.addRegion("bluearchive-frame-"+l2dLoaded.name+"-"+(i), new TextureRegion(l2dLoaded.loadedL2ds.get(i)));
+                    }
+                    frame = frames[0];
+                    Events.run(EventType.Trigger.update, () -> {
+                        frame.set(frames[(int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size]);
+                    });
                     animBG.setFillParent(true);
                     group.addChildAt(0, animBG);
                     Log.infoTag("ArchiveDustry", "Background Loaded!");
-                    Events.run(EventType.Trigger.update, () -> {
-                        if (!state.isMenu() || loadFragShow) {
-                            //failsafe if it is still running in game
-                            setRegion(animBG, new TextureRegion(l2dLoaded.loadedL2ds.get(0)));
-                            return;
+                    Timer timer = Timer.instance();
+                    Timer.Task task = new Timer.Task() {
+                        @Override
+                        public void run() {
+                            if (!state.isMenu() || loadFragShow) {
+                                //failsafe if it is still running in
+                                return;
+                            }
+                            if(frame != null) {
+                                animBG.getRegion().set(frame);
+                            }
                         }
-                        setRegion(animBG, new TextureRegion(l2dLoaded.loadedL2ds.get(((int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size))));
-                    });
+                    };
+                    timer.scheduleTask(task, 0, 0.001f);
                 });
             } else {
                 Log.infoTag("ArchiveDustry", "Headless detected! Background loading skipped.");
@@ -86,7 +99,7 @@ public class ArchivDBackground implements Disposable {
                     unzip(dest + "ArchivDLive2D-" + version + ".zip", toDest);
                     ui.loadfrag.setText(Core.bundle.get("l2dComplete"));
                     ui.loadfrag.hide();
-                    Vars.ui.showInfoFade(Core.bundle.get("l2dRestartRequired"));
+                    ui.showInfoFade(Core.bundle.get("l2dRestartRequired"));
                     Core.settings.put("live2dinstalled", true);
                     Core.settings.put("setSong", 3);
                     Fi.get(dest).deleteDirectory();
