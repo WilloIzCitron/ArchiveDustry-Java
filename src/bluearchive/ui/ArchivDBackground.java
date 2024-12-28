@@ -46,7 +46,7 @@ public class ArchivDBackground implements Disposable {
                 render.visible = false;
 
                 Events.on(EventType.ClientLoadEvent.class, e -> {
-                    Events.run(EventType.Trigger.update, () -> frame.set(l2dLoaded.loadedL2ds.get((int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size)));
+                    boolean isRegionLoaded = false;
                     animBG.setFillParent(true);
                     group.addChildAt(0, animBG);
                     Log.infoTag("ArchiveDustry", "Background Loaded!");
@@ -54,15 +54,20 @@ public class ArchivDBackground implements Disposable {
                     Timer.Task task = new Timer.Task() {
                         @Override
                         public void run() {
-                            if (!state.isMenu() || loadFragShow) {
-                                //failsafe if it is still running in
-                                return;
-                            }
-                            if(frame != null) {
-                                animBG.getRegion().set(frame);
-                            }
+                            //Log.infoTag("ArchivDebug", "Background Running....");
+                            if(!state.isMenu()) this.cancel();;
+                            frame.set(l2dLoaded.loadedL2ds.get((int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size));
+                            animBG.getRegion().set(frame);
                         }
                     };
+                    Events.run(EventType.Trigger.update, () -> {
+                        if (!state.isMenu()) {
+                            //failsafe if it is still running in
+                            //Log.infoTag("ArchivDebug", "Background stopped fr");
+                            return;
+                        }
+                        if(state.isMenu() & timer.isEmpty() || !task.isScheduled()) timer.scheduleTask(task, 0, 0.001f);
+                    });
                     timer.scheduleTask(task, 0, 0.001f);
                 });
             } else {
