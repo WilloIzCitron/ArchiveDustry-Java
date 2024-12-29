@@ -46,7 +46,6 @@ public class ArchivDBackground implements Disposable {
                 render.visible = false;
 
                 Events.on(EventType.ClientLoadEvent.class, e -> {
-                    boolean isRegionLoaded = false;
                     animBG.setFillParent(true);
                     group.addChildAt(0, animBG);
                     Log.infoTag("ArchiveDustry", "Background Loaded!");
@@ -55,7 +54,7 @@ public class ArchivDBackground implements Disposable {
                         @Override
                         public void run() {
                             //Log.infoTag("ArchivDebug", "Background Running....");
-                            if(!state.isMenu()) this.cancel();;
+                            if(!state.isMenu()) this.cancel();
                             frame.set(l2dLoaded.loadedL2ds.get((int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size));
                             animBG.getRegion().set(frame);
                         }
