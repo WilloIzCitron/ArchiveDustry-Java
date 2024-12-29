@@ -5,7 +5,8 @@ import arc.scene.style.Drawable;
 import arc.scene.style.TextureRegionDrawable;
 import arc.scene.ui.Image;
 import arc.scene.ui.ImageButton;
-import arc.scene.ui.TextField;
+import arc.scene.ui.Label;
+import arc.scene.style.*;
 import arc.scene.ui.layout.Cell;
 import arc.scene.utils.Elem;
 import arc.util.OS;
@@ -16,6 +17,7 @@ import bluearchive.ui.dialogs.ArchivDLive2DManager;
 import mindustry.gen.Icon;
 import mindustry.gen.Musics;
 import mindustry.gen.Tex;
+import mindustry.ui.Styles;
 import mindustry.ui.dialogs.SettingsMenuDialog;
 
 import static mindustry.Vars.tree;
@@ -136,9 +138,9 @@ public class ArchivDSettings {
         }
         @Override
         public void add(SettingsMenuDialog.SettingsTable table){
-            TextField b = new TextField(text);
+            Label b = new Label(text);
             b.setText(text);
-            b.setDisabled(true);
+            b.getStyle().background = Tex.underline;
             b.setAlignment(1);
             table.add(b).growX();
             table.row();
