@@ -1,5 +1,6 @@
 package bluearchive.l2d;
 
+import arc.Core;
 import arc.audio.Music;
 import arc.files.*;
 import arc.graphics.Texture;
@@ -26,13 +27,22 @@ public class Live2DBackgrounds {
         if(!s.startsWith("{")) s = "{\n" + s + "\n}";
         L2DMeta meta = metaBuild(reader.parse(s));
         AtomicInteger L2DCount = new AtomicInteger();
-        // Single line? why?
-        f.child("l2d").walk(l2dFound -> {L2DCount.getAndIncrement(); /*Log.infoTag("ArchiveDustry Debug", "L2D loaded no: "+(L2DCount.get())+" with filename "+(l2dFound.name())+" from "+(meta.name));*/ try {rawL2d.add(l2dFound);}catch(RuntimeException e){ throw new L2DNoFramesException("No frames found inside the Live2D zip file");}});
-        for (int i = 0; i <= L2DCount.get()-1; i++) {
-            int finalI = i;
-            loadedL2ds.add(new Texture(rawL2d.find(m -> Objects.equals(m.nameWithoutExtension(), String.valueOf(finalI+1)))));
+        // Don't load all frames on every pack, only selected frames on pack
+        if(Objects.equals(Core.settings.getString("setL2D-new"), meta.name)) {
+            f.child("l2d").walk(l2dFound -> {
+                L2DCount.getAndIncrement(); /*Log.infoTag("ArchiveDustry Debug", "L2D loaded no: "+(L2DCount.get())+" with filename "+(l2dFound.name())+" from "+(meta.name));*/
+                try {
+                    rawL2d.add(l2dFound);
+                } catch (RuntimeException e) {
+                    throw new L2DNoFramesException("No frames found inside the Live2D zip file");
+                }
+            });
+            for (int i = 0; i <= L2DCount.get() - 1; i++) {
+                int finalI = i;
+                loadedL2ds.add(new Texture(rawL2d.find(m -> Objects.equals(m.nameWithoutExtension(), String.valueOf(finalI + 1)))));
+            }
+            rawL2d.clear();
         }
-        rawL2d.clear();
         if(!meta.isSoundTrackLocal) {
             try {
                 Fi track = f.child("soundtrack.ogg");
