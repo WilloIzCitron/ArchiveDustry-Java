@@ -29,6 +29,9 @@ public class ArchiveDustry extends Mod {
         //ArchivDStyles.load();
         ArchivDLoadingFragment.init();
         ArchivDSettings.loadSettings();
+        if(Core.settings.getBool("ba-addHalo", true)) UnitHalo.init();
+        UnitSound.init();
+        ArchivDMusic.load();
         if(Core.settings.getBool("enableL2D")) {
             dataDirectory.child("live2d").walk(f -> {
                 foundL2D++;
@@ -75,15 +78,13 @@ public class ArchiveDustry extends Mod {
 //                    ArchivDBackground.buildL2D("nonomi");
 //                    recollectionMusic = tree.loadMusic("cat");
 //                    break;
-                    if(!Core.settings.getString("setL2D-new").isEmpty()) {
-                        ArchivDBackground.buildL2D(Core.settings.getString("setL2D-new"));
-                    } else {
-                        Core.settings.put("enableL2D", false); //fallback if setl2d is blank
-                        Core.settings.put("setSong", 1);
-                    }
-            if(Core.settings.getBool("ba-addHalo", true)) UnitHalo.init();
-            UnitSound.init();
-            ArchivDMusic.load();
+            if (!Core.settings.getString("setL2D-new").isEmpty()) {
+                ArchivDBackground.buildL2D(Core.settings.getString("setL2D-new"));
+            } else {
+                Core.settings.put("enableL2D", false); //fallback if setl2d is blank
+                Core.settings.put("setSong", 1);
+            }
+        }
             Events.on(EventType.ClientLoadEvent.class, event -> {
                 switch (Core.settings.getInt("setSong")) {
                     case 1:
@@ -165,7 +166,6 @@ public class ArchiveDustry extends Mod {
                     Time.clear();
                 });
             });
-        }
     }
     public static Music soundControlPlaying() {
         if (state.isMenu()) {

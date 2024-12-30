@@ -10,6 +10,7 @@ import arc.scene.event.*;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.util.Nullable;
+import mindustry.Vars;
 import mindustry.graphics.*;
 import mindustry.ui.*;
 import mindustry.ui.fragments.*;
@@ -34,7 +35,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
         if(!mobile){
             scale = 45f;
         } else {
-            scale = 25f;
+            scale = 60f;
         }
     }
 
@@ -47,7 +48,7 @@ public class ArchivDLoadingFragment extends LoadingFragment {
             });
             t.visible = false;
             t.touchable = Touchable.enabled;
-            t.add().height((Core.graphics.getHeight())/2f).row();
+            t.add().height((Core.graphics.getHeight())/ 2f).row();
             t.row();
             tooltipTitle = t.add("Lorem Ipsum").color(Pal.techBlue).fontScale(1.5f).style(Styles.techLabel).pad(10).left().get();
             t.row();

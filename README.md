@@ -46,7 +46,7 @@ A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and als
 ## Building
 
 To generate the mod jar, you can do this below with platform specified jar:
-- Android: `gradlew jarAndroid`
+- Android: `gradlew dex`
 - PC: `gradlew jar`
 
 for Build Deployment(desktop and android) you can do `gradlew build`
