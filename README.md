@@ -12,9 +12,6 @@
 > This Mod was being migrated from JS<sup>JavaScript</sup> was being archived, this mod are almost perfect.
 
 > [!TIP]
-> To experience Live2D/Recollection Lobby, You must need 64-bit Java Runtime Environment/Java Development Kit and 4GB of RAM (Average RAM Usage up to 1-2GB).
-
-> [!TIP]
 > Language: English (you can choose your language readme at i18n directory)
 
 A mod that override the vanilla soundtrack into Blue Archive Soundtrack, and also adds the cosmetics for units such as halo. This mod is unaffiliated with developer of  Blue Archive game: Nexon, NAT GAMES and Yostar.
