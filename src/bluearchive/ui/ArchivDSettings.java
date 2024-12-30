@@ -14,6 +14,7 @@ import arc.util.Scaling;
 import bluearchive.ArchiveDustry;
 import bluearchive.ui.dialogs.ArchivDCreditsDialog;
 import bluearchive.ui.dialogs.ArchivDLive2DManager;
+import bluearchive.ui.dialogs.ArchivDLive2DSelectionDialog;
 import mindustry.gen.Icon;
 import mindustry.gen.Musics;
 import mindustry.gen.Tex;
@@ -67,7 +68,7 @@ public class ArchivDSettings {
             }
             t.checkPref("ba-firstTime", true);
             t.checkPref("ba-addHalo", true);
-            t.pref(new ButtonSetting("ba-downloadLive2D", Icon.download, ArchivDBackground::downloadLive2D, 32));
+            t.pref(new ButtonSetting("ba-downloadLive2D", Icon.download, ArchivDLive2DSelectionDialog::new, 32));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.links")));
             t.pref(new Separator(4));
             t.pref(new ButtonSetting("ba-youtube", Icon.play, () -> Core.app.openURI("https://www.youtube.com/channel/UCsrnDYrkovQhCCE8kwKcvKQ"), 32));

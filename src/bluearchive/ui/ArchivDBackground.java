@@ -62,7 +62,7 @@ public class ArchivDBackground implements Disposable {
                     Events.run(EventType.Trigger.update, () -> {
                         if (!state.isMenu()) {
                             //failsafe if it is still running in
-                            //Log.infoTag("ArchivDebug", "Background stopped fr");
+                            //Log.infoTag("ArchivDebug", "Background stopped for real");
                             return;
                         }
                         if(state.isMenu() & timer.isEmpty() || !task.isScheduled()) timer.scheduleTask(task, 0, 0.001f);
@@ -98,7 +98,6 @@ public class ArchivDBackground implements Disposable {
                     ui.loadfrag.hide();
                     ui.showInfoFade(Core.bundle.get("l2dRestartRequired"));
                     Core.settings.put("live2dinstalled", true);
-                    Core.settings.put("setSong", 3);
                     Fi.get(dest).deleteDirectory();
                 });
             }, e -> ui.showException(e));
