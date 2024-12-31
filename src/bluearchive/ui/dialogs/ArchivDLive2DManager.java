@@ -24,7 +24,7 @@ public class ArchivDLive2DManager extends BaseDialog {
         }});
     }};
     Table tabl = new Table(){{
-            live2ds.forEach(l -> cont.button(con -> {
+            live2ds.each(l -> cont.button(con -> {
             con.row();
             con.add(l.displayName).row();
             con.add(bundle.formatString(bundle.get("ba-l2d.author"), l.author)).color(Color.gray).bottom().row();
