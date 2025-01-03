@@ -9,6 +9,7 @@ import bluearchive.l2d.Live2DBackgrounds;
 import bluearchive.ui.*;
 import bluearchive.ui.dialogs.ArchivDFirstTimeDialog;
 import bluearchive.ui.overrides.ArchivDLoadingFragment;
+import mindustry.core.Version;
 import mindustry.game.EventType;
 import mindustry.gen.*;
 import mindustry.mod.*;
@@ -27,6 +28,7 @@ public class ArchiveDustry extends Mod {
     public void init(){
         //Use Pal.accent first... experimental Styles
         //ArchivDStyles.load();
+        Core.graphics.setTitle(Core.settings.getAppName()+" v"+Version.buildString()+" | ArchiveDustry v"+mods.getMod("bluearchive").meta.version);
         ArchivDLoadingFragment.init();
         ArchivDSettings.loadSettings();
         if(Core.settings.getBool("ba-addHalo", true)) UnitHalo.init();
@@ -45,39 +47,6 @@ public class ArchiveDustry extends Mod {
             });
         }
         if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D") && Core.settings.has("setL2D-new")) {
-//            switch (Core.settings.getInt("setL2D")) {
-//                case 1:
-//                    ArchivDBackground.buildL2D("kotama");
-//                    recollectionMusic = tree.loadMusic("menuaira");
-//                    break;
-//                case 2:
-//                    ArchivDBackground.buildL2D("noa");
-//                    recollectionMusic = tree.loadMusic("menurcl");
-//                    break;
-//                case 3:
-//                    ArchivDBackground.buildL2D("mika");
-//                    recollectionMusic = tree.loadMusic("moment");
-//                    break;
-//                case 4:
-//                    ArchivDBackground.buildL2D("saori");
-//                    recollectionMusic = Musics.fine;
-//                    break;
-//                case 5:
-//                    ArchivDBackground.buildL2D("arisu");
-//                    recollectionMusic = tree.loadMusic("somedaySometime");
-//                    break;
-//                case 6:
-//                    ArchivDBackground.buildL2D("reisa");
-//                    recollectionMusic = tree.loadMusic("somedaySometime");
-//                    break;
-//                case 7:
-//                    ArchivDBackground.buildL2D("mina");
-//                    recollectionMusic = tree.loadMusic("t171");
-//                    break;
-//                case 8:
-//                    ArchivDBackground.buildL2D("nonomi");
-//                    recollectionMusic = tree.loadMusic("cat");
-//                    break;
             if (!Core.settings.getString("setL2D-new").isEmpty()) {
                 ArchivDBackground.buildL2D(Core.settings.getString("setL2D-new"));
             } else {

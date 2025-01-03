@@ -6,12 +6,14 @@ import arc.func.*;
 import arc.graphics.g2d.*;
 import arc.scene.*;
 import arc.scene.ui.*;
+import arc.scene.ui.Image;
 import arc.util.*;
 import arc.util.serialization.*;
 import bluearchive.ArchiveDustry;
 import bluearchive.l2d.Live2DBackgrounds;
 import mindustry.game.EventType;
 
+import java.awt.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -25,6 +27,7 @@ public class ArchivDBackground implements Disposable {
     static final String version = "v1.5";
     static TextureRegion frame = new TextureRegion();
     static Image animBG = new Image(frame);
+    static Dimension size;
 
     public static void buildL2D(String name) {
         // Nullable, can kill every mod with custom MenuRenderer
@@ -46,7 +49,8 @@ public class ArchivDBackground implements Disposable {
                 render.visible = false;
 
                 Events.on(EventType.ClientLoadEvent.class, e -> {
-                    animBG.setFillParent(true);
+                    if(!android) {size = Toolkit.getDefaultToolkit().getScreenSize(); animBG.setSize(size.width, size.height);} else animBG.setSize(Core.graphics.getWidth(), Core.graphics.getHeight());
+                    animBG.setAlign(Align.center);
                     group.addChildAt(0, animBG);
                     Log.infoTag("ArchiveDustry", "Background Loaded!");
                     Timer timer = Timer.instance();
@@ -91,14 +95,15 @@ public class ArchivDBackground implements Disposable {
                 var downloadZip = value.getString("browser_download_url");
                 var dest = dataDirectory + "/live2dzip/";
                 var toDest = dataDirectory + "/live2d/";
-                download(downloadZip, new Fi(dest + "ArchivDLive2D-" + version + ".zip"), i -> l2dImportProg = i, () -> cancel, () -> {
+                Fi archivDZipFile = new Fi(dest + "ArchivDLive2D-" + version + ".zip");
+                download(downloadZip, archivDZipFile, i -> l2dImportProg = i, () -> cancel, () -> {
                     ui.loadfrag.setText(Core.bundle.get("l2dInstall"));
                     unzip(dest + "ArchivDLive2D-" + version + ".zip", toDest);
                     ui.loadfrag.setText(Core.bundle.get("l2dComplete"));
                     ui.loadfrag.hide();
                     ui.showInfoFade(Core.bundle.get("l2dRestartRequired"));
                     Core.settings.put("live2dinstalled", true);
-                    Fi.get(dest).deleteDirectory();
+                    archivDZipFile.delete();
                 });
             }, e -> ui.showException(e));
     }
