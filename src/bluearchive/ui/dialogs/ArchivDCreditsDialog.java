@@ -17,6 +17,7 @@ public class ArchivDCreditsDialog extends Dialog {
     final Image modLogo = new Image(new TextureRegionDrawable(Core.atlas.find("bluearchive-logo")), Scaling.fit);
     final Image nekoUILogo = new Image(new TextureRegionDrawable(Core.atlas.find("bluearchive-nekoui")), Scaling.fit);
     final Image nexonLogo = new Image(new TextureRegionDrawable(Core.atlas.find("bluearchive-creditpart")), Scaling.fit);
+    int touch = 0;
     Table in = new Table(){{
         center();
         add(modLogo).size(768, 153).row();
@@ -115,7 +116,11 @@ public class ArchivDCreditsDialog extends Dialog {
         });
         this.hidden(() -> ArchivDMusic.re_aoh.stop());
         if(((scrollBar > (halfTableHeight * 2f)) && tableHeight > 0) || Core.input.keyDown(KeyCode.escape) || Core.input.isTouched()) {
-            this.hide();
+            touch = touch + 1;
+            if(touch == 2) {
+                this.hide();
+                touch = 0;
+            }
         }
     }
 

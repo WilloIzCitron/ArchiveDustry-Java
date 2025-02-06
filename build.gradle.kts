@@ -26,6 +26,7 @@ plugins{
 val arcVersion: String by project
 val mindustryVersion: String by project
 val mindustryBEVersion: String by project
+val entEnabled: String by project
 val entVersion: String by project
 
 val modName: String by project
@@ -105,14 +106,14 @@ project(":"){
         isJitpack = useJitpack
         revisionDir = layout.projectDirectory.dir("revisions").asFile
         fetchPackage = modFetch
-        genSrcPackage = modGenSrc
-        genPackage = modGen
+        if(!entEnabled.toBooleanStrict()) genSrcPackage = modGenSrc
+        if(!entEnabled.toBooleanStrict()) genPackage = modGen
     }
 
     dependencies{
         // Use the entity generation annotation processor.
-        compileOnly(entity(":entity"))
-        add("kapt", entity(":entity"))
+        if(!entEnabled.toBooleanStrict()) compileOnly(entity(":entity"))
+        if(!entEnabled.toBooleanStrict()) add("kapt", entity(":entity"))
 
         compileOnly(mindustry(":core"))
         compileOnly(arc(":arc-core"))

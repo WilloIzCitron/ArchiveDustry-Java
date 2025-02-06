@@ -98,6 +98,7 @@ public class Live2DBackgrounds {
         */
         public final boolean isSoundTrackLocal;
         public final @Nullable String localSoundTrack;
+        public final int width, height;
 
         public LoadedL2D(String name, Fi file, L2DMeta meta/*, int frames*/, float frameSpeed, boolean isSoundTrackLocal, @Nullable String localSoundTrack, Seq<Texture> loadedL2ds, Music soundTrack) {
             this.name = name;
@@ -111,6 +112,8 @@ public class Live2DBackgrounds {
             this.soundTrack = soundTrack;
             this.isSoundTrackLocal = isSoundTrackLocal;
             this.localSoundTrack = localSoundTrack;
+            this.width = (loadedL2ds.size >= 0) ? loadedL2ds.get(0).width : 0;
+            this.height = (loadedL2ds.size >= 0) ? loadedL2ds.get(0).height : 0;
         }
     }
 

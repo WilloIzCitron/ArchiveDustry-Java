@@ -1,6 +1,7 @@
 package bluearchive.ui;
 
 import arc.*;
+import arc.math.*;
 import arc.files.*;
 import arc.func.*;
 import arc.graphics.g2d.*;
@@ -13,7 +14,6 @@ import bluearchive.ArchiveDustry;
 import bluearchive.l2d.Live2DBackgrounds;
 import mindustry.game.EventType;
 
-import java.awt.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -27,17 +27,20 @@ public class ArchivDBackground implements Disposable {
     static final String version = "v1.5";
     static TextureRegion frame = new TextureRegion();
     static Image animBG = new Image(frame);
-    static Dimension size;
 
     public static void buildL2D(String name) {
         // Nullable, can kill every mod with custom MenuRenderer
         try {
             if(!headless) {
                 Live2DBackgrounds.LoadedL2D l2dLoaded = Live2DBackgrounds.getL2D(name);
-                if (l2dLoaded.isSoundTrackLocal) {
-                    ArchiveDustry.recollectionMusic = tree.loadMusic(l2dLoaded.localSoundTrack);
+                if(l2dLoaded != null) {
+                    if (l2dLoaded.isSoundTrackLocal) {
+                        ArchiveDustry.recollectionMusic = tree.loadMusic(l2dLoaded.localSoundTrack);
+                    } else {
+                        ArchiveDustry.recollectionMusic = l2dLoaded.soundTrack;
+                    }
                 } else {
-                    ArchiveDustry.recollectionMusic = l2dLoaded.soundTrack;
+                    Log.info("Live2D is NullPointer! BEWARE!");
                 }
                 Reflect.set(ui.menufrag, "renderer", null);
                 Element tmp = ui.menuGroup.getChildren().first();
@@ -49,10 +52,13 @@ public class ArchivDBackground implements Disposable {
                 render.visible = false;
 
                 Events.on(EventType.ClientLoadEvent.class, e -> {
-                    if(!android) {size = Toolkit.getDefaultToolkit().getScreenSize(); animBG.setSize(size.width, size.height);} else animBG.setSize(Core.graphics.getWidth(), Core.graphics.getHeight());
                     animBG.setAlign(Align.center);
+                    float widthAspect = (float) Core.graphics.getWidth() / l2dLoaded.width;
+                    float heightAspect = (float) Core.graphics.getHeight() / l2dLoaded.height;
+                    animBG.setSize(l2dLoaded.width*widthAspect, l2dLoaded.height*heightAspect);
                     group.addChildAt(0, animBG);
                     Log.infoTag("ArchiveDustry", "Background Loaded!");
+
                     Timer timer = Timer.instance();
                     Timer.Task task = new Timer.Task() {
                         @Override
@@ -61,6 +67,11 @@ public class ArchivDBackground implements Disposable {
                             if(!state.isMenu()) this.cancel();
                             frame.set(l2dLoaded.loadedL2ds.get((int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size));
                             animBG.getRegion().set(frame);
+                            if(Core.graphics.isFullscreen()){
+                                float widthAspect = (float) Core.graphics.getWidth() / l2dLoaded.width;
+                                float heightAspect = (float) Core.graphics.getHeight() / l2dLoaded.height;
+                                animBG.setSize(l2dLoaded.width*widthAspect, l2dLoaded.height*heightAspect);
+                            }
                         }
                     };
                     Events.run(EventType.Trigger.update, () -> {
