@@ -112,8 +112,8 @@ public class Live2DBackgrounds {
             this.soundTrack = soundTrack;
             this.isSoundTrackLocal = isSoundTrackLocal;
             this.localSoundTrack = localSoundTrack;
-            this.width = (loadedL2ds.size >= 0) ? loadedL2ds.get(0).width : 0;
-            this.height = (loadedL2ds.size >= 0) ? loadedL2ds.get(0).height : 0;
+            this.width = (loadedL2ds.size != 0) ? loadedL2ds.get(0).width : 0;
+            this.height = (loadedL2ds.size != 0) ? loadedL2ds.get(0).height : 0;
         }
     }
 
