@@ -1,6 +1,7 @@
 package bluearchive.ui;
 
 import arc.Core;
+import arc.graphics.Color;
 import arc.scene.style.Drawable;
 import arc.scene.style.TextureRegionDrawable;
 import arc.scene.ui.Image;
@@ -15,6 +16,7 @@ import bluearchive.ArchiveDustry;
 import bluearchive.ui.dialogs.ArchivDCreditsDialog;
 import bluearchive.ui.dialogs.ArchivDLive2DManager;
 import bluearchive.ui.dialogs.ArchivDLive2DSelectionDialog;
+import mindustry.Vars;
 import mindustry.gen.Icon;
 import mindustry.gen.Musics;
 import mindustry.gen.Tex;
@@ -29,7 +31,6 @@ public class ArchivDSettings {
 
     public static void loadSettings(){
         ui.settings.addCategory("ArchiveDustry", t -> {
-            t.pref(new Banner("bluearchive-logo", -1));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.general-setting")));
             t.pref(new Separator(4));
             if (Core.settings.getBool("enableL2D")) {
@@ -103,6 +104,10 @@ public class ArchivDSettings {
                 t.pref(new Separator(2));
                 t.pref(new TextSeparator("< Developer Settings >"));
             }
+            t.pref(new Separator(2));
+            t.pref(new TextSeparator("< About >"));
+            t.pref(new Separator(1));
+            t.pref(new ModInfo("bluearchive-logo", "bluearchive"));
         });
     }
 
@@ -181,6 +186,30 @@ public class ArchivDSettings {
             }
 
             table.row();
+        }
+    }
+    static class ModInfo extends SettingsMenuDialog.SettingsTable.Setting {
+        String modName;
+
+        public ModInfo(String name, String modName){
+            super(name);
+            this.modName = modName;
+        }
+        @Override
+        public void add(SettingsMenuDialog.SettingsTable table) {
+            Image i = new Image(new TextureRegionDrawable(Core.atlas.find(name)), Scaling.fit);
+            Cell<Image> ci = table.add(i).padTop(3f);
+            Label internalName = new Label(Vars.mods.getMod(modName).meta.internalName);
+            internalName.setColor(Color.gray);
+            internalName.setSize(0.5f);
+            Label ver = new Label("Version: "+Vars.mods.getMod(modName).meta.version);
+            Label author = new Label("Made by: "+Vars.mods.getMod(modName).meta.author);
+
+            ci.size(500f, 250f);
+            table.row();
+            table.add(internalName).row();
+            table.add(ver).row();
+            table.add(author).row();
         }
     }
 }

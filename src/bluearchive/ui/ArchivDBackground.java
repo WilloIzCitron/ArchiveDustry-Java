@@ -53,9 +53,11 @@ public class ArchivDBackground implements Disposable {
 
                 Events.on(EventType.ClientLoadEvent.class, e -> {
                     animBG.setAlign(Align.center);
+                    if(l2dLoaded != null) {
                     float widthAspect = (float) Core.graphics.getWidth() / l2dLoaded.width;
                     float heightAspect = (float) Core.graphics.getHeight() / l2dLoaded.height;
                     animBG.setSize(l2dLoaded.width*widthAspect, l2dLoaded.height*heightAspect);
+                    }
                     group.addChildAt(0, animBG);
                     Log.infoTag("ArchiveDustry", "Background Loaded!");
 
@@ -67,11 +69,6 @@ public class ArchivDBackground implements Disposable {
                             if(!state.isMenu()) this.cancel();
                             frame.set(l2dLoaded.loadedL2ds.get((int) (Time.globalTime / l2dLoaded.frameSpeed) % l2dLoaded.loadedL2ds.size));
                             animBG.getRegion().set(frame);
-                            if(Core.graphics.isFullscreen()){
-                                float widthAspect = (float) Core.graphics.getWidth() / l2dLoaded.width;
-                                float heightAspect = (float) Core.graphics.getHeight() / l2dLoaded.height;
-                                animBG.setSize(l2dLoaded.width*widthAspect, l2dLoaded.height*heightAspect);
-                            }
                         }
                     };
                     Events.run(EventType.Trigger.update, () -> {
