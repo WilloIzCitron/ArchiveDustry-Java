@@ -158,7 +158,7 @@ public class ArchiveDustry extends Mod {
         Fi msg = tree.get("text/messages.txt");
         if(!msg.exists()) return "null";
         Seq<String> strings = Seq.with(msg.readString("UTF-8").split("\n"));
-        int stringLength = strings.size;
+        int stringLength = strings.size - 1;
         return strings.get(Mathf.random(stringLength));
     }
 }
