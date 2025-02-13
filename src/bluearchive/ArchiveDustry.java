@@ -29,7 +29,7 @@ public class ArchiveDustry extends Mod {
     public void init(){
         //Use Pal.accent first... experimental Styles
         //ArchivDStyles.load();
-        Core.graphics.setTitle(Core.settings.getAppName()+" v"+Version.buildString()+" | ArchiveDustry v"+mods.getMod("bluearchive").meta.version+ " | "+RandomMessage());
+        if(!mobile || !headless) Core.graphics.setTitle(Core.settings.getAppName()+" v"+Version.buildString()+" | ArchiveDustry v"+mods.getMod("bluearchive").meta.version+ " | "+RandomMessage());
         ArchivDLoadingFragment.init();
         ArchivDSettings.loadSettings();
         if(Core.settings.getBool("ba-addHalo", true)) UnitHalo.init();
