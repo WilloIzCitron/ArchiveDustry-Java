@@ -2,9 +2,9 @@ package bluearchive;
 
 import arc.*;
 import arc.audio.*;
-import arc.util.Log;
-import arc.util.Reflect;
-import arc.util.Time;
+import arc.files.Fi;
+import arc.struct.*;
+import arc.util.*;
 import bluearchive.l2d.Live2DBackgrounds;
 import bluearchive.ui.*;
 import bluearchive.ui.dialogs.ArchivDFirstTimeDialog;
@@ -14,6 +14,7 @@ import mindustry.game.EventType;
 import mindustry.gen.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
+import arc.math.*;
 
 import static mindustry.Vars.*;
 
@@ -28,7 +29,7 @@ public class ArchiveDustry extends Mod {
     public void init(){
         //Use Pal.accent first... experimental Styles
         //ArchivDStyles.load();
-        Core.graphics.setTitle(Core.settings.getAppName()+" v"+Version.buildString()+" | ArchiveDustry v"+mods.getMod("bluearchive").meta.version);
+        Core.graphics.setTitle(Core.settings.getAppName()+" v"+Version.buildString()+" | ArchiveDustry v"+mods.getMod("bluearchive").meta.version+ " | "+RandomMessage());
         ArchivDLoadingFragment.init();
         ArchivDSettings.loadSettings();
         if(Core.settings.getBool("ba-addHalo", true)) UnitHalo.init();
@@ -151,6 +152,14 @@ public class ArchiveDustry extends Mod {
             return Musics.editor;
         }
         return null;
+    }
+
+    static String RandomMessage(){
+        Fi msg = tree.get("text/messages.txt");
+        if(!msg.exists()) return "null";
+        Seq<String> strings = Seq.with(msg.readString("UTF-8").split("\n"));
+        int stringLength = strings.size;
+        return strings.get(Mathf.random(stringLength));
     }
 }
 

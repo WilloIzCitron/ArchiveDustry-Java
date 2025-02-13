@@ -26,7 +26,6 @@ plugins{
 val arcVersion: String by project
 val mindustryVersion: String by project
 val mindustryBEVersion: String by project
-val entEnabled: String by project
 val entVersion: String by project
 
 val modName: String by project
@@ -106,14 +105,14 @@ project(":"){
         isJitpack = useJitpack
         revisionDir = layout.projectDirectory.dir("revisions").asFile
         fetchPackage = modFetch
-        if(!entEnabled.toBooleanStrict()) genSrcPackage = modGenSrc
-        if(!entEnabled.toBooleanStrict()) genPackage = modGen
+        genSrcPackage = modGenSrc
+        genPackage = modGen
     }
 
     dependencies{
         // Use the entity generation annotation processor.
-        if(!entEnabled.toBooleanStrict()) compileOnly(entity(":entity"))
-        if(!entEnabled.toBooleanStrict()) add("kapt", entity(":entity"))
+        compileOnly(entity(":entity"))
+        add("kapt", entity(":entity"))
 
         compileOnly(mindustry(":core"))
         compileOnly(arc(":arc-core"))
@@ -124,13 +123,13 @@ project(":"){
 
         val meta = layout.projectDirectory.file("$temporaryDir/mod.json")
         from(
-                files(sourceSets["main"].output.classesDirs),
-                files(sourceSets["main"].output.resourcesDir),
-                configurations.runtimeClasspath.map{conf -> conf.map{if(it.isDirectory) it else zipTree(it)}},
+            files(sourceSets["main"].output.classesDirs),
+            files(sourceSets["main"].output.resourcesDir),
+            configurations.runtimeClasspath.map{conf -> conf.map{if(it.isDirectory) it else zipTree(it)}},
 
-                files(layout.projectDirectory.dir("assets")),
-                layout.projectDirectory.file("icon.png"),
-                meta
+            files(layout.projectDirectory.dir("assets")),
+            layout.projectDirectory.file("icon.png"),
+            meta
         )
 
         metaInf.from(layout.projectDirectory.file("LICENSE"))
@@ -149,8 +148,8 @@ project(":"){
 
             val isJson = metaJson.asFile.exists()
             val map = (if(isJson) metaJson else metaHjson).asFile
-                    .reader(Charsets.UTF_8)
-                    .use{Jval.read(it)}
+                .reader(Charsets.UTF_8)
+                .use{Jval.read(it)}
 
             map.put("name", modName)
             meta.asFile.writer(Charsets.UTF_8).use{file -> BufferedWriter(file).use{map.writeTo(it, Jval.Jformat.formatted)}}
@@ -170,8 +169,8 @@ project(":"){
             providers.exec{
                 // Find Android SDK root.
                 val sdkRoot = File(
-                        OS.env("ANDROID_SDK_ROOT") ?: OS.env("ANDROID_HOME") ?:
-                throw IllegalStateException("Neither `ANDROID_SDK_ROOT` nor `ANDROID_HOME` is set.")
+                    OS.env("ANDROID_SDK_ROOT") ?: OS.env("ANDROID_HOME") ?:
+                    throw IllegalStateException("Neither `ANDROID_SDK_ROOT` nor `ANDROID_HOME` is set.")
                 )
 
                 // Find `d8`.

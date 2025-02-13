@@ -201,7 +201,7 @@ public class ArchivDSettings {
             Cell<Image> ci = table.add(i).padTop(3f);
             Label internalName = new Label(Vars.mods.getMod(modName).meta.internalName);
             internalName.setColor(Color.gray);
-            internalName.setSize(0.5f);
+            internalName.setSize(1f);
             Label ver = new Label("Version: "+Vars.mods.getMod(modName).meta.version);
             Label author = new Label("Made by: "+Vars.mods.getMod(modName).meta.author);
 

@@ -1,13 +1,11 @@
 package bluearchive.ui;
 
 import arc.*;
-import arc.math.*;
 import arc.files.*;
 import arc.func.*;
 import arc.graphics.g2d.*;
 import arc.scene.*;
 import arc.scene.ui.*;
-import arc.scene.ui.Image;
 import arc.util.*;
 import arc.util.serialization.*;
 import bluearchive.ArchiveDustry;
@@ -33,14 +31,10 @@ public class ArchivDBackground implements Disposable {
         try {
             if(!headless) {
                 Live2DBackgrounds.LoadedL2D l2dLoaded = Live2DBackgrounds.getL2D(name);
-                if(l2dLoaded != null) {
-                    if (l2dLoaded.isSoundTrackLocal) {
-                        ArchiveDustry.recollectionMusic = tree.loadMusic(l2dLoaded.localSoundTrack);
-                    } else {
-                        ArchiveDustry.recollectionMusic = l2dLoaded.soundTrack;
-                    }
+                if (l2dLoaded.isSoundTrackLocal) {
+                    ArchiveDustry.recollectionMusic = tree.loadMusic(l2dLoaded.localSoundTrack);
                 } else {
-                    Log.info("Live2D is NullPointer! BEWARE!");
+                    ArchiveDustry.recollectionMusic = l2dLoaded.soundTrack;
                 }
                 Reflect.set(ui.menufrag, "renderer", null);
                 Element tmp = ui.menuGroup.getChildren().first();
@@ -52,15 +46,9 @@ public class ArchivDBackground implements Disposable {
                 render.visible = false;
 
                 Events.on(EventType.ClientLoadEvent.class, e -> {
-                    animBG.setAlign(Align.center);
-                    if(l2dLoaded != null) {
-                    float widthAspect = (float) Core.graphics.getWidth() / l2dLoaded.width;
-                    float heightAspect = (float) Core.graphics.getHeight() / l2dLoaded.height;
-                    animBG.setSize(l2dLoaded.width*widthAspect, l2dLoaded.height*heightAspect);
-                    }
+                    animBG.setFillParent(true);
                     group.addChildAt(0, animBG);
                     Log.infoTag("ArchiveDustry", "Background Loaded!");
-
                     Timer timer = Timer.instance();
                     Timer.Task task = new Timer.Task() {
                         @Override
@@ -97,23 +85,22 @@ public class ArchivDBackground implements Disposable {
             cancel = true;
             ui.loadfrag.hide();
         });
-            Http.get(ghApi + "/repos/WilloIzCitron/ArchiveDustryLive2DRepo/releases/latest", res -> {
-                var json = Jval.read(res.getResultAsString());
-                var value = json.get("assets").asArray().find(v -> v.getString("name", "").startsWith("ArchivDLive2D-" + version + ".zip"));
-                var downloadZip = value.getString("browser_download_url");
-                var dest = dataDirectory + "/live2dzip/";
-                var toDest = dataDirectory + "/live2d/";
-                Fi archivDZipFile = new Fi(dest + "ArchivDLive2D-" + version + ".zip");
-                download(downloadZip, archivDZipFile, i -> l2dImportProg = i, () -> cancel, () -> {
-                    ui.loadfrag.setText(Core.bundle.get("l2dInstall"));
-                    unzip(dest + "ArchivDLive2D-" + version + ".zip", toDest);
-                    ui.loadfrag.setText(Core.bundle.get("l2dComplete"));
-                    ui.loadfrag.hide();
-                    ui.showInfoFade(Core.bundle.get("l2dRestartRequired"));
-                    Core.settings.put("live2dinstalled", true);
-                    archivDZipFile.delete();
-                });
-            }, e -> ui.showException(e));
+        Http.get(ghApi + "/repos/WilloIzCitron/ArchiveDustryLive2DRepo/releases/latest", res -> {
+            var json = Jval.read(res.getResultAsString());
+            var value = json.get("assets").asArray().find(v -> v.getString("name", "").startsWith("ArchivDLive2D-" + version + ".zip"));
+            var downloadZip = value.getString("browser_download_url");
+            var dest = dataDirectory + "/live2dzip/";
+            var toDest = dataDirectory + "/live2d/";
+            download(downloadZip, new Fi(dest + "ArchivDLive2D-" + version + ".zip"), i -> l2dImportProg = i, () -> cancel, () -> {
+                ui.loadfrag.setText(Core.bundle.get("l2dInstall"));
+                unzip(dest + "ArchivDLive2D-" + version + ".zip", toDest);
+                ui.loadfrag.setText(Core.bundle.get("l2dComplete"));
+                ui.loadfrag.hide();
+                ui.showInfoFade(Core.bundle.get("l2dRestartRequired"));
+                Core.settings.put("live2dinstalled", true);
+                Fi.get(dest).deleteDirectory();
+            });
+        }, e -> ui.showException(e));
     }
 
     private static void download(String furl, Fi dest, Floatc progressor, Boolp canceled, Runnable done) {
