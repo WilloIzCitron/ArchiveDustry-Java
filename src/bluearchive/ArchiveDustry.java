@@ -5,6 +5,7 @@ import arc.audio.*;
 import arc.files.Fi;
 import arc.struct.*;
 import arc.util.*;
+import bluearchive.expansions.exoprosopa.ADExoprosopa;
 import bluearchive.l2d.Live2DBackgrounds;
 import bluearchive.ui.*;
 import bluearchive.ui.dialogs.ArchivDFirstTimeDialog;
@@ -32,7 +33,12 @@ public class ArchiveDustry extends Mod {
         if(!mobile || !headless) Core.graphics.setTitle(Core.settings.getAppName()+" v"+Version.buildString()+" | ArchiveDustry v"+mods.getMod("bluearchive").meta.version+ " | "+RandomMessage());
         ArchivDLoadingFragment.init();
         ArchivDSettings.loadSettings();
-        if(Core.settings.getBool("ba-addHalo", true)) UnitHalo.init();
+        if(Core.settings.getBool("ba-addHalo", true)) {
+            if(mods.getMod("exoprosopa").enabled() || mods.getMod("exoprosopa") != null) {
+                ADExoprosopa.init();
+            }
+            UnitHalo.init();
+        };
         UnitSound.init();
         ArchivDMusic.load();
         if(Core.settings.getBool("enableL2D")) {
