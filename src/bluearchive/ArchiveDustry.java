@@ -6,6 +6,7 @@ import arc.files.Fi;
 import arc.struct.*;
 import arc.util.*;
 import bluearchive.expansions.exoprosopa.ADExoprosopa;
+import bluearchive.gen.EntityRegistry;
 import bluearchive.l2d.Live2DBackgrounds;
 import bluearchive.ui.*;
 import bluearchive.ui.dialogs.ArchivDFirstTimeDialog;
@@ -16,6 +17,8 @@ import mindustry.gen.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
 import arc.math.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 import static mindustry.Vars.*;
 
@@ -26,6 +29,7 @@ public class ArchiveDustry extends Mod {
     public ArchiveDustry() {
 
     }
+
     @Override
     public void init(){
         //Use Pal.accent first... experimental Styles
@@ -34,12 +38,10 @@ public class ArchiveDustry extends Mod {
         ArchivDLoadingFragment.init();
         ArchivDSettings.loadSettings();
         if(Core.settings.getBool("ba-addHalo", true)) {
-            if(mods.getMod("exoprosopa").enabled() || mods.getMod("exoprosopa") != null) {
-                ADExoprosopa.init();
-            }
+            if(mods.getMod("exoprosopa").enabled() && mods.getMod("exoprosopa") != null) ADExoprosopa.init();
             UnitHalo.init();
         };
-        UnitSound.init();
+        if(Core.settings.getBool("HinaVoiceEnable") || Core.settings.getBool("ArisuVoiceEnable")) UnitSound.init();
         ArchivDMusic.load();
         if(Core.settings.getBool("enableL2D")) {
             dataDirectory.child("live2d").walk(f -> {
@@ -165,7 +167,7 @@ public class ArchiveDustry extends Mod {
         if(!msg.exists()) return "null";
         Seq<String> strings = Seq.with(msg.readString("UTF-8").split("\n"));
         int stringLength = strings.size - 1;
-        return strings.get(Mathf.random(stringLength));
+        return (!LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04")) ? strings.get(Mathf.random(stringLength)) : "Que Bom!";
     }
 }
 

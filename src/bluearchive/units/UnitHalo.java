@@ -10,6 +10,9 @@ import mindustry.entities.part.*;
 import mindustry.game.EventType.*;
 import mindustry.graphics.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 public class UnitHalo {
     public static void init(){
@@ -568,7 +571,6 @@ public class UnitHalo {
                     tri = true;
                     triLength = 1;
                     shapes = 5;
-                    radius = 2;
                     radius = 3f;
                     haloRadius = 1.5f;
                     shapeRotation = 180;
@@ -1234,7 +1236,7 @@ public class UnitHalo {
                         y = -7f;
                         xScl = 2.5f;
                         yScl = 2.5f;
-                        color = Pal.techBlue;
+                        color = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? Color.valueOf("fc81dd") : Pal.techBlue;
                         layer = Layer.effect;
                         outline = false;
                         drawRegion = true;

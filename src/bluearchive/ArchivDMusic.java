@@ -3,12 +3,18 @@ package bluearchive;
 import arc.Core;
 import arc.Events;
 import arc.audio.Music;
+import arc.audio.Sound;
 import arc.math.Mathf;
 import arc.struct.Seq;
 import arc.util.*;
+import mindustry.Vars;
 import mindustry.content.StatusEffects;
 import mindustry.game.EventType;
 import mindustry.gen.Musics;
+import mindustry.gen.Sounds;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static bluearchive.ui.ArchivDSettings.waveVolume;
 import static mindustry.Vars.*;
@@ -66,6 +72,10 @@ public class ArchivDMusic {
                 theme220 = new Music(tree.get("music/theme220.ogg"));
                 theme228 = new Music(tree.get("music/theme228.ogg"));
                 re_aoh = new Music(tree.get("music/menure-aoh.ogg"));
+                if(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04")){
+                    Sounds.press = new Sound(tree.get("sounds/queBom.mp3"));
+                    Sounds.back = new Sound(tree.get("sounds/queBom.mp3"));
+                }
             } catch (Exception ex) {
                 // Music has exception throw, why it was created
                 throw new RuntimeException(ex);
@@ -113,5 +123,6 @@ public class ArchivDMusic {
             });
                 }
             });
+
     }
 }

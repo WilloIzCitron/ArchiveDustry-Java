@@ -2,6 +2,7 @@ package bluearchive.units;
 
 import arc.*;
 import arc.audio.Sound;
+import arc.graphics.Color;
 import arc.struct.Seq;
 import arc.util.Interval;
 import arc.util.Log;
@@ -11,6 +12,9 @@ import mindustry.content.UnitTypes;
 import mindustry.game.EventType.*;
 import mindustry.Vars;
 import mindustry.gen.Sounds;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class UnitSound {
     // Tendou Arisu (Collaris) Assets
@@ -60,13 +64,13 @@ public class UnitSound {
         Events.on(PayloadDropEvent.class, e -> {
             if (Vars.state.isPlaying() || Vars.state.isGame()) {
                 if (e.unit != null) {
-                    if (e.unit.type == Vars.content.unit("collaris")) {
+                    if (e.unit.type == Vars.content.unit("collaris") && (Core.settings.getBool("ArisuVoiceEnable") && !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04"))) {
                         if (ArisuPickedSound != null) ArisuPickedSound.stop();
                         ArisuArrivalSound = Seq.with(ArisuArrival1, ArisuArrival2);
                         ArisuArrivalAssignedSound = ArisuArrivalSound.random();
                         ArisuArrivalAssignedSound.play();
                     }
-                    if (e.unit.type == Vars.content.unit("toxopid")) {
+                    if (e.unit.type == Vars.content.unit("toxopid") && Core.settings.getBool("HinaVoiceEnable")) {
                         if (HinaPickedSound != null) HinaPickedSound.stop();
                         HinaArrivalSound = Seq.with(HinaArrival1, HinaArrival2);
                         HinaArrivalAssignedSound = HinaArrivalSound.random();
@@ -78,11 +82,11 @@ public class UnitSound {
         Events.on(PickupEvent.class, e -> {
             if (Vars.state.isPlaying() || Vars.state.isGame()) {
                 if (e.unit != null) {
-                    if (e.unit.type == Vars.content.unit("collaris")) {
+                    if (e.unit.type == Vars.content.unit("collaris") && (Core.settings.getBool("ArisuVoiceEnable") && !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04"))) {
                         if (ArisuArrivalAssignedSound != null) ArisuArrivalAssignedSound.stop();
                         ArisuPickedSound.play();
                     }
-                    if (e.unit.type == Vars.content.unit("toxopid")) {
+                    if (e.unit.type == Vars.content.unit("toxopid") && Core.settings.getBool("HinaVoiceEnable")) {
                         if (HinaArrivalAssignedSound != null) HinaArrivalAssignedSound.stop();
                         HinaPickedSound.play();
                     }
@@ -91,13 +95,13 @@ public class UnitSound {
         });
         Events.on(UnitDamageEvent.class, e -> {
             if (Vars.state.isPlaying() || Vars.state.isGame()) {
-                if (e.unit.type == Vars.content.unit("collaris") && interval.get(300)) {
+                if ((e.unit.type == Vars.content.unit("collaris") && interval.get(300)) && (Core.settings.getBool("ArisuVoiceEnable") && !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04"))) {
                     ArisuHitSound = Seq.with(ArisuHit1, ArisuHit2, ArisuHit3);
                     if (!e.unit.dead) {
                         Time.run(0f, () -> ArisuHitSound.random().play());
                     }
                 }
-                if (e.unit.type == Vars.content.unit("toxopid") && interval.get(300)) {
+                if ((e.unit.type == Vars.content.unit("toxopid") && interval.get(300)) && Core.settings.getBool("HinaVoiceEnable")) {
                     HinaHitSound = Seq.with(HinaHit1, HinaHit2, HinaHit3);
                     if (!e.unit.dead) {
                         Time.run(0f, () -> HinaHitSound.random().play());
@@ -106,7 +110,7 @@ public class UnitSound {
             }
         });
         Timer.schedule(() -> {
-            Sound ArisuAssignedSound = ArisuShootSound.random();
+            Sound ArisuAssignedSound = (Core.settings.getBool("ArisuVoiceEnable") && !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04")) ? ArisuShootSound.random() : Sounds.pulseBlast;
             if (ArisuAssignedSound != Sounds.pulseBlast) {
                 UnitTypes.collaris.weapons.get(0).soundPitchMin = 1f;
                 UnitTypes.collaris.weapons.get(1).soundPitchMin = 1f;
@@ -119,7 +123,7 @@ public class UnitSound {
         }, 0, 2.15f);
 
         Timer.schedule(() -> {
-            Sound HinaAssignedSound = HinaShootSound.random();
+            Sound HinaAssignedSound = Core.settings.getBool("HinaVoiceEnable") ? HinaShootSound.random() : Sounds.shootBig;
             if (HinaAssignedSound != Sounds.shootBig) {
                 UnitTypes.toxopid.weapons.get(0).soundPitchMin = 1f;
                 UnitTypes.toxopid.weapons.get(1).soundPitchMin = 1f;
@@ -132,7 +136,7 @@ public class UnitSound {
         }, 0, 0.5f);
 
         Timer.schedule(() -> {
-            Sound HinaArtilleryAssignedSound = HinaArtillerySound.random();
+            Sound HinaArtilleryAssignedSound = Core.settings.getBool("HinaVoiceEnable") ? HinaArtillerySound.random() : Sounds.shootBig;
             if (HinaArtilleryAssignedSound != Sounds.shootBig) {
                 UnitTypes.toxopid.weapons.get(2).soundPitchMin = 1f;
             } else {

@@ -23,6 +23,9 @@ import mindustry.gen.Tex;
 import mindustry.ui.Styles;
 import mindustry.ui.dialogs.SettingsMenuDialog;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import static mindustry.Vars.tree;
 import static mindustry.Vars.ui;
 
@@ -70,6 +73,11 @@ public class ArchivDSettings {
             t.checkPref("ba-firstTime", true);
             t.checkPref("ba-addHalo", true);
             t.pref(new ButtonSetting("ba-downloadLive2D", Icon.download, ArchivDLive2DSelectionDialog::new, 32));
+            t.pref(new TextSeparator(Core.bundle.get("setting.category.unit-sound")));
+            t.pref(new Separator(4));
+            t.pref(new Text((LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04")) ? Core.bundle.get("setting.category.unit-sound.description") +"\n"+ Core.bundle.get("sussy") : Core.bundle.get("setting.category.unit-sound.description")));
+            t.checkPref("HinaVoiceEnable", true);
+            t.checkPref("ArisuVoiceEnable", true);
             t.pref(new TextSeparator(Core.bundle.get("setting.category.links")));
             t.pref(new Separator(4));
             t.pref(new ButtonSetting("ba-youtube", Icon.play, () -> Core.app.openURI("https://www.youtube.com/channel/UCsrnDYrkovQhCCE8kwKcvKQ"), 32));
@@ -149,6 +157,22 @@ public class ArchivDSettings {
             b.getStyle().background = Tex.underline;
             b.setAlignment(1);
             table.add(b).growX();
+            table.row();
+        }
+    }
+
+    static class Text extends SettingsMenuDialog.SettingsTable.Setting {
+        String text;
+        public Text(String text){
+            super("");
+            this.text = text;
+        }
+        @Override
+        public void add(SettingsMenuDialog.SettingsTable table){
+            Label txt = new Label(text);
+            txt.setText(text);
+            txt.setAlignment(1);
+            table.add(txt).growX();
             table.row();
         }
     }
