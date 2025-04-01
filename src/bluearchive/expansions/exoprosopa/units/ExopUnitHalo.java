@@ -2,6 +2,7 @@ package bluearchive.expansions.exoprosopa.units;
 
 import arc.graphics.*;
 import arc.graphics.g2d.*;
+import arc.struct.Seq;
 import arc.util.Time;
 import mindustry.Vars;
 import mindustry.ctype.*;
@@ -17,6 +18,13 @@ public class ExopUnitHalo {
         UnitType vicient = Vars.content.getByName(ContentType.unit, "exoprosopa-15o-03-vicient");
         UnitType siphon = Vars.content.getByName(ContentType.unit, "exoprosopa-15o-04-siphon");
         UnitType rancor = Vars.content.getByName(ContentType.unit, "exoprosopa-15o-05-rancor");
+        //legs
+        UnitType ares = Vars.content.getByName(ContentType.unit, "exoprosopa-16p-01-ares");
+        UnitType rhitle = Vars.content.getByName(ContentType.unit, "exoprosopa-16p-02-rhitle");
+        UnitType sender = Vars.content.getByName(ContentType.unit, "exoprosopa-16p-03-sender");
+        UnitType carranger = Vars.content.getByName(ContentType.unit, "exoprosopa-16p-04-carragher");
+        UnitType xenoct = Vars.content.getByName(ContentType.unit, "exoprosopa-16p-05-xenoct");
+
         mason.parts.addAll(
                 new ShapePart(){{
                     color = Color.valueOf("93e2ee");
@@ -175,6 +183,203 @@ public class ExopUnitHalo {
                     circle = true;
                     stroke = 1.7f;
                     rotation = 90;
+                }}
+        );
+        ares.parts.add(
+                new ShapePart(){{
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                    radius = 4f;
+                    hollow = true;
+                    circle = true;
+                    stroke = 1.7f;
+                    y = -2f;
+                    rotation = 90;
+                }}
+        );
+        rhitle.parts.add(
+                new FlarePart(){{
+                    color1 = Color.valueOf("d45050");
+                    sides = 5;
+                    followRotation = true;
+                    radius = 8f;
+                    y = -2f;
+                    stroke = 4f;
+                }},
+        new ShapePart(){{
+            color = Color.valueOf("d45050");
+            layer = Layer.effect;
+            radius = 6f;
+            hollow = true;
+            circle = true;
+            stroke = 1.7f;
+            rotation = 90;
+            y = -2f;
+        }}
+        );
+        sender.parts.addAll(
+                new ShapePart(){{
+                    hollow = true;
+                    stroke = 1.2f;
+                    radius = 6;
+                    circle = true;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                }},
+                new ShapePart(){{
+                    hollow = true;
+                    stroke = 1.7f;
+                    radius = 9;
+                    circle = true;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                }},
+                new HaloPart(){{
+                    haloRotation = 45;
+                    triLength = 9;
+                    tri = true;
+                    shapes = 4;
+                    radius = 2f;
+                    haloRadius = 7.5f;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                }},
+                new HaloPart(){{
+                    haloRotation = 45;
+                    shapeRotation = 180;
+                    triLength = 3;
+                    tri = true;
+                    shapes = 4;
+                    radius = 2f;
+                    haloRadius = 7.5f;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                }},
+        new HaloPart(){{
+            haloRotation = 45;
+            shapeRotation = 180;
+            triLength = 6;
+            tri = true;
+            shapes = 4;
+            radius = 1.5f;
+            haloRadius = 9;
+            y = -4;
+            color = Color.valueOf("d45050");
+            layer = Layer.effect;
+        }}
+        );
+        carranger.parts.addAll(
+                new FlarePart(){{
+                    color1 = Color.valueOf("d45050");
+                    sides = 4;
+                    followRotation = true;
+                    radius = 8f;
+                    y = -4f;
+                    stroke = 4f;
+                }},
+                new ShapePart(){{
+                    hollow = true;
+                    stroke = 1.7f;
+                    radius = 7;
+                    circle = true;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                }},
+                new ShapePart(){{
+                    hollow = true;
+                    stroke = 1.7f;
+                    radius = 11;
+                    circle = true;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                }},
+                new HaloPart(){{
+                    haloRotation = 45;
+                    triLength = 8;
+                    tri = true;
+                    shapes = 4;
+                    radius = 1.5f;
+                    haloRadius = 10;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                }},
+                new HaloPart(){{
+                    haloRotation = 90;
+                    shapeRotation = 180;
+                    tri = true;
+                    triLength = 4;
+                    shapes = 6;
+                    radius = 1.5f;
+                    haloRadius = 10;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                }}
+        );
+        xenoct.parts.addAll(
+                new FlarePart(){{
+                    color1 = Color.valueOf("d45050");
+                    sides = 4;
+                    followRotation = true;
+                    radius = 12f;
+                    y = -4f;
+                    stroke = 2f;
+                }},
+                new FlarePart(){{
+                    color1 = Color.valueOf("d45050");
+                    sides = 8;
+                    followRotation = true;
+                    radius = 8f;
+                    y = -4f;
+                    stroke = 4f;
+                }},
+                new ShapePart(){{
+                    hollow = true;
+                    stroke = 1.7f;
+                    radius = 12;
+                    circle = true;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                }},
+                new ShapePart(){{
+                    hollow = true;
+                    stroke = 1.7f;
+                    radius = 16;
+                    circle = true;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                }},
+                new HaloPart(){{
+                    haloRotation = 45;
+                    triLength = 15;
+                    shapes = 4;
+                    tri = true;
+                    radius = 1.5f;
+                    haloRadius = 15;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
+                }},
+                new HaloPart(){{
+                    haloRotation = 90;
+                    shapeRotation = 180;
+                    triLength = 9;
+                    tri = true;
+                    shapes = 6;
+                    radius = 1.5f;
+                    haloRadius = 15;
+                    y = -4;
+                    color = Color.valueOf("d45050");
+                    layer = Layer.effect;
                 }}
         );
     }

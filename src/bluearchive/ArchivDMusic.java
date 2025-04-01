@@ -29,7 +29,8 @@ public class ArchivDMusic {
             cat, aspiration, dawn, bunny,
             aira, sugar, hare, oriental,
             boss3, boss4, dreamer, game10,
-            game11, honey, amplify, moment, somedaySometime, t171, theme220, theme228, re_aoh;
+            game11, honey, amplify, moment, somedaySometime, t171, theme220, theme228, re_aoh,
+            funnyAhh;
 
     // I hope this work :)
     protected static void playMusic(Music music){
@@ -73,6 +74,7 @@ public class ArchivDMusic {
                 theme228 = new Music(tree.get("music/theme228.ogg"));
                 re_aoh = new Music(tree.get("music/menure-aoh.ogg"));
                 if(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04")){
+                    funnyAhh = new Music(tree.get("music/donpolo.ogg"));
                     Sounds.press = new Sound(tree.get("sounds/queBom.mp3"));
                     Sounds.back = new Sound(tree.get("sounds/queBom.mp3"));
                 }

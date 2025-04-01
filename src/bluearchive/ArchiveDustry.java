@@ -24,6 +24,7 @@ import static mindustry.Vars.*;
 
 public class ArchiveDustry extends Mod {
     public static Music recollectionMusic;
+
     int foundL2D, loadedL2D, erroredL2D;
 
     public ArchiveDustry() {
@@ -38,7 +39,11 @@ public class ArchiveDustry extends Mod {
         ArchivDLoadingFragment.init();
         ArchivDSettings.loadSettings();
         if(Core.settings.getBool("ba-addHalo", true)) {
-            if(mods.getMod("exoprosopa").enabled() && mods.getMod("exoprosopa") != null) ADExoprosopa.init();
+            if(mods.getMod("exoprosopa") != null) {
+                if (mods.getMod("exoprosopa").enabled()) {
+                    ADExoprosopa.init();
+                }
+            }
             UnitHalo.init();
         };
         if(Core.settings.getBool("HinaVoiceEnable") || Core.settings.getBool("ArisuVoiceEnable")) UnitSound.init();
@@ -66,13 +71,13 @@ public class ArchiveDustry extends Mod {
             Events.on(EventType.ClientLoadEvent.class, event -> {
                 switch (Core.settings.getInt("setSong")) {
                     case 1:
-                        if (Musics.menu != tree.loadMusic("menucm")) Musics.menu = tree.loadMusic("menucm");
+                        if (Musics.menu != tree.loadMusic("menucm")) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? tree.loadMusic("menucm") : ArchivDMusic.funnyAhh;
                         break;
                     case 2:
-                        if (Musics.menu != tree.loadMusic("menure-aoh")) Musics.menu = tree.loadMusic("menure-aoh");
+                        if (Musics.menu != tree.loadMusic("menure-aoh")) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? tree.loadMusic("menure-aoh") : ArchivDMusic.funnyAhh;
                         break;
                     case 3:
-                        if (Musics.menu != recollectionMusic) Musics.menu = recollectionMusic;
+                        if (Musics.menu != recollectionMusic) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? recollectionMusic : ArchivDMusic.funnyAhh;
                         break;
                 }
                 Log.infoTag("ArchiveDustry", "Fully Loaded!");
