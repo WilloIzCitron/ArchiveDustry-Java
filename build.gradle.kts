@@ -78,6 +78,7 @@ allprojects{
         maven("https://oss.sonatype.org/content/repositories/snapshots/")
         maven("https://oss.sonatype.org/content/repositories/releases/")
         maven("https://raw.githubusercontent.com/GlennFolker/EntityAnnoMaven/main")
+        maven("https://maven.xpdustry.com/mindustry")
 
         // Use Zelaux's non-buggy repository for release Mindustry and Arc builds.
         if(!useJitpack) maven("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository")
@@ -98,22 +99,23 @@ allprojects{
 }
 
 project(":"){
-    apply(plugin = "com.github.GlennFolker.EntityAnno")
-    configure<EntityAnnoExtension>{
-        modName = project.properties["modName"].toString()
-        mindustryVersion = project.properties[if(useJitpack) "mindustryBEVersion" else "mindustryVersion"].toString()
-        isJitpack = useJitpack
-        revisionDir = layout.projectDirectory.dir("revisions").asFile
-        fetchPackage = modFetch
-        genSrcPackage = modGenSrc
-        genPackage = modGen
-    }
+    //apply(plugin = "com.github.GlennFolker.EntityAnno")
+//    configure<EntityAnnoExtension>{
+//        modName = project.properties["modName"].toString()
+//        mindustryVersion = project.properties[if(useJitpack) "mindustryBEVersion" else "mindustryVersion"].toString()
+//        isJitpack = useJitpack
+//        revisionDir = layout.projectDirectory.dir("revisions").asFile
+//        fetchPackage = modFetch
+//        genSrcPackage = modGenSrc
+//        genPackage = modGen
+//    }
 
     dependencies{
         // Use the entity generation annotation processor.
-        compileOnly(entity(":entity"))
-        add("kapt", entity(":entity"))
+        //compileOnly(entity(":entity"))
+        //add("kapt", entity(":entity"))
 
+        // Local Testing if commented
         compileOnly(mindustry(":core"))
         compileOnly(arc(":arc-core"))
     }

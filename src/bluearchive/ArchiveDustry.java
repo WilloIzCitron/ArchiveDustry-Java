@@ -6,7 +6,6 @@ import arc.files.Fi;
 import arc.struct.*;
 import arc.util.*;
 import bluearchive.expansions.exoprosopa.ADExoprosopa;
-import bluearchive.gen.EntityRegistry;
 import bluearchive.l2d.Live2DBackgrounds;
 import bluearchive.ui.*;
 import bluearchive.ui.dialogs.ArchivDFirstTimeDialog;
@@ -45,7 +44,7 @@ public class ArchiveDustry extends Mod {
                 }
             }
             UnitHalo.init();
-        };
+        }
         if(Core.settings.getBool("HinaVoiceEnable") || Core.settings.getBool("ArisuVoiceEnable")) UnitSound.init();
         ArchivDMusic.load();
         if(Core.settings.getBool("enableL2D")) {

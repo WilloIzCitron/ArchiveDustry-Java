@@ -7,7 +7,6 @@ import arc.audio.Sound;
 import arc.math.Mathf;
 import arc.struct.Seq;
 import arc.util.*;
-import mindustry.Vars;
 import mindustry.content.StatusEffects;
 import mindustry.game.EventType;
 import mindustry.gen.Musics;
