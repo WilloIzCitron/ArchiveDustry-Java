@@ -34,6 +34,7 @@ public class ArchivDSettings {
 
     public static void loadSettings(){
         ui.settings.addCategory("ArchiveDustry", t -> {
+            t.center();
             t.pref(new TextSeparator(Core.bundle.get("setting.category.general-setting")));
             t.pref(new Separator(4));
             if (Core.settings.getBool("enableL2D")) {

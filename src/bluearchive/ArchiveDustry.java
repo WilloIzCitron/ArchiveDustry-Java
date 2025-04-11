@@ -38,10 +38,8 @@ public class ArchiveDustry extends Mod {
         ArchivDLoadingFragment.init();
         ArchivDSettings.loadSettings();
         if(Core.settings.getBool("ba-addHalo", true)) {
-            if(mods.getMod("exoprosopa") != null) {
-                if (mods.getMod("exoprosopa").enabled()) {
+            if((mods.getMod("exoprosopa") != null) && (mods.getMod("exoprosopa").enabled())) {
                     ADExoprosopa.init();
-                }
             }
             UnitHalo.init();
         }
