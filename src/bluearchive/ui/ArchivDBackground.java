@@ -1,18 +1,23 @@
 package bluearchive.ui;
 
-import arc.*;
-import arc.files.*;
-import arc.func.*;
-import arc.graphics.g2d.*;
-import arc.scene.*;
-import arc.scene.ui.*;
+import arc.Core;
+import arc.Events;
+import arc.files.Fi;
+import arc.files.ZipFi;
+import arc.func.Boolp;
+import arc.func.Floatc;
+import arc.graphics.g2d.TextureRegion;
+import arc.scene.Element;
+import arc.scene.Group;
+import arc.scene.ui.Image;
 import arc.util.*;
-import arc.util.serialization.*;
+import arc.util.serialization.Jval;
 import bluearchive.ArchiveDustry;
 import bluearchive.l2d.Live2DBackgrounds;
 import mindustry.game.EventType;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 

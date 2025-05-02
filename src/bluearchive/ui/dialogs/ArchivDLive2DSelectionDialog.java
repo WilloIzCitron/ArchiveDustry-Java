@@ -2,11 +2,13 @@ package bluearchive.ui.dialogs;
 
 import arc.Core;
 import arc.scene.actions.Actions;
-import arc.scene.ui.*;
+import arc.scene.ui.Dialog;
+import arc.scene.ui.TextButton;
 import bluearchive.ui.ArchivDBackground;
-import mindustry.gen.*;
-import mindustry.graphics.*;
-import mindustry.ui.*;
+import mindustry.gen.Icon;
+import mindustry.gen.Tex;
+import mindustry.graphics.Pal;
+import mindustry.ui.Styles;
 
 
 public class ArchivDLive2DSelectionDialog extends Dialog {

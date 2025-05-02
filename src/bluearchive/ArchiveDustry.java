@@ -57,23 +57,26 @@ public class ArchiveDustry extends Mod {
                 }
             });
         }
+        if (Core.settings.getString("selectedSong") == null) {
+            Core.settings.put("selectedSong", "menucm");
+        }
         if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D") && Core.settings.has("setL2D-new")) {
             if (!Core.settings.getString("setL2D-new").isEmpty()) {
                 ArchivDBackground.buildL2D(Core.settings.getString("setL2D-new"));
             } else {
                 Core.settings.put("enableL2D", false); //fallback if setl2d is blank
-                Core.settings.put("setSong", 1);
+                Core.settings.put("selectedSong", "menucm");
             }
         }
             Events.on(EventType.ClientLoadEvent.class, event -> {
-                switch (Core.settings.getInt("setSong")) {
-                    case 1:
+                switch (Core.settings.getString("selectedSong")) {
+                    case "menucm":
                         if (Musics.menu != tree.loadMusic("menucm")) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? tree.loadMusic("menucm") : ArchivDMusic.funnyAhh;
                         break;
-                    case 2:
+                    case "menure-aoh":
                         if (Musics.menu != tree.loadMusic("menure-aoh")) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? tree.loadMusic("menure-aoh") : ArchivDMusic.funnyAhh;
                         break;
-                    case 3:
+                    case "recollection":
                         if (Musics.menu != recollectionMusic) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? recollectionMusic : ArchivDMusic.funnyAhh;
                         break;
                 }

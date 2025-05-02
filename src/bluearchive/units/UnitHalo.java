@@ -5,9 +5,9 @@ import arc.Events;
 import arc.graphics.Color;
 import arc.graphics.g2d.TextureRegion;
 import arc.util.Log;
-import mindustry.content.*;
+import mindustry.content.UnitTypes;
 import mindustry.entities.part.*;
-import mindustry.game.EventType.*;
+import mindustry.game.EventType.ClientLoadEvent;
 import mindustry.graphics.*;
 
 import java.time.LocalDate;

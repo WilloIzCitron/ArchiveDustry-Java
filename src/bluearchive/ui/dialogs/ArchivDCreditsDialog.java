@@ -3,12 +3,15 @@ package bluearchive.ui.dialogs;
 import arc.Core;
 import arc.input.KeyCode;
 import arc.scene.style.TextureRegionDrawable;
-import arc.scene.ui.*;
-import arc.scene.ui.layout.*;
-import arc.util.*;
+import arc.scene.ui.Dialog;
+import arc.scene.ui.Image;
+import arc.scene.ui.layout.Table;
+import arc.util.Align;
+import arc.util.Scaling;
+import arc.util.Time;
 import bluearchive.ArchivDMusic;
-import mindustry.gen.*;
-import mindustry.ui.*;
+import mindustry.gen.Tex;
+import mindustry.ui.Styles;
 
 import static bluearchive.ArchiveDustry.soundControlPlaying; //inherited
 import static mindustry.Vars.*;

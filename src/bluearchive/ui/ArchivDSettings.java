@@ -4,17 +4,16 @@ import arc.Core;
 import arc.graphics.Color;
 import arc.scene.style.Drawable;
 import arc.scene.style.TextureRegionDrawable;
+import arc.scene.ui.ButtonGroup;
 import arc.scene.ui.Image;
 import arc.scene.ui.ImageButton;
 import arc.scene.ui.Label;
-import arc.scene.style.*;
 import arc.scene.ui.layout.Cell;
 import arc.scene.utils.Elem;
 import arc.util.OS;
 import arc.util.Scaling;
 import bluearchive.ArchiveDustry;
 import bluearchive.ui.dialogs.ArchivDCreditsDialog;
-import bluearchive.ui.dialogs.ArchivDLive2DManager;
 import bluearchive.ui.dialogs.ArchivDLive2DSelectionDialog;
 import mindustry.Vars;
 import mindustry.gen.Icon;
@@ -37,37 +36,10 @@ public class ArchivDSettings {
             t.center();
             t.pref(new TextSeparator(Core.bundle.get("setting.category.general-setting")));
             t.pref(new Separator(4));
-            if (Core.settings.getBool("enableL2D")) {
-                t.pref(new ButtonSetting(Core.bundle.get("ba-l2dManager"), Icon.settings, ArchivDLive2DManager::new, 32));
-                t.sliderPref("setSong", 1, 1, 3, 1, i -> {
-                    switch (i) {
-                        case 1:
-                            Musics.menu = tree.loadMusic("menucm");
-                            break;
-                        case 2:
-                            Musics.menu = tree.loadMusic("menure-aoh");
-                            break;
-                        case 3:
-                            if (Core.settings.getBool("enableL2D")) {
-                                Musics.menu = ArchiveDustry.recollectionMusic;
-                            }
-                            break;
-                    }
-                    return Core.bundle.get("ba-music" + (int) i + ".name");
-                });
-            } else {
-                t.sliderPref("setSong", 1, 1, 2, 1, i -> {
-                    switch (i) {
-                        case 1:
-                            Musics.menu = tree.loadMusic("menucm");
-                            break;
-                        case 2:
-                            Musics.menu = tree.loadMusic("menure-aoh");
-                            break;
-                    }
-                    return Core.bundle.get("ba-music" + (int) i + ".name");
-                });
-            }
+            t.pref(new Text(Core.bundle.get("setting.setSong.name")));
+            t.pref(new Text(Core.bundle.get("setting.setSong.description")));
+            t.pref(new Separator(4));
+            t.pref(new SongSelectSetting("setSong"));
             if(Core.settings.getBool("live2dinstalled", false)) {
                 t.checkPref("enableL2D", false);
             }
@@ -75,8 +47,9 @@ public class ArchivDSettings {
             t.checkPref("ba-addHalo", true);
             t.pref(new ButtonSetting("ba-downloadLive2D", Icon.download, ArchivDLive2DSelectionDialog::new, 32));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.unit-sound")));
-            t.pref(new Separator(4));
+            t.pref(new Separator(3));
             t.pref(new Text((LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04")) ? Core.bundle.get("setting.category.unit-sound.description") +"\n"+ Core.bundle.get("sussy") : Core.bundle.get("setting.category.unit-sound.description")));
+            t.pref(new Separator(3));
             t.checkPref("HinaVoiceEnable", true);
             t.checkPref("ArisuVoiceEnable", true);
             t.pref(new TextSeparator(Core.bundle.get("setting.category.links")));
@@ -235,6 +208,37 @@ public class ArchivDSettings {
             table.add(internalName).row();
             table.add(ver).row();
             table.add(author).row();
+        }
+    }
+    static class SongSelectSetting extends SettingsMenuDialog.SettingsTable.Setting {
+        public SongSelectSetting(String name){
+            super("Song Select");
+        }
+        @Override
+        public void add(SettingsMenuDialog.SettingsTable settingsTable) {
+            // Must be hardcoded because there's no new thing here
+            settingsTable.table(Tex.button, t -> {
+                t.margin(10f);
+                var group = new ButtonGroup<>();
+                var style = Styles.flatBordert;
+
+                t.defaults().size(160f, 60f);
+                t.button(Core.bundle.get("ba-music1.name"), style, () -> {
+                        Musics.menu = tree.loadMusic("menucm");
+                        Core.settings.put("selectedSong", "menucm");
+                }).group(group).checked(b -> Core.settings.getString("selectedSong").equals("menucm"));
+                t.button(Core.bundle.get("ba-music2.name"), style, () -> {
+                    Musics.menu = tree.loadMusic("menure-aoh");
+                    Core.settings.put("selectedSong", "menure-aoh");
+                }).group(group).checked(b -> Core.settings.getString("selectedSong").equals("menucm"));
+                if(Core.settings.getBool("enableL2D")) {
+                    t.button(Core.bundle.get("ba-music3.name"), style, () -> {
+                        Musics.menu = ArchiveDustry.recollectionMusic;
+                        Core.settings.put("selectedSong", "recollection");
+                    }).group(group).checked(b -> Core.settings.getString("selectedSong").equals("recollection"));
+                }
+                t.row();
+            }).row();
         }
     }
 }
