@@ -10,6 +10,7 @@ import bluearchive.l2d.Live2DBackgrounds;
 import bluearchive.ui.*;
 import bluearchive.ui.dialogs.ArchivDFirstTimeDialog;
 import bluearchive.ui.overrides.ArchivDLoadingFragment;
+import bluearchive.ui.overrides.ArchivDMenu;
 import mindustry.core.Version;
 import mindustry.game.EventType;
 import mindustry.gen.*;

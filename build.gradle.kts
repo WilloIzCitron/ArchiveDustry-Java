@@ -99,6 +99,7 @@ allprojects{
 }
 
 project(":"){
+    //Unintended to make units here, ArchivD-Contents may applicable.
     //apply(plugin = "com.github.GlennFolker.EntityAnno")
 //    configure<EntityAnnoExtension>{
 //        modName = project.properties["modName"].toString()
