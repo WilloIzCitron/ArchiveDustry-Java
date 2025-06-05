@@ -1,8 +1,7 @@
-package bluearchive.units;
+package bluearchive.audio;
 
 import arc.*;
 import arc.audio.Sound;
-import arc.graphics.Color;
 import arc.struct.Seq;
 import arc.util.Interval;
 import arc.util.Log;

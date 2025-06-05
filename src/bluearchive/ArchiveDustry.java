@@ -5,21 +5,24 @@ import arc.audio.*;
 import arc.files.Fi;
 import arc.struct.*;
 import arc.util.*;
+import bluearchive.audio.ArchivDMusic;
+import bluearchive.audio.ArchivDSoundControl;
+import bluearchive.audio.UnitSound;
 import bluearchive.expansions.exoprosopa.ADExoprosopa;
 import bluearchive.l2d.Live2DBackgrounds;
-import bluearchive.ui.*;
-import bluearchive.ui.dialogs.ArchivDFirstTimeDialog;
+import bluearchive.ui.ArchivDUI;
+import bluearchive.ui.overrides.ArchivDBackground;
 import bluearchive.ui.overrides.ArchivDLoadingFragment;
-import bluearchive.ui.overrides.ArchivDMenu;
+import bluearchive.ui.overrides.ArchivDSettings;
 import mindustry.core.Version;
 import mindustry.game.EventType;
-import mindustry.gen.*;
 import mindustry.mod.*;
 import bluearchive.units.*;
 import arc.math.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
+import static bluearchive.ui.ArchivDUI.*;
 import static mindustry.Vars.*;
 
 public class ArchiveDustry extends Mod {
@@ -45,7 +48,6 @@ public class ArchiveDustry extends Mod {
             UnitHalo.init();
         }
         if(Core.settings.getBool("HinaVoiceEnable") || Core.settings.getBool("ArisuVoiceEnable")) UnitSound.init();
-        ArchivDMusic.load();
         if(Core.settings.getBool("enableL2D")) {
             dataDirectory.child("live2d").walk(f -> {
                 foundL2D++;
@@ -58,6 +60,7 @@ public class ArchiveDustry extends Mod {
                 }
             });
         }
+        ArchivDMusic.load();
         if (Core.settings.getString("selectedSong") == null) {
             Core.settings.put("selectedSong", "menucm");
         }
@@ -70,102 +73,16 @@ public class ArchiveDustry extends Mod {
             }
         }
             Events.on(EventType.ClientLoadEvent.class, event -> {
-                switch (Core.settings.getString("selectedSong")) {
-                    case "menucm":
-                        if (Musics.menu != tree.loadMusic("menucm")) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? tree.loadMusic("menucm") : ArchivDMusic.funnyAhh;
-                        break;
-                    case "menure-aoh":
-                        if (Musics.menu != tree.loadMusic("menure-aoh")) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? tree.loadMusic("menure-aoh") : ArchivDMusic.funnyAhh;
-                        break;
-                    case "recollection":
-                        if (Musics.menu != recollectionMusic) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? recollectionMusic : ArchivDMusic.funnyAhh;
-                        break;
-                }
+                ArchivDUI.init();
+                ArchivDSoundControl.loadSoundControl();
+                ArchivDSoundControl.replaceMainMenu();
                 Log.infoTag("ArchiveDustry", "Fully Loaded!");
                 if (Core.settings.getBool("ba-firstTime")) {
-                    new ArchivDFirstTimeDialog();
+                    firstTimeDialog.show();
                 }
-                tree.loadMusic("research").setLooping(true);
-                tree.loadMusic("database").setLooping(true);
-                tree.loadMusic("loadout").setLooping(true);
-                ui.research.shown(() -> tree.loadMusic("research").play());
-                ui.research.update(() -> {
-                    if (state.isMenu() || ui.planet.isShown() || ui.editor.isShown() || state.rules.editor) {
-                        control.sound.stop();
-                        if (soundControlPlaying() != null) {
-                            control.sound.stop();
-                        } //Counteract fade in
-                    }
-                });
-                ui.research.hidden(() -> tree.loadMusic("research").stop());
-                ui.database.shown(() -> tree.loadMusic("database").play());
-                ui.database.update(() -> {
-                    if (state.isMenu() || ui.planet.isShown() || ui.editor.isShown() || state.rules.editor) {
-                        control.sound.stop();
-                        if (soundControlPlaying() != null) {
-                            control.sound.stop();
-                        } //Counteract fade in
-                    }
-                });
-                ui.database.hidden(() -> tree.loadMusic("database").stop());
-                ui.schematics.shown(() -> tree.loadMusic("loadout").play());
-                ui.schematics.update(() -> {
-                    if (state.isMenu() || ui.planet.isShown() || ui.editor.isShown() || state.rules.editor) {
-                        control.sound.stop();
-                        if (soundControlPlaying() != null) {
-                            control.sound.stop();
-                        } //Counteract fade in
-                    }
-                });
-                ui.schematics.hidden(() -> tree.loadMusic("loadout").stop());
-            });
+                Timer.schedule(() -> control.sound.stop(), 0.1f);
 
-            Events.on(EventType.WinEvent.class, winner -> {
-                Music currentPlay = Reflect.get(control.sound, "current");
-                if (currentPlay != null) {
-                    currentPlay.stop();
-                }
-                tree.loadMusic("win").play();
-                ui.restart.hidden(() -> tree.loadMusic("win").stop());
             });
-            Events.on(EventType.LoseEvent.class, winner -> {
-                Music currentPlay = Reflect.get(control.sound, "current");
-                if (currentPlay != null) {
-                    currentPlay.stop();
-                }
-                tree.loadMusic("lose").play();
-                ui.restart.hidden(() -> tree.loadMusic("lose").stop());
-            });
-
-
-            // sector captured = win
-            Events.on(EventType.SectorCaptureEvent.class, e -> {
-                Music currentPlay = Reflect.get(control.sound, "current");
-                if (currentPlay != null) {
-                    currentPlay.stop();
-                }
-                tree.loadMusic("win").play();
-                Time.run(306f, () -> {
-                    tree.loadMusic("win").stop();
-                    Time.clear();
-                });
-            });
-    }
-    public static Music soundControlPlaying() {
-        if (state.isMenu()) {
-            if (ui.planet.isShown()) {
-                //for bleeding edge
-                //if(ui.planet.state.planet.launchMusic != null) return ui.planet.state.planet.launchMusic);
-                return Musics.launch;
-            } else if (ui.editor.isShown()) {
-                return Musics.editor;
-            } else {
-                return Musics.menu;
-            }
-        } else if (state.rules.editor) {
-            return Musics.editor;
-        }
-        return null;
     }
 
     static String RandomMessage(){
@@ -176,4 +93,3 @@ public class ArchiveDustry extends Mod {
         return (!LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04")) ? strings.get(Mathf.random(stringLength)) : "Que Bom!";
     }
 }
-

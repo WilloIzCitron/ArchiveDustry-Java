@@ -4,7 +4,7 @@ import arc.Core;
 import arc.scene.actions.Actions;
 import arc.scene.ui.Dialog;
 import arc.scene.ui.TextButton;
-import bluearchive.ui.ArchivDBackground;
+import bluearchive.ui.overrides.ArchivDBackground;
 import mindustry.gen.Icon;
 import mindustry.gen.Tex;
 import mindustry.graphics.Pal;

@@ -9,11 +9,10 @@ import arc.scene.ui.layout.Table;
 import arc.util.Align;
 import arc.util.Scaling;
 import arc.util.Time;
-import bluearchive.ArchivDMusic;
+import bluearchive.audio.ArchivDMusic;
 import mindustry.gen.Tex;
 import mindustry.ui.Styles;
 
-import static bluearchive.ArchiveDustry.soundControlPlaying; //inherited
 import static mindustry.Vars.*;
 
 public class ArchivDCreditsDialog extends Dialog {
@@ -91,9 +90,6 @@ public class ArchivDCreditsDialog extends Dialog {
         super();
         //addCloseButton();
         scrollBar = 0f;
-
-        ArchivDMusic.re_aoh.play();
-        show();
     }
 
     @Override
@@ -109,15 +105,6 @@ public class ArchivDCreditsDialog extends Dialog {
         in.update(()-> setTranslation(0f, scrollBar - (halfTableHeight + Core.camera.height)));
         cont.add(in).align(Align.bottom);
         setStyle(creditDialog);
-        this.update(() -> {
-            if (state.isMenu() || ui.planet.isShown() || ui.editor.isShown() || state.rules.editor) {
-                control.sound.stop();
-                if (soundControlPlaying() != null) {
-                    control.sound.stop();
-                } //Counteract fade in
-            }
-        });
-        this.hidden(() -> ArchivDMusic.re_aoh.stop());
         if(((scrollBar > (halfTableHeight * 2f)) && tableHeight > 0) || Core.input.keyDown(KeyCode.escape) || Core.input.isTouched()) {
             touch = touch + 1;
             if(touch == 2) {
@@ -131,6 +118,11 @@ public class ArchivDCreditsDialog extends Dialog {
     public void draw() {
         Styles.black.draw(0, 0, Core.graphics.getWidth(), Core.graphics.getHeight());
         super.draw();
+    }
+
+    @Override
+    public boolean isShown(){
+        return getScene() != null;
     }
 }
 
