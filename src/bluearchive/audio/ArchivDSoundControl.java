@@ -200,7 +200,7 @@ public class ArchivDSoundControl extends SoundControl {
                 if (Musics.menu != tree.loadMusic("menure-aoh")) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? tree.loadMusic("menure-aoh") : ArchivDMusic.funnyAhh;
                 break;
             case "recollection":
-                if (Musics.menu != recollectionMusic) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? recollectionMusic : ArchivDMusic.funnyAhh;
+                if (Musics.menu != recollectionMusic && recollectionMusic != null) Musics.menu = !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04") ? recollectionMusic : ArchivDMusic.funnyAhh;
                 break;
         }
     }
