@@ -28,7 +28,7 @@ import static mindustry.Vars.*;
 public class ArchiveDustry extends Mod {
     public static Music recollectionMusic;
 
-    int foundL2D, loadedL2D, erroredL2D;
+    public static int foundL2D, loadedL2D, erroredL2D;
 
     public ArchiveDustry() {
 

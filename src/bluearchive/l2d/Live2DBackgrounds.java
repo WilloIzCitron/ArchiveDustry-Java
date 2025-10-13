@@ -60,7 +60,7 @@ public class Live2DBackgrounds {
             }
         }
         LoadedL2D l2d = new LoadedL2D(meta.name, live2d, meta, meta.frameSpeed, meta.isSoundTrackLocal, meta.localSoundTrack, loadedL2ds, soundTrack);
-        Log.infoTag("ArchiveDustry", (meta.displayName)+ " has been loaded!");
+        //Log.infoTag("ArchiveDustry", (meta.displayName)+ " has been loaded!");
         live2ds.add(l2d);
     }
 

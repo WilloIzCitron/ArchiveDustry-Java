@@ -26,6 +26,7 @@ import mindustry.ui.dialogs.SettingsMenuDialog;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static bluearchive.ui.ArchivDUI.live2DManager;
 import static mindustry.Vars.tree;
 import static mindustry.Vars.ui;
 
@@ -47,7 +48,7 @@ public class ArchivDSettings {
             t.checkPref("ba-firstTime", true);
             t.checkPref("ba-addHalo", true);
             t.pref(new ButtonSetting("ba-downloadLive2D", Icon.download, ArchivDLive2DSelectionDialog::new, 32));
-            t.pref(new ButtonSetting(Core.bundle.get("ba-l2dManager"), Icon.settings, ArchivDLive2DManager::new, 32));
+            t.pref(new ButtonSetting(Core.bundle.get("ba-l2dManager"), Icon.settings, live2DManager::show, 32));
             t.pref(new TextSeparator(Core.bundle.get("setting.category.unit-sound")));
             t.pref(new Separator(3));
             t.pref(new Text((LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04")) ? Core.bundle.get("setting.category.unit-sound.description") +"\n"+ Core.bundle.get("sussy") : Core.bundle.get("setting.category.unit-sound.description")));
