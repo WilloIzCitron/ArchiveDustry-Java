@@ -89,7 +89,7 @@ public class ArchivDSoundControl extends SoundControl {
         Core.audio.setPaused(Core.audio.soundBus.id, state.isPaused());
 
         if(ArchivDLoadingFragment.loadFragShow && !previousLoadFragShow){
-                Sounds.chatMessage.play();
+                Sounds.uiChat.play();
         }
         previousLoadFragShow = ArchivDLoadingFragment.loadFragShow;
 

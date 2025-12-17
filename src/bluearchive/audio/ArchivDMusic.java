@@ -79,8 +79,8 @@ public class ArchivDMusic {
                 constMod = new Music(tree.get("music/menucm.ogg"));
                 if (LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04")) {
                     funnyAhh = new Music(tree.get("music/donpolo.ogg"));
-                    Sounds.press = new Sound(tree.get("sounds/queBom.mp3"));
-                    Sounds.back = new Sound(tree.get("sounds/queBom.mp3"));
+                    Sounds.uiButton = new Sound(tree.get("sounds/queBom.mp3"));
+                    Sounds.uiBack = new Sound(tree.get("sounds/queBom.mp3"));
                 }
                 research = Vars.tree.loadMusic("research");
                 database = Vars.tree.loadMusic("database");

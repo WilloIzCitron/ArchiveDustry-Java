@@ -53,9 +53,9 @@ public class UnitSound {
     static Interval interval = new Interval(5);
 
     public static void init() {
-        HinaShootSound = Seq.with(Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, HinaAttack1, HinaAttack2, HinaAttack3);
-        ArisuShootSound = Seq.with(Sounds.pulseBlast, Sounds.pulseBlast, Sounds.pulseBlast, Sounds.pulseBlast, ArisuAttack1, ArisuAttack2, ArisuAttack3);
-        Seq<Sound> HinaArtillerySound = Seq.with(Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, Sounds.shootBig, HinaArtillery);
+        HinaShootSound = Seq.with(Sounds.shootToxopidShotgun, Sounds.shootToxopidShotgun, Sounds.shootToxopidShotgun, Sounds.shootToxopidShotgun, Sounds.shootToxopidShotgun, Sounds.shootToxopidShotgun, HinaAttack1, HinaAttack2, HinaAttack3);
+        ArisuShootSound = Seq.with(Sounds.shootCollaris, Sounds.shootCollaris, Sounds.shootCollaris, Sounds.shootCollaris, ArisuAttack1, ArisuAttack2, ArisuAttack3);
+        Seq<Sound> HinaArtillerySound = Seq.with(Sounds.shootArtillerySapBig, Sounds.shootArtillerySapBig, Sounds.shootArtillerySapBig, Sounds.shootArtillerySapBig, HinaArtillery);
 
 
         UnitTypes.collaris.deathSound = ArisuDeath;
@@ -109,8 +109,8 @@ public class UnitSound {
             }
         });
         Timer.schedule(() -> {
-            Sound ArisuAssignedSound = (Core.settings.getBool("ArisuVoiceEnable") && !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04")) ? ArisuShootSound.random() : Sounds.pulseBlast;
-            if (ArisuAssignedSound != Sounds.pulseBlast) {
+            Sound ArisuAssignedSound = (Core.settings.getBool("ArisuVoiceEnable") && !LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")).equals("01-04")) ? ArisuShootSound.random() : Sounds.shootCollaris;
+            if (ArisuAssignedSound != Sounds.shootCollaris) {
                 UnitTypes.collaris.weapons.get(0).soundPitchMin = 1f;
                 UnitTypes.collaris.weapons.get(1).soundPitchMin = 1f;
             } else {
@@ -122,8 +122,8 @@ public class UnitSound {
         }, 0, 2.15f);
 
         Timer.schedule(() -> {
-            Sound HinaAssignedSound = Core.settings.getBool("HinaVoiceEnable") ? HinaShootSound.random() : Sounds.shootBig;
-            if (HinaAssignedSound != Sounds.shootBig) {
+            Sound HinaAssignedSound = Core.settings.getBool("HinaVoiceEnable") ? HinaShootSound.random() : Sounds.shootToxopidShotgun;
+            if (HinaAssignedSound != Sounds.shootToxopidShotgun) {
                 UnitTypes.toxopid.weapons.get(0).soundPitchMin = 1f;
                 UnitTypes.toxopid.weapons.get(1).soundPitchMin = 1f;
             } else {
@@ -135,8 +135,8 @@ public class UnitSound {
         }, 0, 0.5f);
 
         Timer.schedule(() -> {
-            Sound HinaArtilleryAssignedSound = Core.settings.getBool("HinaVoiceEnable") ? HinaArtillerySound.random() : Sounds.shootBig;
-            if (HinaArtilleryAssignedSound != Sounds.shootBig) {
+            Sound HinaArtilleryAssignedSound = Core.settings.getBool("HinaVoiceEnable") ? HinaArtillerySound.random() : Sounds.shootArtillerySapBig;
+            if (HinaArtilleryAssignedSound != Sounds.shootArtillerySapBig) {
                 UnitTypes.toxopid.weapons.get(2).soundPitchMin = 1f;
             } else {
                 UnitTypes.toxopid.weapons.get(2).soundPitchMin = 0.8f;

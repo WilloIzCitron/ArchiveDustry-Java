@@ -8,7 +8,7 @@ import arc.util.*;
 import bluearchive.audio.ArchivDMusic;
 import bluearchive.audio.ArchivDSoundControl;
 import bluearchive.audio.UnitSound;
-import bluearchive.expansions.exoprosopa.ADExoprosopa;
+import bluearchive.expansions.exoprosopa.units.ExopUnitHalo;
 import bluearchive.l2d.Live2DBackgrounds;
 import bluearchive.ui.ArchivDUI;
 import bluearchive.ui.overrides.ArchivDBackground;
@@ -43,7 +43,7 @@ public class ArchiveDustry extends Mod {
         ArchivDSettings.loadSettings();
         if(Core.settings.getBool("ba-addHalo", true)) {
             if((mods.getMod("exoprosopa") != null) && (mods.getMod("exoprosopa").enabled())) {
-                    ADExoprosopa.init();
+                    ExopUnitHalo.load();
             }
             UnitHalo.init();
         }
