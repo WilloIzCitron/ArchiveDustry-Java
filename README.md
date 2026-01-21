@@ -11,6 +11,9 @@
 > [!NOTE]
 > This Mod was being migrated from JS<sup>JavaScript</sup> was being archived, this mod are almost perfect.
 
+> [!NOTE]
+> The development of this mod had frozen for content additions. Compatibility patches only being pushed for next update.
+
 > [!TIP]
 > Language: English (you can choose your language readme at i18n directory)
 
