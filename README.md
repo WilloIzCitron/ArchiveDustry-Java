@@ -12,7 +12,8 @@
 > This Mod was being migrated from JS<sup>JavaScript</sup> was being archived, this mod are almost perfect.
 
 > [!NOTE]
-> The development of this mod had frozen for content additions. Compatibility patches only being pushed for next update.
+> The mod has been unmaintaned, You as the Java modder can continue the development if you want to. I left Mindustry so long... now, i haven't touched the game anymore with many entropies from other community.. the last version was made for beta version of v8.. I want to rest from Mindustry Community so long... no prior time to come back
+> - [@WilloIzCitron](https://github.com/WilloIzCitron)
 
 > [!TIP]
 > Language: English (you can choose your language readme at i18n directory)
