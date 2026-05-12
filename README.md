@@ -12,7 +12,7 @@
 > This Mod was being migrated from JS<sup>JavaScript</sup> was being archived, this mod are almost perfect.
 
 > [!NOTE]
-> The mod has been unmaintaned, You as the Java modder can continue the development if you want to. I left Mindustry so long... now, i haven't touched the game anymore with many entropies from other community.. the last version was made for beta version of v8.. I want to rest from Mindustry Community so long... no prior time to come back and likely to archive this mod if there's no activity of development further.
+> The mod has been unmaintaned, You as the Java modder can continue the development if you want to. I left Mindustry so long... now, i haven't touched the game anymore with many entropies from other community.. the last version was made for beta version of v8.. I want to rest from Mindustry Community so long... no prior time to come back and likely to archive this mod if there's no activity of development further. First for all, this mod was made for fun.. that's why i made this mod because of Halo Effect which has been introduced at v7. If you want to make it more adaptation from Blue Archive into Mindustry and turn it into campaign-focused mod, you can fork this mod and i have the message to modder who want to continue this project, Make the main menu UI like what Blue Archive has... thats it.
 > - [@WilloIzCitron](https://github.com/WilloIzCitron)
 
 > [!TIP]
