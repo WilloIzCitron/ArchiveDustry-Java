@@ -153,5 +153,23 @@ public class ArchivDLoadingFragment extends LoadingFragment {
             tooltipInfo.setText(Core.bundle.get("tooltipInfo-" + randomNum));
         }
     }
+    @Override
+    public void showProgressBar() {
+        if (bar != null && !bar.visible) {
+            setProgress(() -> progValue);
+        }
+    }
+
+    @Override
+    public boolean showingProgress() {
+        return bar != null && bar.visible;
+    }
+
+
+    @Override
+    public void setText(String text, Color color) {
+        updateLabel(false, text);
+        nameLabel.setColor(color);
+    }
 }
 
