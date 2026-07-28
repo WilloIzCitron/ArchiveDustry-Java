@@ -9,7 +9,7 @@ import bluearchive.audio.ArchivDMusic;
 import bluearchive.audio.ArchivDSoundControl;
 import bluearchive.audio.UnitSound;
 import bluearchive.expansions.exoprosopa.units.ExopUnitHalo;
-import bluearchive.l2d.Live2DBackgrounds;
+import bluearchive.l2d.Live2DBackgroundsExperimental;
 import bluearchive.ui.ArchivDUI;
 import bluearchive.ui.overrides.ArchivDBackground;
 import bluearchive.ui.overrides.ArchivDLoadingFragment;
@@ -50,13 +50,15 @@ public class ArchiveDustry extends Mod {
         if(Core.settings.getBool("HinaVoiceEnable") || Core.settings.getBool("ArisuVoiceEnable")) UnitSound.init();
         if(Core.settings.getBool("enableL2D")) {
             dataDirectory.child("live2d").walk(f -> {
-                foundL2D++;
-                try {
-                    Live2DBackgrounds.load(f);
-                    loadedL2D++;
-                } catch (Exception e) {
-                    Log.err(e);
-                    erroredL2D++;
+                if(f.extEquals("zip")) {
+                    foundL2D++;
+                    try {
+                        Live2DBackgroundsExperimental.load(f);
+                        loadedL2D++;
+                    } catch (Exception e) {
+                        Log.err(e);
+                        erroredL2D++;
+                    }
                 }
             });
         }
@@ -64,25 +66,23 @@ public class ArchiveDustry extends Mod {
         if (Core.settings.getString("selectedSong") == null) {
             Core.settings.put("selectedSong", "menucm");
         }
-        if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D") && Core.settings.has("setL2D-new")) {
-            if (!Core.settings.getString("setL2D-new").isEmpty()) {
+        Events.on(EventType.ClientLoadEvent.class, event -> {
+            ArchivDUI.init();
+            ArchivDSoundControl.loadSoundControl();
+            ArchivDSoundControl.replaceMainMenu();
+        
+            if (!Core.graphics.isPortrait() && Core.settings.getBool("enableL2D") && Core.settings.has("setL2D-new") && !Core.settings.getString("setL2D-new").isEmpty()) {
                 ArchivDBackground.buildL2D(Core.settings.getString("setL2D-new"));
-            } else {
-                Core.settings.put("enableL2D", false); //fallback if setl2d is blank
-                Core.settings.put("selectedSong", "menucm");
             }
-        }
-            Events.on(EventType.ClientLoadEvent.class, event -> {
-                ArchivDUI.init();
-                ArchivDSoundControl.loadSoundControl();
-                ArchivDSoundControl.replaceMainMenu();
-                Log.infoTag("ArchiveDustry", "Fully Loaded!");
-                if (Core.settings.getBool("ba-firstTime")) {
-                    firstTimeDialog.show();
-                }
-                Timer.schedule(() -> control.sound.stop(), 0.1f);
-
-            });
+            
+            Log.infoTag("ArchiveDustry", "Fully Loaded!");
+        
+            if (Core.settings.getBool("ba-firstTime")) {
+                firstTimeDialog.show();
+            }
+        
+            Timer.schedule(() -> control.sound.stop(), 0.1f);
+        });
     }
 
     static String RandomMessage(){

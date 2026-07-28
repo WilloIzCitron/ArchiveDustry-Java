@@ -3,16 +3,15 @@ package bluearchive.ui.dialogs;
 import arc.Core;
 import arc.graphics.Color;
 import arc.scene.ui.Dialog;
-import arc.scene.ui.ScrollPane;
 import arc.scene.ui.layout.*;
 import arc.util.Log;
 import bluearchive.ArchiveDustry;
-import bluearchive.l2d.Live2DBackgrounds;
+import bluearchive.l2d.Live2DBackgroundsExperimental;
 import mindustry.ui.Styles;
 import mindustry.ui.dialogs.BaseDialog;
 
 import static arc.Core.*;
-import static bluearchive.l2d.Live2DBackgrounds.live2ds;
+import static bluearchive.l2d.Live2DBackgroundsExperimental.live2ds;
 import static mindustry.Vars.dataDirectory;
 
 public class ArchivDLive2DManager extends BaseDialog {
@@ -46,6 +45,7 @@ public class ArchivDLive2DManager extends BaseDialog {
     }
 
     private void rebuild(){
+        live2ds.each(l -> l.dispose());
         live2ds.clear();
         l2dtabl.clear();
         l2dtabl.add("@loading");
@@ -54,7 +54,7 @@ public class ArchivDLive2DManager extends BaseDialog {
             dataDirectory.child("live2d").walk(f -> {
                 ArchiveDustry.foundL2D++;
                 try {
-                    Live2DBackgrounds.load(f);
+                    Live2DBackgroundsExperimental.load(f);
                     ArchiveDustry.loadedL2D++;
                 } catch (Exception e) {
                     Log.err(e);

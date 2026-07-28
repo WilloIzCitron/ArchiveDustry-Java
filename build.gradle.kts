@@ -10,6 +10,7 @@ buildscript{
 
     dependencies{
         classpath("com.github.Anuken.Arc:arc-core:$arcVersion")
+
     }
 
     repositories{
@@ -119,6 +120,9 @@ project(":"){
         // Local Testing if commented
         compileOnly(mindustry(":core"))
         compileOnly(arc(":arc-core"))
+
+        implementation("org.jcodec:jcodec:0.2.5")
+        implementation("org.jcodec:jcodec-javase:0.2.5")
     }
 
     val jar = tasks.named<Jar>("jar"){
