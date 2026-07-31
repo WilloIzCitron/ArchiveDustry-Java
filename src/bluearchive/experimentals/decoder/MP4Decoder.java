@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -27,14 +26,7 @@ public class MP4Decoder {
     private static final int MIN_CHUNK_FRAMES = 30;
     private static final int TARGET_CHUNK_FRAMES = 240;
 
-    public static boolean describe(String[] args) throws Exception {
-        if(args.length < 1) {
-            System.err.println("Argument must at least pass a filepath.");
-            return false;
-        }
-        File videoFile = new File(args[0]);
-        File outputDir = new File("output_frames");
-        Files.createDirectories(outputDir.toPath());
+    public static boolean describe(File videoFile, File outputDir) throws Exception {
 
         int totalFrames = readTotalFrames(videoFile);
         System.out.println("Detected Total Frames: " + totalFrames);
