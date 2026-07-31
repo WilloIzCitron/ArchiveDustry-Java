@@ -10,6 +10,7 @@ buildscript{
 
     dependencies{
         classpath("com.github.Anuken.Arc:arc-core:$arcVersion")
+
     }
 
     repositories{
@@ -86,10 +87,10 @@ allprojects{
     }
 
     tasks.withType<JavaCompile>().configureEach{
-        // Use Java 17+ syntax, but target Java 8 bytecode version.
+        // Use Java 17+ syntax, unfortunately, Java 8 bytecode no longer works. Workaround needed.
         sourceCompatibility = "17"
         options.apply{
-            release = 8
+            release = 17
             compilerArgs.add("-Xlint:-options")
 
             isIncremental = true
@@ -119,6 +120,9 @@ project(":"){
         // Local Testing if commented
         compileOnly(mindustry(":core"))
         compileOnly(arc(":arc-core"))
+
+        implementation("org.jcodec:jcodec:0.2.5")
+        implementation("org.jcodec:jcodec-javase:0.2.5")
     }
 
     val jar = tasks.named<Jar>("jar"){
